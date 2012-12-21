@@ -2,9 +2,16 @@
 
 require 'json'
 
+=begin
+
+import for json dump. run as a script (see bottom of file for invocation).
+
+todo: unit tests
+
+=end
 class Jimport
 
-  @all
+  @all # hash containing all rows from JSON files
   
   def initialize(filenames)
 
@@ -21,10 +28,8 @@ class Jimport
   end
   
   def run
-
-    #import_employees(get_employees_from_file)
+    import_employees(get_employees_from_file)
     import_reporting_relationships(get_reporting_relationships_from_file)
-
   end
 
   private
@@ -154,12 +159,10 @@ end
 
 
 ########################################################
-
 filenames = ['employeeware_db.2012061101.json', 'employeeware_db.2012061102.json']
 
 j = Jimport.new (filenames)
 j.run
-
 ########################################################
 
 
