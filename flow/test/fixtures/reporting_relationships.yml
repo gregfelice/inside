@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employee: 1
+  supervisor: 1
+  dotted: false
+
+two:
+  employee: 1
+  supervisor: 1
+  dotted: false

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  contractor: false
+  part_time_status: false
+  full_name: MyString
+  job_title: MyString
+
+two:
+  contractor: false
+  part_time_status: false
+  full_name: MyString
+  job_title: MyString

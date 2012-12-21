@@ -1,0 +1,29 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @widget.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @widget.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @widget.content %>
+</p>
+
+<h2>Parts</h2>
+<!-- render all the parts associated with this widget -->
+<%= render @widget.parts %>
+
+<h2>Add a Part</h2>
+<%= render "parts/form" %>
+
+<br />
+	   
+<%= link_to 'Edit', edit_widget_path(@widget) %> |
+<%= link_to 'Back', widgets_path %>
