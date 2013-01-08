@@ -5,6 +5,7 @@
 
 # First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
 environment_id="ruby-1.9.3-p327@flow"
+#environment_id="ruby-1.9.3-p327"
 
 #
 # Uncomment following line if you want options to be set only for given project.
@@ -23,21 +24,21 @@ environment_id="ruby-1.9.3-p327@flow"
 # insert the word 'use' after --create as this triggers verbose mode.
 #
 if [[ -d "${rvm_path:-$HOME/.rvm}/environments" \
-  && -s "${rvm_path:-$HOME/.rvm}/environments/$environment_id" ]]
+    && -s "${rvm_path:-$HOME/.rvm}/environments/$environment_id" ]]
 then
-  \. "${rvm_path:-$HOME/.rvm}/environments/$environment_id"
-
-  if [[ -s "${rvm_path:-$HOME/.rvm}/hooks/after_use" ]]
-  then
-    . "${rvm_path:-$HOME/.rvm}/hooks/after_use"
-  fi
+    \. "${rvm_path:-$HOME/.rvm}/environments/$environment_id"
+    
+    if [[ -s "${rvm_path:-$HOME/.rvm}/hooks/after_use" ]]
+    then
+	. "${rvm_path:-$HOME/.rvm}/hooks/after_use"
+    fi
 else
   # If the environment file has not yet been created, use the RVM CLI to select.
-  if ! rvm --create use  "$environment_id"
-  then
-    echo "Failed to create RVM environment '${environment_id}'."
-    return 1
-  fi
+    if ! rvm --create use  "$environment_id"
+    then
+	echo "Failed to create RVM environment '${environment_id}'."
+	return 1
+    fi
 fi
 
 #
@@ -66,6 +67,6 @@ if [[ $- == *i* ]] # check for interactive shells
 then
     echo "Using: $(tput setaf 2)$GEM_HOME$(tput sgr0)" # show the user the ruby and gemset they are using in green
 else 
-	echo "Using: $GEM_HOME" # don't use colors in interactive shells
+    echo "Using: $GEM_HOME" # don't use colors in interactive shells
 fi
 

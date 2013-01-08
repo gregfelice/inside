@@ -1,0 +1,35 @@
+
+<% content_for :head do %>
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load('visualization', '1', {packages: ['orgchart']});
+</script>
+								  
+<script type="text/javascript">
+
+function drawVisualization() {
+    
+    var data = new google.visualization.DataTable();
+    
+    data.addColumn('string', 'Name');
+    data.addColumn('string', 'Manager');
+    data.addColumn('string', 'ToolTip');
+    
+    data.addRows([
+	    <% @reporting_relationships.each do |rr| %>
+	    [{v:'<%= rr.employee.full_name %>', f:'<%= rr.employee.full_name %><br/><%= rr.employee.job_title %>'}, '<%= rr.supervisor.full_name %>', ''],
+	    <% end %>
+    ]);
+    
+    new google.visualization.OrgChart(document.getElementById('visualization')).draw(data, {allowHtml: true});
+}
+
+google.setOnLoadCallback(drawVisualization);
+</script>
+
+<% end %>
+
+<div id="visualization" style="width: 300px; height: 300px;"></div>
+
+

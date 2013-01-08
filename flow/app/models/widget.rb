@@ -7,5 +7,9 @@ class Widget < ActiveRecord::Base
 
   has_many :parts
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
 end
 

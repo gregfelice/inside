@@ -10,6 +10,8 @@ Flow::Application.routes.draw do
 
   get "home/index"
 
+  match "/orgchart" => "home#orgchart"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

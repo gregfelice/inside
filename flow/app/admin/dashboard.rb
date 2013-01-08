@@ -1,4 +1,8 @@
 ActiveAdmin.register_page "Dashboard" do
+  
+  action_item do
+    link_to "Org Chart", "/orgchart"
+  end
 
   menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
 
