@@ -1,6 +1,6 @@
 
 <% content_for :head do %>
-
+  
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">
 google.load('visualization', '1', {packages: ['orgchart']});
@@ -18,7 +18,7 @@ function drawVisualization() {
     
     data.addRows([
 	    <% @reporting_relationships.each do |rr| %>
-	    [{v:'<%= rr.employee.full_name %>', f:'<%= rr.employee.full_name %><br/><%= rr.employee.job_title %>'}, '<%= rr.supervisor.full_name %>', ''],
+	    [{v:'<%= rr.employee.full_name if rr.employee %>', f:'<%= rr.employee.full_name if rr.employee %><br/><%= rr.employee.job_title if rr.employee%>'}, '<%= rr.supervisor.full_name if rr.supervisor %>', ''],
 	    <% end %>
     ]);
     

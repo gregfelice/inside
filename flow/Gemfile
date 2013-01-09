@@ -47,3 +47,6 @@ group :test do
   gem 'capybara'
   gem 'turn'
 end
+
+gem "simple-navigation"
+

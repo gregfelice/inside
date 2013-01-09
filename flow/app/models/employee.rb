@@ -5,5 +5,8 @@ class Employee < ActiveRecord::Base
   has_many :reporting_relationships
   has_many :employees, :through => :reporting_relationships, :uniq => true
 
-  validates_uniqueness_of :full_name
+  validates :full_name, :job_title, :presence => true
+
+  validates :full_name, :uniqueness => true
+
 end
