@@ -1,0 +1,32 @@
+
+
+
+
+release 1
+---
+DONE basic rails reference implementation
+DONE admin framework reference implementation
+DONE create a starting model, load the data from employeeware
+  http://railscasts.com/episodes/163-self-referential-association
+DONE employeeware database integration
+DONE https for webrick
+
+DONE instance working (vostok)
+  need to test
+
+DONE get mysql installed on ec2 (vostok)
+
+employeeware charts / reports port
+  d3 or google
+
+testing
+  http://railscasts.com/episodes/327-minitest-with-rails
+  model / unit - minitest / spec
+  integration / acceptance - capybara
+  guard - autotest
+  turn - formatting
+
+ath/atz implementation
+
+employeeware forms port
+  make this friendly / simpleform
