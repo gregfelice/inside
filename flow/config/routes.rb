@@ -8,6 +8,8 @@ Flow::Application.routes.draw do
     resources :parts
   end
 
+  resources :employees
+
   get "home/index"
 
   match "/orgchart" => "home#orgchart"

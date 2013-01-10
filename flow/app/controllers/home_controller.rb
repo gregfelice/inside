@@ -6,6 +6,7 @@ class HomeController < ApplicationController
 
   def orgchart
     @reporting_relationships = ReportingRelationship.find(:all)
+    render :layout => 'orgchart'
   end
   
 end
