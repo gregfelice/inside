@@ -6,13 +6,11 @@
     <%= f.input :job_title %>
     <%= f.input :contractor %>
     <%= f.input :part_time_status %>
-  
 
     <div class="form-actions">
-      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= f.submit "Update Employee", :class => "btn btn-primary" %>
       <%= link_to 'Cancel', employees_path, :class => 'btn' %>
     </div>
-
 
   </fieldset>
 
