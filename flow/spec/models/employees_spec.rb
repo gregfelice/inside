@@ -38,13 +38,13 @@ describe "Employees Model" do
     rr = employee.supervisor_relationships.first
     rr.dotted = true
     rr.dotted.should be_true
-
+    
     rr = employee.subordinate_relationships.first
     rr.dotted = true
     rr.dotted.should be_true
-
+    
   end
-
+  
   it "throws an error if the same supervisor or subordinate is added more than once", :focus => true do
 
     employee = FactoryGirl.create(:employee)
