@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220222853) do
+ActiveRecord::Schema.define(:version => 20130112213020) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(:version => 20121220222853) do
   add_index "parts", ["widget_id"], :name => "index_parts_on_widget_id"
 
   create_table "reporting_relationships", :force => true do |t|
-    t.integer  "employee_id"
+    t.integer  "subordinate_id"
     t.integer  "supervisor_id"
     t.boolean  "dotted"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "widgets", :force => true do |t|

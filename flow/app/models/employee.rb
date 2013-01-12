@@ -1,14 +1,14 @@
 class Employee < ActiveRecord::Base
 
-  attr_accessible :contractor, :full_name, :job_title, :part_time_status, :reporting_relationship_attributes
-  
-  has_many :reporting_relationships
-  has_many :employees, :through => :reporting_relationships, :uniq => true
+  attr_accessible :full_name, :job_title, :contractor, :part_time_status, :supervisor_relationships, :subordinate_relationships
 
-  validates :full_name, :job_title, :presence => true
-
+  validates_presence_of :full_name, :job_title
   validates :full_name, :uniqueness => true
 
-  accepts_nested_attributes_for :reporting_relationships
+  has_many :supervisor_relationships,     :class_name => "ReportingRelationship",      :foreign_key => :subordinate_id
+  has_many :subordinate_relationships,    :class_name => "ReportingRelationship",      :foreign_key => :supervisor_id
+  
+  has_many :supervisors,                  :source => :supervisor,                 :through => :supervisor_relationships
+  has_many :subordinates,                 :source => :subordinate,                :through => :subordinate_relationships
 
 end
