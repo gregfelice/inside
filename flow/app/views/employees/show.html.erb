@@ -10,19 +10,15 @@
   <dd><%= @employee.job_title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></dt>
   <dd><%= @employee.contractor %></dd>
+
   <dt><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></dt>
   <dd><%= @employee.part_time_status %></dd>
 </dl>
 
 <div class="form-actions">
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              employees_path, :class => 'btn'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_employee_path(@employee), :class => 'btn' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-    employee_path(@employee),
-    :method => 'delete',
-    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+  <%= link_to 'Back', employees_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_employee_path(@employee), :class => 'btn' %>
+  <%= link_to 'Destroy', employee_path(@employee), :method => 'delete',
+    :data => { :confirm => 'Confirm', :default => 'Are you sure?' }, :class => 'btn btn-danger' %>
 </div>
 

@@ -8,6 +8,11 @@ class HomeController < ApplicationController
     @reporting_relationships = ReportingRelationship.find(:all)
     render :layout => 'orgchart'
   end
+
+  def orgdendro
+    @reporting_relationships = ReportingRelationship.find(:all)
+    render :layout => 'orgchart'
+  end
   
 end
 

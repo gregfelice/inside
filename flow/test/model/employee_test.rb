@@ -1,20 +1,18 @@
-require 'minitest_helper'
+require 'test_helper'
 
 describe Employee do
 
-  it "has a name that is not nil"
-
-  it "has a job title that is not nil"
-
-  it "has employees" do
-
-    employee = Employee.create!(full_name: "Hello World", job_title: "This is a test")
-    
-    1.must_equal 2
-
+  it "can be created and deleted" do 
+    e = Employee.create!(full_name: "Joe Smith", job_title: "President")
+    e.full_name.must_equal "Joe Smith"
+    e.save!
+    eid = e.id
+    Employee.destroy(eid)
+    assert_raises(ActiveRecord::RecordNotFound) { Employee.find(eid) }
   end
-
-
   
+  it "can add employees that report to it"
+
+  it "can add employees is reports to"
 
 end

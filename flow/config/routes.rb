@@ -1,8 +1,8 @@
 Flow::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  # active admin related
+  # ActiveAdmin.routes(self)
+  # devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :widgets do
     resources :parts
@@ -13,6 +13,7 @@ Flow::Application.routes.draw do
   get "home/index"
 
   match "/orgchart" => "home#orgchart"
+  match "/orgdendro" => "home#orgdendro"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
