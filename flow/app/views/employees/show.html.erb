@@ -1,19 +1,58 @@
 <%- model_class = Employee -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human %> | <%= @employee.full_name %></h1> 
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></dt>
-  <dd><%= @employee.full_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:job_title) %>:</strong></dt>
-  <dd><%= @employee.job_title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></dt>
-  <dd><%= @employee.contractor %></dd>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <tr><td><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></td><td><%= @employee.full_name %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:job_title) %>:</strong></td><td><%= @employee.job_title %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></td><td><%= @employee.contractor %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></td><td><%= @employee.part_time_status %></td></tr>
+</table>
 
-  <dt><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></dt>
-  <dd><%= @employee.part_time_status %></dd>
-</dl>
+<strong><%= @employee.full_name %> reports to:</strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <% @employee.supervisor_relationships.each do |s| %>
+    <tr><td><%= s.supervisor.full_name %></td><td class="muted"><em><%= s.supervisor.job_title %> <%= s.dotted? ? '(dotted)' : '' %></td></tr>
+  <% end %>
+</table>
+
+<strong>These people report to <%= @employee.full_name %>:</strong>
+<%#   
+need to show a popup of employees.. 
+take that return value 
+
+show a popup search of employees. get the returned value from that.
+
+<%= link_to "Add Report", reporting_relationships_path(@employee.id, reporting_relationships_path ) %>
+
+%>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <% @employee.subordinate_relationships.each do |s| %>
+    <tr><td><%= s.subordinate.full_name if s.subordinate %></td><td class="muted"><%=s.subordinate.job_title if s.subordinate %> <%= s.dotted? ? '(dotted)' : '' %></td></tr>
+  <% end %>
+</table>
 
 <div class="form-actions">
   <%= link_to 'Back', employees_path, :class => 'btn'  %>
