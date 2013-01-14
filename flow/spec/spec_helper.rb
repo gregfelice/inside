@@ -29,7 +29,7 @@ Spork.prefork do
     # config.mock_with :mocha
     # config.mock_with :flexmock
     # config.mock_with :rr
-    config.mock_with :factory_girl
+    # config.mock_with :factory_girl
 
     config.include FactoryGirl::Syntax::Methods
     

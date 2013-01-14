@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rspec . --color --drb
+# rspec . --color --drb --format documentation
+# rspec . --color --drb --tag focus --format documentation
