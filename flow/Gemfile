@@ -11,18 +11,20 @@ gem 'mysql2'
 # in production environments by default.
 group :assets do
 
-  gem 'sass-rails'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
+  gem 'execjs'
 
   gem 'uglifier', '>= 1.0.3'
 
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', '2.1'
 
 end
 
+# should contain ujs...
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
@@ -43,7 +45,6 @@ gem 'jquery-rails'
 # all related to rails_admin
 # gem 'rails3-generators'
 
-gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 
 gem 'rspec-rails', :group => [:test, :development]
@@ -65,4 +66,3 @@ gem 'simple_form'
 gem 'country_select'
 
 gem 'rabl'
-
