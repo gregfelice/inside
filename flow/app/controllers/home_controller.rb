@@ -10,7 +10,8 @@ class HomeController < ApplicationController
   end
 
   def orgdendro
-    @reporting_relationships = ReportingRelationship.find(:all)
+    # arthur
+    @employee = Employee.find_by_id(237)
     render :layout => 'orgchart'
   end
   

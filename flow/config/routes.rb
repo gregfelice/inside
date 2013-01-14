@@ -9,6 +9,7 @@ Flow::Application.routes.draw do
   end
 
   resources :employees
+  resources :reporting_relationships
 
   get "home/index"
 

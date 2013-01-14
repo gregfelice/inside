@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,10 +8,11 @@
     
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
-    
-    <%= yield :head %>
+
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= yield :head %>
   
   </head>
   <body style="background: #FFFFFF;">
@@ -29,6 +29,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li><%= link_to "Employees", employees_path %></li>
+              <li><%= link_to "Reporting Relationships", reporting_relationships_path %></li>
               <li><%= link_to "Org Chart", orgchart_path %></li>
             </ul>
           </div>

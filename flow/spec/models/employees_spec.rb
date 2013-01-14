@@ -5,15 +5,19 @@ require 'yaml'
 
 describe "Employees Model" do 
 
-  it "can add and access supervisors and subordinates", :focus => true do
+  it "can retrieve the top level employee", :focus => true do 
+    # employee = Employee.find :all, :conditions => { :supervisors })
+    # print employee.inspect
+  end
 
-    employee = FactoryGirl.create(:employee)
-
-    supervisor = FactoryGirl.create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
-    subordinate = FactoryGirl.create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
-
-    supervisor2 = FactoryGirl.create(:employee, full_name: "Supervisor2", job_title: "Supervisor Title2")
-    subordinate2 = FactoryGirl.create(:employee, full_name: "Subordinate2", job_title: "Subordinate Title2")
+  it "can add and access supervisors and subordinates", :focus => false do
+    
+    employee = create(:employee)
+    supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
+    subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
+    
+    supervisor2 = create(:employee, full_name: "Supervisor2", job_title: "Supervisor Title2")
+    subordinate2 = create(:employee, full_name: "Subordinate2", job_title: "Subordinate Title2")
     
     employee.supervisors << supervisor
     employee.subordinates << subordinate
@@ -25,31 +29,32 @@ describe "Employees Model" do
 
   end
 
-  it "can make the reporting relationship to supervisors and subordinates dotted", :focus => true do
+  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => false do
 
-    employee = FactoryGirl.create(:employee)
-
-    supervisor = FactoryGirl.create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
-    subordinate = FactoryGirl.create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
+    employee = create(:employee)
+    supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
+    subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
 
     employee.supervisors << supervisor
     employee.subordinates << subordinate
     
     rr = employee.supervisor_relationships.first
+    rr.supervisor
     rr.dotted = true
     rr.dotted.should be_true
     
     rr = employee.subordinate_relationships.first
+    rr.subordinate
     rr.dotted = true
     rr.dotted.should be_true
     
   end
   
-  it "throws an error if the same supervisor or subordinate is added more than once", :focus => true do
+  it "throws an error if the same supervisor or subordinate is added more than once", :focus => false do
 
-    employee = FactoryGirl.create(:employee)
-    supervisor = FactoryGirl.create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
-    subordinate = FactoryGirl.create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
+    employee = create(:employee)
+    supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
+    subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
 
     employee.supervisors << supervisor
     employee.subordinates << subordinate
