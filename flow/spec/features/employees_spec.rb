@@ -13,36 +13,19 @@ feature "Employee Administration" do
     page.should have_content "Employee"
   end
 
-=begin
-  http://railscasts.com/episodes/163-self-referential-association?autoplay=true
-  http://www.jacklmoore.com/notes/jquery-modal-tutorial
-
-  http://twitter.github.com/bootstrap/javascript.html#modals
-
-ok - i think what happens here is that this is stateless - i present a screen that -- has a link to perform the action of association - 
-needs to remember the original person - we can then 'add' them to this -- where the fuck do we save this ... pass as a parameter, 
-
-=end
-  scenario "as an administrator, add new subordinates for an employee" do
-  # given i am an administrator
-  #   and i am in a show employee screen (not edit employee)
-  # when click_button add_new_report
-  #   and i see a modal screen with an entry box for a full_name
-  #   and i enter a name for a new employee to move
-  #   and i see a return set that has the person i want 
-  #   and i select that person (or those people)
-  # then i see the system has added that person as a subordinate
-
-# note here: we need to view this as a true move relationship... but what in the case of dotted? do we preserve them?
-
-# in general, we need a lightbox screen that pops up for an employee search. start with a single search..
-# looks like we can use boot strap for modal dialogs
-
-# ok - now what -- we want to present the equivalent of the index.html of all employees, as filterable, but also include an action button that
-# associates that employee with our person. we want to do all of this in a modal window. hmm. 
-# sheez.
-
-
+  # As an administrator
+  # When I go to the show page for an employee
+  #   and I click on add a report
+  #   and I see a modal appear with a entry box
+  #   and I enter a substring
+  #   and I see names that match that search
+  #   and I choose a name
+  # Then I see te modal close
+  #   and I see the main show page
+  #   and I see the employee added to the reports list for the employee
+  
+  scenario "as an administrator, add new subordinates for an employee"  do
+    
 
   end
 

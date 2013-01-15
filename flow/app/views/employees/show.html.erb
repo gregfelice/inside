@@ -30,13 +30,14 @@
 </table>
 
 <strong>These people report to <%= @employee.full_name %>:</strong>
+
 <%#   
 need to show a popup of employees.. 
 take that return value 
 
 show a popup search of employees. get the returned value from that.
 
-<%= link_to "Add Report", reporting_relationships_path(@employee.id, reporting_relationships_path ) %>
+link_to "Add Report", reporting_relationships_path(@employee.id, reporting_relationships_path )
 
 %>
 
@@ -53,6 +54,10 @@ show a popup search of employees. get the returned value from that.
     <tr><td><%= s.subordinate.full_name if s.subordinate %></td><td class="muted"><%=s.subordinate.job_title if s.subordinate %> <%= s.dotted? ? '(dotted)' : '' %></td></tr>
   <% end %>
 </table>
+
+
+<%=  link_to "Add a New Employee (test)", new_employee_path, id: "new_link", remote: true %>
+
 
 <div class="form-actions">
   <%= link_to 'Back', employees_path, :class => 'btn'  %>
