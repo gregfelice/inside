@@ -23,8 +23,8 @@ class WidgetsController < ApplicationController
       format.json { render json: @widget }
     end
   end
-  
-  # GET /widgets/new
+ 
+   # GET /widgets/new
   # GET /widgets/new.json
   def new
     @widget = Widget.new
