@@ -1,32 +1,38 @@
 
+DONE implement simple form
+DONE implement bootstrap
+DONE implement sass
+DONE finish simple form and bootstrap niceties (more bootstrap video)
+DONE fix general data model / test
+DONE implement .htacess authentication, for demo purposes
 
+implement cleanups
+  up one level on the org chart, in some form, rather than having it as too big for the screen
+  mark dotted relationships as such (in the node itself, (...)
 
+implement basic reporting relationships updates via employee screen
 
-release 1
----
+implement pretty employee screen, showing reporting relationships
+
+implement d3 org chart
+  http://www.cogmap.com/
+  rabl
+
+implement bulk updates to reporting_relationships
+  implement ransack
+
+implement devise for authentication
+
+implement a release calendar
+
+implement xls and pdf reports
+
 DONE basic rails reference implementation
 DONE admin framework reference implementation
 DONE create a starting model, load the data from employeeware
-  http://railscasts.com/episodes/163-self-referential-association
 DONE employeeware database integration
 DONE https for webrick
-
 DONE instance working (vostok)
-  need to test
-
 DONE get mysql installed on ec2 (vostok)
-
-employeeware charts / reports port
-  d3 or google
-
-testing
-  http://railscasts.com/episodes/327-minitest-with-rails
-  model / unit - minitest / spec
-  integration / acceptance - capybara
-  guard - autotest
-  turn - formatting
-
-ath/atz implementation
-
-employeeware forms port
-  make this friendly / simpleform
+DONE employeeware charts / reports port
+DONE testing framework
