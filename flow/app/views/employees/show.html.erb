@@ -10,10 +10,12 @@
       <th style="width: 50%"></th>
     </tr>
   </thead> 
+  <tbody>
   <tr><td><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></td><td><%= @employee.full_name %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:job_title) %>:</strong></td><td><%= @employee.job_title %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></td><td><%= @employee.contractor %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></td><td><%= @employee.part_time_status %></td></tr>
+  <tbody>
 </table>
 
 <strong><%= @employee.full_name %> reports to:</strong>
@@ -30,19 +32,6 @@
 </table>
 
 <strong>These people report to <%= @employee.full_name %>:</strong>
-
-<%#   
-need to show a popup of employees.. 
-take that return value 
-
-show a popup search of employees. get the returned value from that.
-
-link_to "Add Report", reporting_relationships_path(@employee.id, reporting_relationships_path )
-
-%>
-
-
-
 <table class="table">
   <thead>
     <tr>
@@ -55,14 +44,48 @@ link_to "Add Report", reporting_relationships_path(@employee.id, reporting_relat
   <% end %>
 </table>
 
+<a href="#add_subordinate_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Report</a>
+ 
+<div id="add_subordinate_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add_subordinate_modal" aria-hidden="true">
 
-<%=  link_to "Add a New Employee (test)", new_employee_path, id: "new_link", remote: true %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="add_a_subordinate_modal_label">Add a Report</h3>
+  </div>
 
+  <div class="modal-body">
+    <p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Full Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @employees.each do |employee| %>
+	  <tr>
+	    <td><%= employee.id %></td>
+	    <td><%= employee.full_name %></td>
+                 <td><%= link_to "Add Report", reporting_relationships_path( { :supervisor_id => @employee.id, :subordinate_id => employee.id} ), :method => :post %></td>
+	  </tr>
+	  <% end %>
+        </tbody>
+      </table>
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+
+</div>
 
 <div class="form-actions">
   <%= link_to 'Back', employees_path, :class => 'btn'  %>
   <%= link_to 'Edit', edit_employee_path(@employee), :class => 'btn' %>
-  <%= link_to 'Destroy', employee_path(@employee), :method => 'delete',
-    :data => { :confirm => 'Confirm', :default => 'Are you sure?' }, :class => 'btn btn-danger' %>
+  <%= link_to 'Destroy', employee_path(@employee), :method => 'delete', :data => { :confirm => 'Confirm', :default => 'Are you sure?' }, :class => 'btn btn-danger' %>
 </div>
 

@@ -4,41 +4,6 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 
-<%# TEST CODE : MODAL WINDOW TESTS FOR ADVANCED SEARCH %>
-<%= content_for :head do %>
-
-  <!-- decorates the dom, but is inside the html file. -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script type="text/javascript"charset="UTF-8">
-      $(function () {
-          $('#alert-inline').click(function () {
-	      alert(this.getAttribute('data-message'));
-              return false;
-          })
-      });
-    </script>
-
-<% end %>
-
-<!-- obtrusive -->
-<a href="#" onclick="alert('Dumb-ass, non-unobtrusive javascript.'); return false;">Click Here (obtrusive)</a>
-
-<!-- in head -->
-<a href="#" id="alert-inline" data-message="this is message from the tag">Click Here (inline)</a>
-
-<!-- in coffee file -->
-<a href="#" id="alert-js-file" data-message="this is message from the tag">Click Here (js file)</a>
-
-<%# BOOTSTRAP MODAL WINDOW %>
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
- 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-
 <%# EMPLOYEE SEARCH BOX %>
 <%= form_tag employees_path, :method => 'get' do %>
   <p>
@@ -46,25 +11,6 @@
     <%= submit_tag "search", :name => nil, :class => 'btn' %>
   </p>
 <% end %>
-
-    <p>
-
-      <% @employees.each do |employee| %>
-	<table class="table table-striped>
-	<tr>
-          <td><%= link_to employee.id, employee_path(employee) %></td><td><%= employee.full_name %></td>
-	</tr>
-	</table>
-      <% end %>
-    </p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
-<%# END TEST CODE %>
-
 
 <%# NEW EMPLOYEE %>
 <%= link_to "New", new_employee_path, :class => 'btn btn-primary' %>
