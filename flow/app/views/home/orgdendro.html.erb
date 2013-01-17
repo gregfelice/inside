@@ -1,9 +1,9 @@
 
 <% content_for :head do %>
   
-  <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 
-  <style type="text/css">
+<style type="text/css">
 
 .node circle {
   cursor: pointer;
@@ -22,16 +22,13 @@ path.link {
   stroke-width: 1.5px;
 }
 
-    </style>
+</style>
+
 <% end %>
 
-    <div id="body">
-      <div id="footer">
-        Org Chart
-      </div>
-    </div>
+<div id="body"></div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
 var m = [20, 120, 20, 120],
     w = 1280 - m[1] - m[3],
@@ -48,10 +45,11 @@ var diagonal = d3.svg.diagonal()
 var vis = d3.select("#body").append("svg:svg")
     .attr("width", w + m[1] + m[3])
     .attr("height", h + m[0] + m[2])
-  .append("svg:g")
+    .append("svg:g")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-d3.json("/flare.json", function(json) {
+d3.json("/orgdendro_tree.json", function(json) {
+//d3.json("/flare.json", function(json) {
   root = json;
   root.x0 = h / 2;
   root.y0 = 0;
@@ -65,10 +63,13 @@ d3.json("/flare.json", function(json) {
 
   // Initialize the display to show a few nodes.
   root.children.forEach(toggleAll);
+  //toggle(root.children[0]);
   toggle(root.children[1]);
-  toggle(root.children[1].children[2]);
-  toggle(root.children[9]);
-  toggle(root.children[9].children[0]);
+  toggle(root.children[3]);
+  //toggle(root.children[1].children[2]);
+  //toggle(root.children[1].children[2].children[1]);
+  //toggle(root.children[9]);
+  //toggle(root.children[9].children[0]);
 
   update(root);
 });
@@ -174,4 +175,4 @@ function toggle(d) {
   }
 }
 
-    </script>
+</script>

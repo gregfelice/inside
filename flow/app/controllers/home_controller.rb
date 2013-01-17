@@ -10,10 +10,31 @@ class HomeController < ApplicationController
   end
 
   def orgdendro
-    # arthur
-    @employee = Employee.find_by_id(237)
     render :layout => 'orgchart'
   end
+
+  def budgetchart
+    render :layout => 'orgchart'
+  end
+
+  def orgdendro_tree
+    @employee = Employee.find_by_id(183) 
+    tree = to_node @employee
+    respond_to do |format|
+      format.json { render json: tree }
+    end
+
+  end
   
+  private
+  
+  def to_node(n)
+    {
+      "name" => n.full_name,
+      "size" => 1000,
+      "children" => n.subordinates.size > 0 ? n.subordinates.map { |c| to_node c } : ""
+    }
+  end
+
 end
 

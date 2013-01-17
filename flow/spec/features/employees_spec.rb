@@ -5,6 +5,7 @@ feature "Employee Administration" do
   # begin release 1
   scenario "as an administrator, create a new employee" do
     e = create(:employee)
+    login('admin', 'scene24')
     visit employees_path
     click_link "New"
     fill_in "Full name", :with => e.full_name
@@ -24,9 +25,11 @@ feature "Employee Administration" do
   #   and I see the main show page
   #   and I see the employee added to the reports list for the employee
   
-  scenario "as an administrator, add new subordinates for an employee"  do
-    
+  scenario "as an administrator, add new subordinates for an employee" do 
+    # test the search window in the modal
+  end
 
+  scenario "as an administrator, remove subordinates for an employee" do
   end
 
   scenario "as an administrator, move subordinates from an employee to another employee"
