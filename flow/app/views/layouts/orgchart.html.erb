@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body style="background: #FFFFFF;">
-    
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
 	<div class="container">
@@ -23,11 +22,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Technology Decision Support // v0.1 (Alpha)</a>
+          <%= link_to app_title, root_path, :class => "brand" %>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Employees", employees_path %></li>
-              <li><%= link_to "Org Chart", orgchart_path %></li>
             </ul>
           </div>
 	</div>
@@ -37,7 +34,6 @@
     <div class="container">
       <div class="row">
 	<div class="span12"><%= yield %></div>
-	<%= yield %>
       </div>
     </div>
     
