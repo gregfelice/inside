@@ -24,12 +24,6 @@ form {
 
 </style>
 
-<!-- 
-<form>
-  <label><input type="radio" name="mode" value="size" checked> Size</label>
-  <label><input type="radio" name="mode" value="count"> Count</label>
-</form>
--->
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -38,7 +32,7 @@ var margin = {top: 20, right: 10, bottom: 10, left: 0},
     width = 860 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
-
+// original values
 //var margin = {top: 40, right: 10, bottom: 10, left: 10},
 //    width = 960 - margin.left - margin.right,
 //    height = 500 - margin.top - margin.bottom;
@@ -60,20 +54,18 @@ var div = d3.select("#budgetchart").append("div")
 d3.json("budgets.json", function(error, root) {
   var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
-    .enter().append("div")
+      .enter().append("div")
       .attr("class", "node")
       .call(position)
       .style("background", function(d) { return d.children ? color(d.name) : null; })
       .text(function(d) { return d.children ? null : d.name; });
 
   d3.selectAll("input").on("change", function change() {
-    var value = this.value === "count"
-        ? function() { return 1; }
-        : function(d) { return d.size; };
+    var value = this.value === "count" ? function(d) { return d.budget; } : function(d) { return d.size; };
 
     node
         .data(treemap.value(value).nodes)
-      .transition()
+        .transition()
         .duration(1500)
         .call(position);
   });
@@ -87,3 +79,11 @@ function position() {
 }
 
 </script>
+
+<table>
+<form>
+  <label><input type="radio" name="mode" value="size" checked> Team Size</label>
+  <label><input type="radio" name="mode" value="count"> Budget</label>
+</form>
+
+</table>

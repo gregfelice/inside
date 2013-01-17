@@ -4,43 +4,42 @@
 	{
 	    "name": "Digital Virtual Teams",
 	    "children": [
-		{"name": "Ad Platform Innovation", "size": 5},
-
-		{"name": "Blogs", "size": 5},
+		{"name": "Ad Platform Innovation", "budget": 200, "size": 5},
+		{"name": "Blogs", "budget": 200, "size": 5},
 		{"name": "Internal",
 		 "children": [
-		     {"name": "Business Intelligence", "size": 14},
-		     {"name": "Ad Systems", "size": 6}
+		     {"name": "Business Intelligence", "budget": 1400, "size": 14},
+		     {"name": "Ad Systems", "budget": 350, "size": 6}
 		 ]
 		},
-		{"name": "CMS: Scoop & Feeds", "size": 20},
-		{"name": "E-Mail", "size": 4},
-		{"name": "Engagement", "size": 13},
-		{"name": "Games", "size": 2},
-		{"name": "International", "size": 1},
-		{"name": "NYT4 & Data Universe", "size": 7},
+		{"name": "CMS: Scoop & Feeds", "budget": 1500, "size": 20},
+		{"name": "E-Mail", "budget": 300, "size": 4},
+		{"name": "Engagement", "budget": 3000, "size": 13},
+		{"name": "Games", "budget": 200, "size": 2},
+		{"name": "International", "budget": 900, "size": 1},
+		{"name": "NYT4 & Data Universe", "budget": 700, "size": 7},
 		{"name": "NYT5",
 		 "children": [
-		     {"name": "NYT5 Prototype", "size": 18},
-		     {"name": "NYT5 WWW", "size": 3}
+		     {"name": "NYT5 Prototype", "budget": 3000, "size": 18},
+		     {"name": "NYT5 WWW", "budget": 300, "size": 3}
 		 ]
 		},
 		{"name": "Pay Model",
 		 "children": [
-		     {"name": "Digital Subscriptions", "size": 18},
-		     {"name": "A/B Testing", "size": 2}
+		     {"name": "Digital Subscriptions", "budget": 1200, "size": 18},
+		     {"name": "A/B Testing", "budget": 200, "size": 2}
 		 ]
 		},
-		{"name": "SEO", "size": 1},
-		{"name": "Video", "size": 6},
-		{"name": "Search", "size": 4},
-		{"name": "Times Open / InfoDev", "size": 3},
+		{"name": "SEO", "budget": 100, "size": 1},
+		{"name": "Video", "budget": 500, "size": 6},
+		{"name": "Search", "budget": 300, "size": 4},
+		{"name": "Times Open / InfoDev", "budget": 200, "size": 3},
 		{"name": "Mobile",
 		 "children": [
-		     {"name": "iOS", "size": 9},
-		     {"name": "Android", "size": 5},
-		     {"name": "Mobile Platforms", "size": 4},
-		     {"name": "Mobile Web", "size": 7}
+		     {"name": "iOS", "budget": 1500, "size": 9},
+		     {"name": "Android", "budget": 500, "size": 5},
+		     {"name": "Mobile Platforms", "budget": 400, "size": 4},
+		     {"name": "Mobile Web", "budget": 700, "size": 7}
 		 ]
 		}
 	    ]
@@ -48,18 +47,18 @@
 	{
 	    "name": "IITT Projects",
 	    "children": [
-		{"name": "Video / IITT", "size": 2},
-		{"name": "International / IITT", "size": 2},
-		{"name": "Engagement / IITT", "size": 4},
-		{"name": "NYT5 / IITT", "size": 3}
+		{"name": "Video / IITT", "budget": 200, "size": 2},
+		{"name": "International / IITT", "budget": 200, "size": 2},
+		{"name": "Engagement / IITT", "budget": 400, "size": 4},
+		{"name": "NYT5 / IITT", "budget": 300, "size": 3}
 	    ]
 	},
 	{
 	    "name": "Infrastructure Projects",
 	    "children": [
-		{"name": "Data Center Implementation", "size": 25},
-		{"name": "EC2 Cloud Operations", "size": 5},
-		{"name": "Fabrik", "size": 6}
+		{"name": "Data Center Implementation", "budget": 5000, "size": 25},
+		{"name": "EC2 Cloud Operations", "budget": 500, "size": 5},
+		{"name": "Fabrik", "budget": 500, "size": 6}
 	    ]
 	}
     ]
