@@ -15,9 +15,9 @@ class Employee < ActiveRecord::Base
   # support for modal search screens. note that if the param 'search' does not exist, then we just return the whole thing.
   def self.search(search)
     if search
-      find(:all, :conditions => ['full_name LIKE ?', "%#{search}%"])
+      find(:all, :conditions => ['full_name LIKE ?', "%#{search}%"], :order => "full_name")
     else
-      find(:all)
+      find(:all, :order => "full_name")
     end
   end
 

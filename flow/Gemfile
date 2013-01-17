@@ -61,3 +61,5 @@ gem 'simple_form'
 gem 'country_select'
 
 gem 'rabl'
+
+gem 'devise'

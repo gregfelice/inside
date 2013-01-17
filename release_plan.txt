@@ -1,32 +1,27 @@
 
+implement cleanups
+  NO up one level on the org chart, in some form, rather than having it as too big for the screen
+  mark dotted relationships as such (in the node itself, (...)
+
+implement bulk updates to reporting_relationships
+  implement ransack
+
+
+implement a release calendar
+
+implement xls and pdf reports
+
+
 DONE implement simple form
 DONE implement bootstrap
 DONE implement sass
 DONE finish simple form and bootstrap niceties (more bootstrap video)
 DONE fix general data model / test
 DONE implement .htacess authentication, for demo purposes
-
-implement cleanups
-  up one level on the org chart, in some form, rather than having it as too big for the screen
-  mark dotted relationships as such (in the node itself, (...)
-
-implement basic reporting relationships updates via employee screen
-
-implement pretty employee screen, showing reporting relationships
-
-implement d3 org chart
-  http://www.cogmap.com/
-  rabl
-
-implement bulk updates to reporting_relationships
-  implement ransack
-
-implement devise for authentication
-
-implement a release calendar
-
-implement xls and pdf reports
-
+DONE implement basic reporting relationships updates via employee screen
+DONE implement pretty employee screen, showing reporting relationships
+DONE implement d3 org chart
+DONE implement devise for authentication
 DONE basic rails reference implementation
 DONE admin framework reference implementation
 DONE create a starting model, load the data from employeeware

@@ -1,3 +1,0 @@
-	    [{v:'<%= rr.employee.full_name %>', f:'<%= rr.employee.full_name %><br/><%= rr.employee.job_title %>'}, '<%= rr.supervisor.full_name %>', ''],
-
-['<%= rr.employee.full_name %>', '<%= rr.supervisor.full_name %>', null],

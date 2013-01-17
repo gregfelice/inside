@@ -1,0 +1,66 @@
+{
+    "name": "NY Times Digital",
+    "children": [
+	{
+	    "name": "Digital Virtual Teams",
+	    "children": [
+		{"name": "Ad Platform Innovation", "size": 5},
+
+		{"name": "Blogs", "size": 5},
+		{"name": "Internal",
+		 "children": [
+		     {"name": "Business Intelligence", "size": 14},
+		     {"name": "Ad Systems", "size": 6}
+		 ]
+		},
+		{"name": "CMS: Scoop & Feeds", "size": 20},
+		{"name": "E-Mail", "size": 4},
+		{"name": "Engagement", "size": 13},
+		{"name": "Games", "size": 2},
+		{"name": "International", "size": 1},
+		{"name": "NYT4 & Data Universe", "size": 7},
+		{"name": "NYT5",
+		 "children": [
+		     {"name": "NYT5 Prototype", "size": 18},
+		     {"name": "NYT5 WWW", "size": 3}
+		 ]
+		},
+		{"name": "Pay Model",
+		 "children": [
+		     {"name": "Digital Subscriptions", "size": 18},
+		     {"name": "A/B Testing", "size": 2}
+		 ]
+		},
+		{"name": "SEO", "size": 1},
+		{"name": "Video", "size": 6},
+		{"name": "Search", "size": 4},
+		{"name": "Times Open / InfoDev", "size": 3},
+		{"name": "Mobile",
+		 "children": [
+		     {"name": "iOS", "size": 9},
+		     {"name": "Android", "size": 5},
+		     {"name": "Mobile Platforms", "size": 4},
+		     {"name": "Mobile Web", "size": 7}
+		 ]
+		}
+	    ]
+	},
+	{
+	    "name": "IITT Projects",
+	    "children": [
+		{"name": "Video / IITT", "size": 2},
+		{"name": "International / IITT", "size": 2},
+		{"name": "Engagement / IITT", "size": 4},
+		{"name": "NYT5 / IITT", "size": 3}
+	    ]
+	},
+	{
+	    "name": "Infrastructure Projects",
+	    "children": [
+		{"name": "Data Center Implementation", "size": 25},
+		{"name": "EC2 Cloud Operations", "size": 5},
+		{"name": "Fabrik", "size": 6}
+	    ]
+	}
+    ]
+}
