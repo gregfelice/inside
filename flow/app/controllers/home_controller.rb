@@ -17,13 +17,22 @@ class HomeController < ApplicationController
     render :layout => 'orgchart'
   end
 
+  def budgetchart_dynamic
+    render :layout => 'orgchart'
+  end
+
   def orgdendro_tree
     @employee = Employee.find_by_id(183) 
+    # @employee = Employee.find_by_id(183) 
     tree = to_node @employee
     respond_to do |format|
       format.json { render json: tree }
     end
 
+  end
+
+  def staffingchart
+    render :layout => 'orgchart'
   end
   
   private

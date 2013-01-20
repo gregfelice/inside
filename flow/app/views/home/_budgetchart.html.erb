@@ -15,7 +15,7 @@ form {
 
 .node {
   border: solid 1px white;
-  font: 10px sans-serif;
+  font: 12px sans-serif;
   line-height: 14px;
   overflow: hidden;
   position: absolute;
@@ -58,9 +58,10 @@ d3.json("budgets.json", function(error, root) {
       .attr("class", "node")
       .call(position)
       .style("background", function(d) { return d.children ? color(d.name) : null; })
+      .text(function(d) { return d.children ? null : d.name; })
       .text(function(d) { return d.children ? null : d.name; });
 
-  d3.selectAll("input").on("change", function change() {
+  d3.select("select").on("change", function change() {
     var value = this.value === "count" ? function(d) { return d.budget; } : function(d) { return d.size; };
 
     node
@@ -69,6 +70,7 @@ d3.json("budgets.json", function(error, root) {
         .duration(1500)
         .call(position);
   });
+
 });
 
 function position() {
@@ -80,10 +82,7 @@ function position() {
 
 </script>
 
-<table>
-<form>
-  <label><input type="radio" name="mode" value="size" checked> Team Size</label>
-  <label><input type="radio" name="mode" value="count"> Budget</label>
-</form>
-
-</table>
+<select>
+    <option value="size">Team Size</option>
+    <option value="count">Budget</option>
+</select>
