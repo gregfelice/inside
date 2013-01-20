@@ -32,16 +32,18 @@
               <li><%= link_to "Reporting Relationships", reporting_relationships_path %></li>
               <li><%= link_to "Org", orgchart_path %></li>
               <li><%= link_to "Dendro", orgdendro_path %></li>
+              <li><%= link_to "Trends", staffingchart_path %></li>
             </ul>
 
 	    <ul class="nav pull-right">
 	    <% if user_signed_in? %>
 	      <li><a><strong><%= current_user.email %></strong></a></li>
-              <%# <li><%= link_to "New User", new_user_registration_path % ></li> %> <%# commented out for now %>
+
 	      <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
 	      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 	    <% else %>
 	      <li><%= link_to "Login", new_user_session_path %></li>
+	    <%# <li>< %= link_to "New User", new_user_registration_path % ></li> %>
 	    <% end %>
 	    </ul>
 
@@ -51,25 +53,22 @@
     </div>
     
     <div class="container">
-      
+
       <% flash.each do |name, msg| %>
-	
-        <% if name == :notice %>
-	  <div class="alert alert-success>">
-	    <a class="close" data-dismiss="alert">×</a>
-	    <%= msg %>
-	  </div>
-        <% else %>
-	  <div class="alert alert-error>">
-	    <a class="close" data-dismiss="alert">×</a>
-	    <%= msg %>
+        <% if msg.is_a?(String) %>
+	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+	    <a class="close" data-dismiss="alert">&#215;</a>
+	    <%= content_tag :div, msg, :id => "flash_#{name}" %>
 	  </div>
 	<% end %>
       <% end %>
 
       <div class="row">
-	<div class="span9"><%= yield %></div>
-	<div class="span3"><h2>About Us</h2>
+	<div class="span9">
+	  <%= yield %></div>
+	<div class="span3">
+
+<h2>About Us</h2>
 	  The New York Times (NYT) is an American daily newspaper, founded and continuously published in New York City since 1851. It has won 108 Pulitzer Prizes, more than any other news organization. Its website is the most popular American newspaper website, receiving more than 30 million unique visitors per month.</p> 
 
 The print version of the paper remains the largest local metropolitan newspaper in the United States; it is the third-largest newspaper overall, behind The Wall Street Journal and USA Today, though its weekday circulation has fallen since 1990 (as have other newspapers' circulations) to fewer than one million copies daily. Nicknamed "the Old Gray Lady", and long regarded within the industry as a national "newspaper of record", The New York Times is owned by The New York Times Company, which also publishes 18 other newspapers including the International Herald Tribune and The Boston Globe.</p> 

@@ -49,7 +49,6 @@ var vis = d3.select("#body").append("svg:svg")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
 d3.json("/orgdendro_tree.json", function(json) {
-//d3.json("/flare.json", function(json) {
   root = json;
   root.x0 = h / 2;
   root.y0 = 0;
@@ -103,6 +102,7 @@ function update(source) {
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6);
+      //.attr("xlink:href", "http://yahoo.com");
 
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()

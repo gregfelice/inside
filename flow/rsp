@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#spork -p 5555
+#rspec spec --drb --drb-port 5555
+
 rspec . --color --drb
 # rspec . --color --drb --format documentation
 # rspec . --color --drb --tag focus --format documentation
