@@ -1,6 +1,6 @@
 class Employee < ActiveRecord::Base
 
-  attr_accessible :full_name, :job_title, :contractor, :part_time_status, :supervisor_relationships, :subordinate_relationships
+  attr_accessible :full_name, :job_title, :level, :cost_center, :contractor, :part_time_status, :supervisor_relationships, :subordinate_relationships
 
   validates_presence_of :full_name, :job_title
   validates_uniqueness_of :full_name

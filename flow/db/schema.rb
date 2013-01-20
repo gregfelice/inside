@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116193908) do
+ActiveRecord::Schema.define(:version => 20130118151041) do
 
   create_table "employees", :force => true do |t|
     t.boolean  "contractor"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20130116193908) do
     t.string   "job_title"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "level"
+    t.string   "cost_center"
   end
 
   create_table "parts", :force => true do |t|

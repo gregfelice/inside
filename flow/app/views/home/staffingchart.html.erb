@@ -1,0 +1,72 @@
+
+
+<h1>Hiring Goals vs. Performance</h1>
+<div id="staffing"></div>
+
+<h1>Virtual Team Report</h1>
+<div id="visualization" style="width: 960px; height: 1000px;"></div>
+
+
+
+
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load('visualization', '1', {packages: ['corechart']});
+</script>
+
+<script type="text/javascript">
+
+function drawVisualization() {
+
+  var data = google.visualization.arrayToDataTable([
+  ['Team', 'Base', 'IITT'],
+  ['Ad Lab',  3,    0],
+  ['Ad Systems',  3,    0],
+  ['Analytics',  1,    0],
+  ['Biz/Dev',  4,    0],
+  ['Blogs',  4,    0],
+  ['Business Intelligence',  13,    1],
+  ['CMS',  21,    0],
+  ['DAD/Index',  22,    0],
+  ['Editorial Products/Site Enhancement',  15.8,    1],
+  ['E-Mail',  7,    0],
+  ['Engagement/Social Community',  15.8,    6],
+  ['Games',  2,    0],
+  ['Infrastructure',  17,    1],
+  ['Interactive News',  15,    0],
+  ['Management',  17.9,    0],
+  ['Mobile',  25,    9],
+  ['NYT5',  7.5,    7],
+  ['Pay Model',  26,    0],
+  ['Search',  4,    0],
+  ['SEO',  1,    0],
+  ['Shared IITT',  0,    10],
+  ['Software Infrastructure',  2,    0],
+  ['Times Open',  3,    0],
+  ['Video',  5,    5],
+  ['Web Infrastructure',  4,    0],
+  ['Ad Ops',  27,    0]
+  ]);
+   
+  // Create and draw the visualization.
+  new google.visualization.BarChart(document.getElementById('visualization')).
+    draw(data,
+      {
+      width: 1024, 
+      height:1000,
+      vAxis: {title: "Team"},
+      isStacked: true,
+      chartArea:{left:400, top:40, width:"100%", height:"75%"},
+      hAxis: {title: "Count"},
+      fontName: 'Helvetica',
+      legend: {position: 'top', textStyle: {color: 'blue', fontSize: 16}}
+
+     //backgroundColor: '#F5F5F5'
+      }
+   );
+ }
+   
+ google.setOnLoadCallback(drawVisualization);
+</script>
+

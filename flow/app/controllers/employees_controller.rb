@@ -8,13 +8,13 @@ class EmployeesController < InheritedResources::Base
     @employee = Employee.new
   end
   
-  def create 
-    @employee = Employee.create!(params[:employee])
-    respond_to do |format|
-      format.html { redirect_to employees_url }
-      format.js 
-    end
-  end
+  #def create 
+  #  @employee = Employee.create!(params[:employee])
+  #  respond_to do |format|
+  #    format.html { redirect_to employees_url }
+  #    format.js 
+  #  end
+  #end
 
   def show
     @employees = Employee.find(:all, :order => "full_name") # for add a subordinate
