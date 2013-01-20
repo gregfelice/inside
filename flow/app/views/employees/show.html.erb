@@ -13,11 +13,14 @@
   <tbody>
   <tr><td><strong><%= model_class.human_attribute_name(:full_name) %>:</strong></td><td><%= @employee.full_name %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:job_title) %>:</strong></td><td><%= @employee.job_title %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:level) %>:</strong></td><td><%= @employee.level %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:cost_center) %>:</strong></td><td><%= @employee.cost_center %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></td><td><%= @employee.contractor %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></td><td><%= @employee.part_time_status %></td></tr>
   <tbody>
 </table>
 
+<% if @employee.supervisor_relationships.size > 0 %>
 <strong><%= @employee.full_name %> reports to:</strong>
 <table class="table">
   <thead>
@@ -27,10 +30,20 @@
     </tr>
   </thead> 
   <% @employee.supervisor_relationships.each do |s| %>
-    <tr><td><%= s.supervisor.full_name %></td><td class="muted"><em><%= s.supervisor.job_title %> <%= s.dotted? ? '(dotted)' : '' %></td></tr>
+
+    <% if s.supervisor %>
+    <tr><td><%= link_to s.supervisor.full_name, s.supervisor %></td><td class="muted"><em><%= s.supervisor.job_title %> <%= s.dotted? ? '(dotted)' : '' %></td></tr>
+    <% end %>
+
   <% end %>
 </table>
 
+<% else %>
+<strong><%= @employee.full_name %> does not have a supervisor.</strong>
+<br><br><br>
+<% end %>
+
+<% if @employee.subordinate_relationships.size > 0 %>
 <strong>These people report to <%= @employee.full_name %>:</strong>
 <table class="table">
   <thead>
@@ -40,13 +53,21 @@
     </tr>
   </thead> 
   <% @employee.subordinate_relationships.each do |sr| %>
+
+    <% if sr.subordinate %>
     <tr>
-      <td><%= sr.subordinate.full_name if sr.subordinate %></td><td class="muted"><%=sr.subordinate.job_title if sr.subordinate %> <%= sr.dotted? ? '(dotted)' : '' %></td>
+      <td> <%= link_to sr.subordinate.full_name, sr.subordinate %> </td><td class="muted"><%=sr.subordinate.job_title %> <%= sr.dotted? ? '(dotted)' : '' %></td>
       <td><%= link_to "Remove", reporting_relationship_path(:id => sr.id, :employee_id => @employee.id), 
         :method => :delete, :confirm => 'Are you sure?' %></td>
     </tr>
+    <% end %>
+
   <% end %>
 </table>
+<% else %>
+<strong><%= @employee.full_name %> does not have any reports.</strong>
+<br><br><br>
+<% end %>
 
 <a href="#add_subordinate_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Report</a>
  

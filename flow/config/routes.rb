@@ -11,10 +11,15 @@ Flow::Application.routes.draw do
 
   get "home/index"
 
-  match "/orgchart"          => "home#orgchart"
-  match "/orgdendro"         => "home#orgdendro"
-  match "/orgdendro_tree"    => "home#orgdendro_tree"
-  match "/budgetchart"       => "home#budgetchart"
+  match "/orgchart"                  => "home#orgchart"
+
+  match "/orgdendro"                 => "home#orgdendro"
+  match "/orgdendro_tree"            => "home#orgdendro_tree" # json
+
+  match "/budgetchart"               => "home#budgetchart"
+  match "/budgetchart_dynamic"       => "home#budgetchart_dynamic"
+
+  match "/staffingchart"             => "home#staffingchart"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
