@@ -5,8 +5,6 @@ class Employee < ActiveRecord::Base
   validates_presence_of :full_name, :job_title
   validates_uniqueness_of :full_name
 
-  
-
   has_many :supervisor_relationships,     :class_name => "ReportingRelationship",      :foreign_key => :subordinate_id
   has_many :subordinate_relationships,    :class_name => "ReportingRelationship",      :foreign_key => :supervisor_id
   
