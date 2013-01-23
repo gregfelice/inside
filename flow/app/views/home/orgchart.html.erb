@@ -18,7 +18,7 @@ function drawVisualization() {
     
     data.addRows([
 	    <% @reporting_relationships.each do |rr| %>
-	    [{v:'<%= rr.subordinate.id if rr.subordinate %>', f:'<%= (link_to rr.subordinate.full_name, employee_path(rr.subordinate.id) if rr.subordinate) %><br/><%= rr.subordinate.job_title if rr.subordinate%>'}, '<%= rr.supervisor.id if rr.supervisor %>', ''],
+	    [{v:'<%= rr.subordinate.id if rr.subordinate %>', f:'<%= rr.dotted ? "(dotted)" : "" %><br><%= (link_to rr.subordinate.full_name, employee_path(rr.subordinate.id) if rr.subordinate) %><br/><%= rr.subordinate.job_title if rr.subordinate%>'}, '<%= rr.supervisor.id if rr.supervisor %>', ''],
 	    <% end %>
     ]);
     

@@ -29,10 +29,14 @@
       <th style="width: 50%"></th>
     </tr>
   </thead> 
-  <% @employee.supervisor_relationships.each do |s| %>
+  <% @employee.supervisor_relationships.each do |sr| %>
 
-    <% if s.supervisor %>
-    <tr><td><%= link_to s.supervisor.full_name, s.supervisor %></td><td class="muted"><em><%= s.supervisor.job_title %> <%= s.dotted? ? '(dotted)' : '' %></td></tr>
+    <% if sr.supervisor %>
+    <tr>
+      <td><%= link_to sr.supervisor.full_name, sr.supervisor %></td><td class="muted"><em><%= sr.supervisor.job_title %> <%= sr.dotted? ? '(dotted)' : '' %></td>
+      <td><%= link_to "Remove", reporting_relationship_path(:id => sr.id, :employee_id => @employee.id), 
+        :method => :delete, :confirm => 'Are you sure?' %></td>
+    </tr>
     <% end %>
 
   <% end %>
@@ -42,6 +46,50 @@
 <strong><%= @employee.full_name %> does not have a supervisor.</strong>
 <br><br><br>
 <% end %>
+
+
+<!-- <div class="well well-small"> -->
+  <a href="#add_supervisor_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Supervisor</a>
+<!-- </div> -->
+
+<div id="add_supervisor_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add_supervisor_modal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="add_a_supervisor_modal_label">Add a Supervisor</h3>
+  </div>
+
+  <div class="modal-body">
+    <p>
+      <table id="eligible_supervisors" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Full Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @eligible_supervisors.each do |employee| %>
+	  <tr>
+	    <td><%= employee.id %></td>
+	    <td><%= employee.full_name %></td>
+            <td><%= link_to "Add Supervisor", reporting_relationships_path( { :supervisor_id => employee.id, :subordinate_id => @employee.id} ), :method => :post %></td>
+	  </tr>
+	  <% end %>
+        </tbody>
+      </table>
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>
+
+</div>
+
+<br><br><br>
+
+
 
 <% if @employee.subordinate_relationships.size > 0 %>
 <strong>These people report to <%= @employee.full_name %>:</strong>
@@ -69,10 +117,11 @@
 <br><br><br>
 <% end %>
 
-<a href="#add_subordinate_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Report</a>
- 
-<div id="add_subordinate_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add_subordinate_modal" aria-hidden="true">
 
+<!--<div class="well well-small">-->
+  <a href="#add_subordinate_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Report</a>
+<!-- </div>-->
+<div id="add_subordinate_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add_subordinate_modal" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="add_a_subordinate_modal_label">Add a Report</h3>
@@ -80,7 +129,7 @@
 
   <div class="modal-body">
     <p>
-      <table class="table table-striped">
+      <table id="eligible_subordinates" class="table table-striped">
         <thead>
           <tr>
             <th>Id</th>
@@ -89,11 +138,11 @@
           </tr>
         </thead>
         <tbody>
-          <% @employees.each do |employee| %>
+          <% @eligible_subordinates.each do |employee| %>
 	  <tr>
 	    <td><%= employee.id %></td>
 	    <td><%= employee.full_name %></td>
-                 <td><%= link_to "Add Report", reporting_relationships_path( { :supervisor_id => @employee.id, :subordinate_id => employee.id} ), :method => :post %></td>
+            <td><%= link_to "Add Report", reporting_relationships_path( { :supervisor_id => @employee.id, :subordinate_id => employee.id} ), :method => :post %></td>
 	  </tr>
 	  <% end %>
         </tbody>
