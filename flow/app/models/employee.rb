@@ -5,6 +5,8 @@ class Employee < ActiveRecord::Base
   validates_presence_of :full_name, :job_title
   validates_uniqueness_of :full_name
 
+  
+
   has_many :supervisor_relationships,     :class_name => "ReportingRelationship",      :foreign_key => :subordinate_id
   has_many :subordinate_relationships,    :class_name => "ReportingRelationship",      :foreign_key => :supervisor_id
   
@@ -15,10 +17,16 @@ class Employee < ActiveRecord::Base
   # support for modal search screens. note that if the param 'search' does not exist, then we just return the whole thing.
   def self.search(search)
     if search
-      find(:all, :conditions => ['full_name LIKE ?', "%#{search}%"], :order => "full_name")
+      where('full_name LIKE ?', "%#{search}%")
     else
-      find(:all, :order => "full_name")
+      scoped
     end
   end
+  
+  # give me all employees that are not currently me, or currently my subordinate
+  scope :eligible_subordinates, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.subordinates.size == 0 ? 0 : employee.subordinates).order("full_name") }
+
+  # give me all employees that are not currently me, or currently my supervisor
+  scope :eligible_supervisors, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.supervisors.size == 0 ? 0 : employee.supervisors).order("full_name") }
 
 end

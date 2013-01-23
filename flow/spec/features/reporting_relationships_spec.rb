@@ -4,20 +4,19 @@ feature "Reporting relationships administration" do
 
   scenario "as an administrator, add subordinates for an employee"
 
-  scenario "as an administrator, remove subordinates for an employee"
+  #scenario "as an administrator, remove subordinates for an employee"
 
-  scenario "as an administrator, add a supervisor for an employee"
+  #scenario "as an administrator, add a supervisor for an employee"
 
-  scenario "as an administrator, remove a supervisor for an employee"
-  
+  #scenario "as an administrator, remove a supervisor for an employee"
 
-  scenario "as an administrator, add dotted subordinates for an employee"
+  #scenario "as an administrator, add dotted subordinates for an employee"
 
-  scenario "as an administrator, remove dotted subordinates for an employee"
+  #scenario "as an administrator, remove dotted subordinates for an employee"
 
-  scenario "as an administrator, add a dotted supervisor for an employee"
+  #scenario "as an administrator, add a dotted supervisor for an employee"
 
-  scenario "as an administrator, remove a dotted supervisor for an employee"
+  #scenario "as an administrator, remove a dotted supervisor for an employee"
   
   #Test move rules
 
