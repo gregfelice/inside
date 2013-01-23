@@ -3,7 +3,17 @@ class EmployeesController < InheritedResources::Base
   helper_method :sort_column, :sort_direction
 
   def index 
-    @employees = Employee.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
+    
+    if params[:q] # jquery token input
+      @employees = Employee.where("full_name like ?", "%#{params[:q]}%")
+    else          # all else
+      @employees = Employee.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @employees.map(&:attributes) }
+    end
   end
 
   def new 

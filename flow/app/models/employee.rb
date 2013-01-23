@@ -1,6 +1,14 @@
 class Employee < ActiveRecord::Base
 
-  attr_accessible :full_name, :job_title, :level, :cost_center, :contractor, :part_time_status, :supervisor_relationships, :subordinate_relationships
+  attr_accessible :full_name, :job_title, :level, :cost_center, :contractor, :part_time_status, :supervisor_relationships, :subordinate_relationships, :subordinate_tokens
+
+  # jquery token input related
+  attr_reader :subordinate_tokens
+
+  def subordinate_tokens=(ids) 
+    self.subordinate_ids = ids.split(",")
+  end
+  # end jquery token input related
 
   validates_presence_of :full_name, :job_title
   validates_uniqueness_of :full_name
@@ -22,9 +30,11 @@ class Employee < ActiveRecord::Base
   end
   
   # give me all employees that are not currently me, or currently my subordinate
-  scope :eligible_subordinates, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.subordinates.size == 0 ? 0 : employee.subordinates).order("full_name") }
+  scope :eligible_subordinates, 
+  lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.subordinates.size == 0 ? 0 : employee.subordinates).order("full_name") }
 
   # give me all employees that are not currently me, or currently my supervisor
-  scope :eligible_supervisors, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.supervisors.size == 0 ? 0 : employee.supervisors).order("full_name") }
+  scope :eligible_supervisors, 
+  lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.supervisors.size == 0 ? 0 : employee.supervisors).order("full_name") }
 
 end
