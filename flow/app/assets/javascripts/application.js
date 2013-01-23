@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require raphael
 //= require morris.min
+//= require jquery.tokeninput
 //= require_tree .
