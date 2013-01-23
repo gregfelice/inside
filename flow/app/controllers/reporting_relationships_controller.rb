@@ -9,17 +9,18 @@ class ReportingRelationshipsController < InheritedResources::Base
   end
 
   def create
-    supervisor = Employee.find(params[:supervisor_id])
-    subordinate = Employee.find(params[:subordinate_id])
-    @employee = supervisor
+    supervisor    = Employee.find(params[:supervisor_id])
+    subordinate   = Employee.find(params[:subordinate_id])
+    @employee     = supervisor
 
     begin supervisor.subordinates << subordinate
       flash[:notice] = "Added report."
-      redirect_to employee_path(@employee)
+      redirect_to :back
     rescue
       flash[:error] = "Unable to add report."
       redirect_to :back
     end
+
   end
   
   def destroy
