@@ -14,9 +14,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Full Name</th>
-      <th>Job Title</th>
+      <th><%= sortable "id", "Id" %></th>
+      <th><%= sortable "full_name", "Full Name" %></th>
+      <th><%= sortable "job_title", "Job Title" %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -37,3 +37,4 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @employees %>

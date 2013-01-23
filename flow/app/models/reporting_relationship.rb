@@ -6,5 +6,11 @@ class ReportingRelationship < ActiveRecord::Base
   belongs_to :subordinate,  :class_name => "Employee"
 
   validates_uniqueness_of :subordinate_id, :scope => [:supervisor_id]
+  
+  validate :noncircular_relationship
+
+  def noncircular_relationship 
+    errors.add(:supervisor_id, "Invalid circular relationship.") if supervisor_id == subordinate_id
+  end
 
 end
