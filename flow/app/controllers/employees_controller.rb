@@ -9,7 +9,7 @@ class EmployeesController < InheritedResources::Base
     else          # all else
       @employees = Employee.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
     end
-
+    
     respond_to do |format|
       format.html
       format.json { render json: @employees.map(&:attributes) }
@@ -20,8 +20,6 @@ class EmployeesController < InheritedResources::Base
     @employee = Employee.new
   end
 
-  # POST /employees
-  # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
 
@@ -37,10 +35,7 @@ class EmployeesController < InheritedResources::Base
   end
 
   def show
-
     @employee = Employee.find(params[:id])
-    @eligible_subordinates = Employee.eligible_subordinates(@employee)
-    @eligible_supervisors = Employee.eligible_supervisors(@employee)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }

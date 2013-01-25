@@ -1,5 +1,6 @@
 --color
 --drb
 --order rand
+--format documentation
 --format html
 --out public/tests.html

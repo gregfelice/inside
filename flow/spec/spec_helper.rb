@@ -15,7 +15,7 @@ require 'rspec/autorun'
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
-# Capybara.default_wait_time = 5
+# Capybara.default_wait_time = 10
 
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -45,12 +45,7 @@ end
 
 
 def login
-  user = nil
-  begin
-    user = User.find_by_email("test_user@test.com")
-  rescue ActiveRecord::RecordNotFound
-    user = create(:user, :email => "test_user@test.com", :password => "p4ssw0rd___")
-  end
+  user = create(:user, :email => "test_user@test.com", :password => "p4ssw0rd___")
   login_as(user, :scope => :user)
 end
 
