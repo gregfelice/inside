@@ -1,5 +1,6 @@
 
 <%= simple_form_for @employee, :html => { :class => "form-horizontal" } do |f| %>
+
   <fieldset>
 
     <%= f.input :full_name %>
@@ -9,11 +10,18 @@
     <%= f.input :contractor %>
     <%= f.input :part_time_status %>
     
+    <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @employee.direct_supervisors.map(&:attributes).to_json } %> 
+
+    <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @employee.dotted_supervisors.map(&:attributes).to_json } %> 
+
     <%= f.input :subordinate_tokens, :label => "Reports", :input_html => { 'data-pre' => @employee.subordinates.map(&:attributes).to_json } %> 
 
     <div class="form-actions">
       <%= f.submit "Update Employee", :class => "btn btn-primary" %>
       <%= link_to "Cancel", employees_path, :class => "btn" %>
     </div>
+
   </fieldset>
+
 <% end %>
+
