@@ -1,9 +1,89 @@
+
 # https://www.relishapp.com/rspec/rspec-expectations/v/2-6/docs/built-in-matchers
 
 require 'spec_helper'
 require 'yaml'
 
 describe "Employees Model" do 
+  
+  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => false do
+    employee = create(:employee)
+    supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
+    employee.supervisor_relationships.build(:dotted => true, :supervisor => supervisor1, :subordinate => employee)
+    employee.save
+    employee.supervisors.size.should == 1
+  end
+  
+  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => false do 
+
+    employee = create(:employee)
+    supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
+    supervisor2 = create(:employee, full_name: "Supervisor2", job_title: "Supervisor Title")
+    supervisor3 = create(:employee, full_name: "Supervisor3", job_title: "Supervisor Title")
+    
+    employee.supervisors << supervisor1
+    employee.supervisors << supervisor2
+    employee.supervisors << supervisor3
+
+    sr2 = ReportingRelationship.find_by_supervisor_id(supervisor2)
+    sr2.dotted = true
+    sr2.save
+
+    sr3 = ReportingRelationship.find_by_supervisor_id(supervisor3)
+    sr3.dotted = true
+    sr3.save
+    
+    dotted_ids = employee.dotted_supervisor_tokens
+    dotted_ids.size.should == 2
+
+    direct_ids = employee.direct_supervisor_tokens
+    direct_ids.size.should == 1
+    
+    # now, attempt to save supervisors to the token interface
+    supervisor4 = create(:employee, full_name: "Supervisor4", job_title: "Supervisor Title")
+    
+    all_ids = employee.supervisor_ids
+    all_ids.size.should == 3
+
+    dotted_ids.size.should == 2
+    
+    dotted_ids << supervisor4.id
+
+    dotted_ids.size.should == 3
+
+    employee.dotted_supervisor_tokens = dotted_ids
+
+    employee.supervisor_ids.size.should == 4
+    employee.supervisors.size.should == 4
+  end
+
+
+  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => false do
+
+    employee = create(:employee)
+    supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
+    supervisor2 = create(:employee, full_name: "Supervisor2", job_title: "Supervisor Title")
+
+    employee.supervisors << supervisor1
+    employee.supervisors << supervisor2
+    
+    sr2 = ReportingRelationship.find_by_supervisor_id(supervisor2)
+    sr2.dotted = true
+    sr2.save
+
+    employee.supervisors.size.should == 2
+
+    ds = Employee.dotted_supervisors(employee)
+    ds.size.should == 1
+    ds.first.full_name.should == supervisor2.full_name
+
+    dss = Employee.direct_supervisors(employee)
+    dss.size.should == 1
+    dss.first.full_name.should == supervisor1.full_name
+
+  end
+
+  it "destroys reporting relationships when the employee is destroyed"
 
   it "only has one solid line reporting relationship"
 
@@ -107,7 +187,7 @@ describe "Employees Model" do
 
   it "can not add itself as a supervisor or subordinate", :focus => false do
     employee = create(:employee)
-    lambda { employee.subordinates << employee }.should raise_error ActiveRecord::RecordInvalid
+    expect { employee.subordinates << employee }.to raise_error(ActiveRecord::RecordInvalid)
   end
   
 end

@@ -3,6 +3,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human %> | <%= @employee.full_name %></h1> 
 </div>
 
+
 <table class="table">
   <thead>
     <tr>
@@ -15,8 +16,13 @@
   <tr><td><strong><%= model_class.human_attribute_name(:job_title) %>:</strong></td><td><%= @employee.job_title %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:level) %>:</strong></td><td><%= @employee.level %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:cost_center) %>:</strong></td><td><%= @employee.cost_center %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></td><td><%= @employee.contractor %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></td><td><%= @employee.part_time_status %></td></tr>
+
+  <tr><td><strong><%= model_class.human_attribute_name(:contractor) %>:</strong></td>
+    <td><% if @employee.contractor %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td></tr>
+
+  <tr><td><strong><%= model_class.human_attribute_name(:part_time_status) %>:</strong></td>
+    <td><% if @employee.part_time_status %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td></tr>
+
   <tbody>
 </table>
 
@@ -34,8 +40,6 @@
     <% if sr.supervisor %>
     <tr>
       <td><%= link_to sr.supervisor.full_name, sr.supervisor %></td><td class="muted"><em><%= sr.supervisor.job_title %> <%= sr.dotted? ? '(dotted)' : '' %></td>
-      <td><%= link_to "Remove", reporting_relationship_path(:id => sr.id, :employee_id => @employee.id), 
-        :method => :delete, :confirm => 'Are you sure?' %></td>
     </tr>
     <% end %>
 
@@ -46,49 +50,6 @@
 <strong><%= @employee.full_name %> does not have a supervisor.</strong>
 <br><br><br>
 <% end %>
-
-
-<!-- <div class="well well-small"> -->
-  <a href="#add_supervisor_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Supervisor</a>
-<!-- </div> -->
-
-<div id="add_supervisor_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add_supervisor_modal" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="add_a_supervisor_modal_label">Add a Supervisor</h3>
-  </div>
-
-  <div class="modal-body">
-    <p>
-      <table id="eligible_supervisors" class="table table-striped">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Full Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @eligible_supervisors.each do |employee| %>
-	  <tr>
-	    <td><%= employee.id %></td>
-	    <td><%= employee.full_name %></td>
-            <td><%= link_to "Add Supervisor", reporting_relationships_path( { :supervisor_id => employee.id, :subordinate_id => @employee.id} ), :method => :post %></td>
-	  </tr>
-	  <% end %>
-        </tbody>
-      </table>
-    </p>
-  </div>
-
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  </div>
-
-</div>
-
-<br><br><br>
-
 
 
 <% if @employee.subordinate_relationships.size > 0 %>
@@ -105,8 +66,6 @@
     <% if sr.subordinate %>
     <tr>
       <td> <%= link_to sr.subordinate.full_name, sr.subordinate %> </td><td class="muted"><%=sr.subordinate.job_title %> <%= sr.dotted? ? '(dotted)' : '' %></td>
-      <td><%= link_to "Remove", reporting_relationship_path(:id => sr.id, :employee_id => @employee.id), 
-        :method => :delete, :confirm => 'Are you sure?' %></td>
     </tr>
     <% end %>
 
@@ -116,45 +75,6 @@
 <strong><%= @employee.full_name %> does not have any reports.</strong>
 <br><br><br>
 <% end %>
-
-
-<!--<div class="well well-small">-->
-  <a href="#add_subordinate_modal" role="button" class="btn btn-mini" data-toggle="modal">Add a Report</a>
-<!-- </div>-->
-<div id="add_subordinate_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add_subordinate_modal" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="add_a_subordinate_modal_label">Add a Report</h3>
-  </div>
-
-  <div class="modal-body">
-    <p>
-      <table id="eligible_subordinates" class="table table-striped">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Full Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @eligible_subordinates.each do |employee| %>
-	  <tr>
-	    <td><%= employee.id %></td>
-	    <td><%= employee.full_name %></td>
-            <td><%= link_to "Add Report", reporting_relationships_path( { :supervisor_id => @employee.id, :subordinate_id => employee.id} ), :method => :post %></td>
-	  </tr>
-	  <% end %>
-        </tbody>
-      </table>
-    </p>
-  </div>
-
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  </div>
-
-</div>
 
 <div class="form-actions">
   <%= link_to 'Back', employees_path, :class => 'btn'  %>
