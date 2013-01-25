@@ -15,3 +15,6 @@
 /tmp
 
 /app/assets/stylesheets/.sass-cache
+
+.emacs.desktop
+xx
