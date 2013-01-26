@@ -4,24 +4,28 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 
-<%= form_tag employees_path, :class => 'form-search', :method => 'get' do %>
-
-  <%# preserve the direction and sort order when we search %>
-  <%= hidden_field_tag :direction, params[:direction] %>
-  <%= hidden_field_tag :sort, params[:sort] %>
-
-  <%= text_field_tag :search, params[:search], :class => "input-medium search-query" %>
-  <%= submit_tag "Search", :name => nil, :class => 'btn' %>
+<%= search_form_for @search, :url => search_employees_path, :html => {:method => :post} do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "condition_fields", f: c %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
+  <div class="field">
+    Sort:
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
-
+  
 <%= link_to "New", new_employee_path, :class => 'btn btn-primary' %>
 
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th><%= sortable "id", "Id" %></th>
-      <th><%= sortable "full_name", "Full Name" %></th>
-      <th><%= sortable "job_title", "Job Title" %></th>
+    <tr>      
+      <th><%= sort_link @search, :id, "Id" %></th>
+      <th><%= sort_link @search, :full_name, "Full Name" %></th>
+      <th><%= sort_link @search, :job_title, "Job Title" %></th>
       <th>Actions</th>
     </tr>
   </thead>
