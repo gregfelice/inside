@@ -74,16 +74,7 @@ class Employee < ActiveRecord::Base
 
   ###############################################################################################################
 
-  
-  # support for modal search screens. if the param 'search' does not exist, then we just return the whole thing.
-  def self.search(search)
-    if search
-      where('full_name LIKE ?', "%#{search}%")
-    else
-      scoped
-    end
-  end
-
+ 
   # all of my supervisors with a dotted relationship
   scope :dotted_supervisors, lambda { |employee| employee.supervisor_relationships.where(:dotted => true).map { |ds| ds.supervisor } }
 
