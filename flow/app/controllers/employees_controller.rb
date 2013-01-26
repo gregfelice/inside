@@ -5,22 +5,29 @@ class EmployeesController < ApplicationController
   end
 
   def index 
-
+    
     if params[:jqst] # being called from jquery token input plugin (expecting json)
       @employees = Employee.where("full_name like ?", "%#{params[:jqst]}%")
     else
       @search = Employee.search(params[:q])
-      @employees = @search.result.paginate(:per_page => 25, :page => params[:page])
+      emps = @search.result
+      if request.format == 'text/html'
+        @employees = emps.paginate(:per_page => 25, :page => params[:page]) 
+      else 
+        @employees = emps
+      end
       @search.build_condition if @search.conditions.empty?
       @search.build_sort if @search.sorts.empty?
     end
-
+    
     respond_to do |format|
       format.html { render :template => 'employees/index' }
       format.json { render json: @employees.map(&:attributes) }
+      format.csv { send_data @employees.to_csv }
+      format.xls
     end
   end
-
+  
   def show
     @employee = Employee.find(params[:id])
     respond_to do |format|
@@ -28,19 +35,18 @@ class EmployeesController < ApplicationController
       format.json { render json: @employee }
     end
   end
-
-
+  
   def new 
     @employee = Employee.new
   end
-
+  
   def edit
     @employee = Employee.find(params[:id])
   end
-
+  
   def create
     @employee = Employee.new(params[:employee])
-
+    
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -51,10 +57,10 @@ class EmployeesController < ApplicationController
       end
     end
   end
-
+  
   def update
     @employee = Employee.find(params[:id])
-
+    
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
@@ -65,15 +71,15 @@ class EmployeesController < ApplicationController
       end
     end
   end
-
+  
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to employees_url }
       format.json { head :no_content }
     end
   end
-
+  
 end
