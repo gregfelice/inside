@@ -1,23 +1,41 @@
-class EmployeesController < InheritedResources::Base
+class EmployeesController < ApplicationController
 
-  helper_method :sort_column, :sort_direction
+  def search    
+    index
+  end
 
   def index 
-    
-    if params[:q] # jquery token input
-      @employees = Employee.where("full_name like ?", "%#{params[:q]}%")
-    else          # all else
-      @employees = Employee.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
+
+    if params[:jqst] # being called from jquery token input plugin (expecting json)
+      @employees = Employee.where("full_name like ?", "%#{params[:jqst]}%")
+    else
+      @search = Employee.search(params[:q])
+      @employees = @search.result.paginate(:per_page => 25, :page => params[:page])
+      @search.build_condition if @search.conditions.empty?
+      @search.build_sort if @search.sorts.empty?
     end
-    
+
     respond_to do |format|
-      format.html
+      format.html { render :template => 'employees/index' }
       format.json { render json: @employees.map(&:attributes) }
     end
   end
 
+  def show
+    @employee = Employee.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @employee }
+    end
+  end
+
+
   def new 
     @employee = Employee.new
+  end
+
+  def edit
+    @employee = Employee.find(params[:id])
   end
 
   def create
@@ -34,22 +52,28 @@ class EmployeesController < InheritedResources::Base
     end
   end
 
-  def show
+  def update
     @employee = Employee.find(params[:id])
+
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @employee }
+      if @employee.update_attributes(params[:employee])
+        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @employee.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  private
-  
-  def sort_column
-    Employee.column_names.include?(params[:sort]) ? params[:sort] : "full_name"
-  end
+  def destroy
+    @employee = Employee.find(params[:id])
+    @employee.destroy
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    respond_to do |format|
+      format.html { redirect_to employees_url }
+      format.json { head :no_content }
+    end
   end
 
 end
