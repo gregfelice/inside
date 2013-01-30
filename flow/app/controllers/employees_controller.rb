@@ -5,8 +5,9 @@ class EmployeesController < ApplicationController
   end
 
   def index 
-    
+   
     if params[:jqst] # being called from jquery token input plugin (expecting json)
+      # todo - change this to search only on eligible supervisors or subordinates, based upon context
       @employees = Employee.where("full_name like ?", "%#{params[:jqst]}%")
     else
       @search = Employee.search(params[:q])

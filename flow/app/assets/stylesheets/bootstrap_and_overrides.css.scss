@@ -13,22 +13,8 @@ body { padding-top: 60px; }
 
 @import "bootstrap-responsive";
 
-// jquery token input
 @import "token-input-facebook";
 //@import "token-input";
 
-// sortable table column headers
-/*
-th .current {
-    padding-right: 12px;
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-th .asc { 
-    background-image: url(up_arrow.gif); 
-}
+@import "token-input-bootstrappy";
 
-th .desc { 
-    background-image: url(down_arrow.gif); 
-}
-*/
