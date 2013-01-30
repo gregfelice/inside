@@ -35,8 +35,16 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'hirb', group: :development						# irb tool
+group :development do
+  gem 'hirb'                       # irb tool
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  # get railspanel!
+end
+
 gem 'rspec-rails', group: [:test, :development]
+
 group :test do
   gem 'capybara'
   gem 'launchy'

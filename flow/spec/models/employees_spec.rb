@@ -1,12 +1,56 @@
-
-# https://www.relishapp.com/rspec/rspec-expectations/v/2-6/docs/built-in-matchers
-
 require 'spec_helper'
-require 'yaml'
 
 describe "Employees Model" do 
+
+  it "initializes reporting relationship to dotted on new", :focus => true do
+    r = ReportingRelationship.new
+    r.dotted.should be_false
+  end
   
-  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => false do
+  it "can use << notation to push objects onto relationships", :focus => true do
+    employee = create(:employee)
+    subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
+    employee.subordinates << subordinate
+    ReportingRelationship.all.each { |rr| rr.dotted.should_not be_nil }
+  end
+
+  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => true do 
+
+    employee = create(:employee)
+    subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
+    supervisor = create(:employee, full_name: "Supervisor Full Name", job_title: "Supervisor Title")
+    
+    employee.subordinates << subordinate
+    employee.supervisors << supervisor
+    
+    employee.supervisors.size.should == 1
+    employee.subordinates.size.should == 1
+
+    rr = employee.subordinate_relationships.first
+    rr.dotted.should == false
+
+    rr = employee.supervisor_relationships.first
+    rr.dotted.should == false
+  end
+
+  it "destroys reporting relationships correctly upon dissassociation", :focus => true do
+    
+    employee = create(:employee)
+    subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
+    
+    employee.subordinates << subordinate
+    
+    expect { ReportingRelationship.find_by_supervisor_id!(employee.id) }.to_not raise_error(ActiveRecord::RecordNotFound)
+    employee.subordinates.size.should == 1
+
+    employee.subordinate_relationships.clear
+
+    expect { ReportingRelationship.find_by_supervisor_id!(employee.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    employee.subordinates.size.should == 0
+    ReportingRelationship.all.size.should == 0
+  end
+  
+  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => true do
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
     employee.supervisor_relationships.build(:dotted => true, :supervisor => supervisor1, :subordinate => employee)
@@ -14,7 +58,7 @@ describe "Employees Model" do
     employee.supervisors.size.should == 1
   end
   
-  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => false do 
+  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => true do 
 
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
@@ -25,11 +69,11 @@ describe "Employees Model" do
     employee.supervisors << supervisor2
     employee.supervisors << supervisor3
 
-    sr2 = ReportingRelationship.find_by_supervisor_id(supervisor2)
+    sr2 = ReportingRelationship.find_by_supervisor_id!(supervisor2)
     sr2.dotted = true
     sr2.save
 
-    sr3 = ReportingRelationship.find_by_supervisor_id(supervisor3)
+    sr3 = ReportingRelationship.find_by_supervisor_id!(supervisor3)
     sr3.dotted = true
     sr3.save
     
@@ -57,8 +101,7 @@ describe "Employees Model" do
     employee.supervisors.size.should == 4
   end
 
-
-  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => false do
+  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => true do
 
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
@@ -83,13 +126,7 @@ describe "Employees Model" do
 
   end
 
-  it "destroys reporting relationships when the employee is destroyed"
-
-  it "only has one solid line reporting relationship"
-
-  it "can have multiple dotted line reporting relationships"
-
-  it "finds eligible subordinates even when you have no subordinates (bug)" do
+  it "finds eligible subordinates even when you have no subordinates" do
     employee = create(:employee)
     subordinate_orphan1 = create(:employee, full_name: "Subordinate Orphan1", job_title: "Subordinate Title")
     subordinate_orphan2 = create(:employee, full_name: "Subordinate Orphan2", job_title: "Subordinate Title")
@@ -98,7 +135,7 @@ describe "Employees Model" do
     eligible_subordinates.size.should == 3
   end
 
-  it "finds eligible supervisors even when you have no supervisors (bug)" do
+  it "finds eligible supervisors even when you have no supervisors" do
     employee = create(:employee)
     supervisor_orphan1 = create(:employee, full_name: "Supervisor Orphan1", job_title: "Supervisor Title")
     supervisor_orphan2 = create(:employee, full_name: "Supervisor Orphan2", job_title: "Supervisor Title")
@@ -107,13 +144,13 @@ describe "Employees Model" do
     eligible_supervisors.size.should == 3
   end
 
-  it "finds only employees who are not the current employee's subordinates when pupulating a reporting relationship pick list" do 
+  it "finds only employees who are not the current employee's subordinates when populating a reporting relationship pick list" do 
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
     subordinate_orphan = create(:employee, full_name: "Subordinate Orphan", job_title: "Subordinate Title")
     subordinate_orphan2 = create(:employee, full_name: "Subordinate Orphan2", job_title: "Subordinate Title")
 
-    employee.subordinates << subordinate
+    employee.subordinates subordinate
 
     eligible_subordinates = Employee.eligible_subordinates(employee)
 
@@ -128,10 +165,9 @@ describe "Employees Model" do
         s.id.should_not equal(es.id)
       }
     }
-
   end
 
-  it "can add and access supervisors and subordinates", :focus => false do
+  it "can add and access supervisors and subordinates", :focus => true do
     
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title X")
@@ -145,12 +181,15 @@ describe "Employees Model" do
     employee.supervisors << supervisor2
     employee.subordinates << subordinate2
     
+    employee.subordinates.size.should == 2
+
     # random sanity checks
+    employee.subordinates.first.full_name.should eql(subordinate.full_name)
     employee.supervisors.first.full_name.should eql(supervisor.full_name)
 
   end
 
-  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => false do
+  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => true do
 
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
@@ -171,21 +210,20 @@ describe "Employees Model" do
     
   end
   
-  it "throws an error if the same supervisor or subordinate is added more than once", :focus => false do
+  it "throws an error if the same supervisor or subordinate is added more than once", :focus => true do
 
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
     subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
-
+    
     employee.supervisors << supervisor
     employee.subordinates << subordinate
 
     expect { employee.supervisors << supervisor }.to raise_error(ActiveRecord::RecordInvalid)
     expect { employee.subordinates << subordinate }.to raise_error(ActiveRecord::RecordInvalid)
-
   end
 
-  it "can not add itself as a supervisor or subordinate", :focus => false do
+  it "can not add itself as a supervisor or subordinate", :focus => true do
     employee = create(:employee)
     expect { employee.subordinates << employee }.to raise_error(ActiveRecord::RecordInvalid)
   end
