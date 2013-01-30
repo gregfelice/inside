@@ -31,4 +31,27 @@ jQuery ->
                 regexp = new RegExp($(this).data('id'), 'g')
                 $(this).before($(this).data('fields').replace(regexp, time))
                 event.preventDefault()
-                
+
+        # collapsing search section
+        $("#search-section").hide()
+
+        $("#show_search").click ->
+                $(this).hide()
+                $("#search-section").toggle "slide", 500
+
+        $(".close").click ->
+                $("#search-section").toggle "slide", 500
+                $("#show_search").show()
+
+        # change employee label to supervisor
+        $('#q_c_0_a_0_name optgroup')[1].label = 'Supervisor'
+
+        # default conditions
+        $('#q_c_0_a_0_name').val('full_name')
+        $('#q_c_0_p').val('cont')
+        $('#q_c_0_v_0_value').val('')
+
+        # default sorts
+        $('#q_s_0_name').val('full_name')
+        $('#q_s_0_dir').val('asc')
+

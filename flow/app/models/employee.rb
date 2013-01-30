@@ -3,13 +3,22 @@ class Employee < ActiveRecord::Base
   validates_presence_of :full_name, :job_title
   validates_uniqueness_of :full_name
 
-  has_many :supervisor_relationships,     :class_name => "ReportingRelationship",      :foreign_key => :subordinate_id
-  has_many :subordinate_relationships,    :class_name => "ReportingRelationship",      :foreign_key => :supervisor_id
+  has_many :supervisor_relationships,  :class_name => "ReportingRelationship", :foreign_key => :subordinate_id, :dependent => :destroy
+  has_many :subordinate_relationships, :class_name => "ReportingRelationship", :foreign_key => :supervisor_id,  :dependent => :destroy
 
-  has_many :supervisors,                  :through => :supervisor_relationships
-  has_many :subordinates,                 :through => :subordinate_relationships
+  has_many :supervisors, :through => :supervisor_relationships
+  has_many :subordinates, :through => :subordinate_relationships
 
   attr_accessible :full_name, :job_title, :level, :cost_center, :contractor, :part_time_status, :supervisor_relationships, :subordinate_relationships, :subordinate_tokens, :supervisor_tokens, :dotted_supervisors, :dotted_supervisor_tokens, :direct_supervisor_tokens
+
+  def add_supervisor(supervisor)
+    self.supervisor_relationships.create!( { :dotted => false, :supervisor_id => supervisor.id, :subordinate_id => self.id } )
+  end
+
+  def add_subordinate(subordinate)
+    self.subordinate_relationships.create!( { :dotted => false, :supervisor_id => self.id, :subordinate_id => subordinate.id } )
+  end
+
 
   def dotted_supervisors
     self.class.dotted_supervisors(self)
@@ -43,7 +52,7 @@ class Employee < ActiveRecord::Base
     directs.each { |s| self.supervisor_relationships.build(:dotted => false, :supervisor_id => s, :subordinate_id => self.id) }
     dotteds.each { |s| self.supervisor_relationships.build(:dotted => true, :supervisor_id => s, :subordinate_id => self.id) }
 
-    self.save
+    self.save!
   end
 
   ###############################################################################################################
@@ -61,7 +70,7 @@ class Employee < ActiveRecord::Base
     directs.each { |s| self.supervisor_relationships.build(:dotted => false, :supervisor_id => s, :subordinate_id => self.id) }
     dotteds.each { |s| self.supervisor_relationships.build(:dotted => true, :supervisor_id => s, :subordinate_id => self.id) }
 
-    self.save
+    self.save!
   end
 
   ###############################################################################################################

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124190009) do
+ActiveRecord::Schema.define(:version => 20130130181210) do
 
   create_table "employees", :force => true do |t|
     t.boolean  "contractor"
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(:version => 20130124190009) do
   create_table "reporting_relationships", :force => true do |t|
     t.integer  "subordinate_id"
     t.integer  "supervisor_id"
-    t.boolean  "dotted"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.boolean  "dotted",         :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "users", :force => true do |t|

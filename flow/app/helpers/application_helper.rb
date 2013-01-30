@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def app_title
-    "Seahorse 1.0"
+    "Technology Decision Support"
   end
 
   # search condition field helper
