@@ -8,5 +8,7 @@ feature "Authentication" do
     visit employees_path
     page.should have_content "Logout"
   end
+
+  scenario "I can log out", :js => true, :focus => false
   
 end
