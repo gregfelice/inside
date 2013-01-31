@@ -44,7 +44,7 @@ jQuery ->
                 $("#show_search").show()
 
         # change employee label to supervisor
-        $('#q_c_0_a_0_name optgroup')[1].label = 'Supervisor'
+        #$('#q_c_0_a_0_name optgroup')[1].label = 'Supervisor'
 
         # default conditions
         $('#q_c_0_a_0_name').val('full_name')

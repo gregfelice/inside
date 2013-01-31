@@ -12,6 +12,7 @@ class EmployeesController < ApplicationController
     else
       @search = Employee.search(params[:q])
       emps = @search.result
+      @emps_count = emps.size
       if request.format == 'text/html'
         @employees = emps.paginate(:per_page => 25, :page => params[:page]) 
       else 
@@ -20,7 +21,8 @@ class EmployeesController < ApplicationController
       @search.build_condition if @search.conditions.empty?
       @search.build_sort if @search.sorts.empty?
     end
-    
+
+
     respond_to do |format|
       format.html { render :template => 'employees/index' }
       format.json { render json: @employees.map(&:attributes) }

@@ -2,13 +2,15 @@
 
 <div class="page-header">
   <h1>
-  <%=t '.title', :default => model_class.model_name.human.pluralize %>
-  <%= link_to raw("<i class='icon-plus icon-white'></i> New Employee"), new_employee_path, :class => 'btn-large btn-primary pull-right' %>
+    <%=t '.title', :default => model_class.model_name.human.pluralize %>
+    <%= link_to raw("<i class='icon-plus icon-white'></i> New Employee"), new_employee_path, :class => 'btn-large btn-primary pull-right' %>
   </h1>
+  
+  <small><div class="muted pull-left"><%= @emps_count %> results</div> </small>
+  
+  <small><div class="pull-right"><%= link_to "CSV", employees_path(format: "csv") %> | <%= link_to "Excel", employees_path(format: "xls") %></div></small>
+  <br>
 </div>
-
-<%= link_to "CSV", employees_path(format: "csv") %> |
-<%= link_to "Excel", employees_path(format: "xls") %>
 
 <div id="search-section" class="well">
   <div class="close">x</div>  
@@ -34,9 +36,13 @@
     
 </div>	
 
-<button id="show_search" class="btn pull-right"><i class="icon-search"></i> Search</button>
+<div class="muted">
+
+  <button id="show_search" class="btn pull-right"><i class="icon-search"></i> Search</button>
+</div>
 
 <table class="table table-striped">
+
   <thead>
     <tr>      
       <th><%= sort_link @search, :id, "Id" %></th>
