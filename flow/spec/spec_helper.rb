@@ -6,7 +6,6 @@ require 'spork'    # spork
 include Warden::Test::Helpers
 Warden.test_mode!
 
-
 ENV["RAILS_ENV"] ||= 'test' # this will automatically require the test section of Gemfile
 
 require File.expand_path("../../config/environment", __FILE__)
@@ -16,7 +15,7 @@ require 'rspec/autorun'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 #Capybara.javascript_driver = :selenium
-# Capybara.default_wait_time = 10
+Capybara.default_wait_time = 10
 
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -27,7 +26,7 @@ Spork.prefork do # spork
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
     config.treat_symbols_as_metadata_keys_with_true_values = true
-    # config.filter_run :focus => true
+    config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
     config.include FactoryGirl::Syntax::Methods
   end

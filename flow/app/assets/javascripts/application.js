@@ -17,8 +17,9 @@
 //= require raphael
 //= require morris.min
 //= require jquery.tokeninput
-//= require jquery.fn.gantt.js
-//= require dataHours.js
-//= require dataDays.js
-//= require dataDaysEnh.js
+//= require jquery.fn.gantt
+//= require dataHours
+//= require dataDays
+//= require dataDaysEnh
+//= require prettify
 //= require_tree .
