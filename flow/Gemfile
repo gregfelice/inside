@@ -51,9 +51,11 @@ group :test do
   gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
-  gem 'rb-inotify', '~> 0.8.8'
+  #  gem 'rb-inotify', '~> 0.8.8'
+  gem 'listen'
   gem 'spork'
   gem 'guard-spork'
+
 end
 
 gem 'inherited_resources'
