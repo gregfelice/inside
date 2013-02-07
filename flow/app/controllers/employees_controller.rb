@@ -6,9 +6,11 @@ class EmployeesController < ApplicationController
 
   def index
     if params[:jqst] # being called from jquery token input plugin (expecting json)
-      # todo - change this to search only on eligible supervisors or subordinates, based upon context
       @employees = Employee.where("full_name like ?", "%#{params[:jqst]}%")
     else
+      @search_params = params[:q]
+      logger.info "employees#index: search params: -- #{params[:q]} --"
+
       @search = Employee.search(params[:q])
       emps = @search.result
       @emps_count = emps.size
@@ -77,7 +79,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
-
+    flash[:notice] = "Employee was successfully deleted."
     respond_to do |format|
       format.html { redirect_to employees_url }
       format.json { head :no_content }

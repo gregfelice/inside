@@ -2,6 +2,16 @@ require 'spec_helper'
 
 feature "Employee Administration" do
 
+  scenario "as an administrator, I can delete an employee", :js => true, :focus => true do
+    employee = create(:employee)
+    login
+    visit employee_path(employee.id)
+    click_on "Destroy"
+    # http://stackoverflow.com/questions/2458632/how-to-test-a-confirm-dialog-with-cucumber
+    page.driver.browser.switch_to.alert.accept
+    page.should have_content "Employee was successfully deleted."
+  end
+
   scenario "throws a validation error if a omit name on new employee", :js => true, :focus => false do
     e = build(:employee)
     login
@@ -60,13 +70,6 @@ feature "Employee Administration" do
     page.should have_content "Invalid circular relationship"
   end
 
-  scenario "as an administrator, when I add a reporting relationship for an employee, I cannot add the same person more than once", :js => true, :focus => false
-
-  scenario "as an administrator, I can delete an employee", :js => true, :focus => false
-
-  scenario "as an administrator, when I remove a reporting relationship, the associated reorting relationship is destroyed", :js => true, :focus => false
-
-  scenario "as an administrator, I can view a report of employees with multiple supervisors", :js => true, :focus => false
 
   scenario "as an administrator, I can create a new employee", :js => true, :focus => false do
     e = build(:employee)
