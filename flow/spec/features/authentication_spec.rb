@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-feature "Authentication" do 
-  
-  scenario "I can log in", :js => true, :focus => true do
+feature "Authentication" do
+
+  scenario "I can log in", :js => true, :focus => false do
 
     login
     visit employees_path
@@ -11,5 +11,5 @@ feature "Authentication" do
   end
 
   scenario "I can log out", :js => true, :focus => false
-  
+
 end

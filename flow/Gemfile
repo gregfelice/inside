@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
@@ -41,12 +42,15 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   # get railspanel!
+  gem 'quiet_assets'		   # quiet down the log file, omitting asset requests
+  gem 'thin', group: :development
 end
 
 gem 'rspec-rails', group: [:test, :development]
 
 group :test do
   gem 'capybara'
+
   gem 'launchy'
   gem 'poltergeist'
   gem 'factory_girl_rails'
