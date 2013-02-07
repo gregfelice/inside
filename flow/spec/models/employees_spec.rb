@@ -2,19 +2,19 @@ require 'spec_helper'
 
 describe "Employees Model" do 
 
-  it "initializes reporting relationship to dotted on new", :focus => true do
+  it "initializes reporting relationship to dotted on new", :focus => false do
     r = ReportingRelationship.new
     r.dotted.should be_false
   end
   
-  it "can use << notation to push objects onto relationships", :focus => true do
+  it "can use << notation to push objects onto relationships", :focus => false do
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
     employee.subordinates << subordinate
     ReportingRelationship.all.each { |rr| rr.dotted.should_not be_nil }
   end
 
-  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => true do 
+  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => false do 
 
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
@@ -33,7 +33,7 @@ describe "Employees Model" do
     rr.dotted.should == false
   end
 
-  it "destroys reporting relationships correctly upon dissassociation", :focus => true do
+  it "destroys reporting relationships correctly upon dissassociation", :focus => false do
     
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
@@ -50,7 +50,7 @@ describe "Employees Model" do
     ReportingRelationship.all.size.should == 0
   end
   
-  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => true do
+  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => false do
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
     employee.supervisor_relationships.build(:dotted => true, :supervisor => supervisor1, :subordinate => employee)
@@ -58,7 +58,7 @@ describe "Employees Model" do
     employee.supervisors.size.should == 1
   end
   
-  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => true do 
+  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => false do 
 
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
@@ -92,16 +92,17 @@ describe "Employees Model" do
     dotted_ids.size.should == 2
     
     dotted_ids << supervisor4.id
-
     dotted_ids.size.should == 3
 
     employee.dotted_supervisor_tokens = dotted_ids
+
+    employee.save!
 
     employee.supervisor_ids.size.should == 4
     employee.supervisors.size.should == 4
   end
 
-  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => true do
+  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => false do
 
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
@@ -167,7 +168,7 @@ describe "Employees Model" do
     }
   end
 
-  it "can add and access supervisors and subordinates", :focus => true do
+  it "can add and access supervisors and subordinates", :focus => false do
     
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title X")
@@ -189,7 +190,7 @@ describe "Employees Model" do
 
   end
 
-  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => true do
+  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => false do
 
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
@@ -210,7 +211,7 @@ describe "Employees Model" do
     
   end
   
-  it "throws an error if the same supervisor or subordinate is added more than once", :focus => true do
+  it "throws an error if the same supervisor or subordinate is added more than once", :focus => false do
 
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
@@ -223,9 +224,34 @@ describe "Employees Model" do
     expect { employee.subordinates << subordinate }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "can not add itself as a supervisor or subordinate", :focus => true do
+  it "can not add itself as a supervisor or subordinate", :focus => false do
     employee = create(:employee)
     expect { employee.subordinates << employee }.to raise_error(ActiveRecord::RecordInvalid)
   end
-  
+
+  it "will contain valid error messages if i add itself as a supervisor or subordinate", :focus => true do
+
+    employee = create(:employee)
+    subordinate = create(:employee, :full_name => "Foo Name")
+    employee.full_name = nil
+    begin
+      employee.save!
+    rescue
+      # puts "employee errors: #{employee.errors.inspect}"
+    end
+    begin
+      employee.subordinates << subordinate
+      employee.subordinates << employee
+    rescue
+      other_errors = []
+      other_errors << employee.subordinate_relationships.reject { |sr| sr.valid? }.collect { |sr| sr.errors }
+      # puts other_errors.inspect
+    end
+
+    employee.subordinate_relationships.reject { |sr| sr.valid? }.each { |sr| sr.errors.messages.each { |key, value| employee.errors.add(key, value) } }
+
+    puts employee.errors.inspect
+
+  end
+
 end

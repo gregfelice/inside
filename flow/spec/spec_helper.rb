@@ -2,6 +2,7 @@
 
 require 'rubygems' # spork
 require 'spork'    # spork
+require 'capybara/selenium/driver' # native selenium for low level work
 
 include Warden::Test::Helpers
 Warden.test_mode!
@@ -26,7 +27,7 @@ Spork.prefork do # spork
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
     config.treat_symbols_as_metadata_keys_with_true_values = true
-    #config.filter_run :focus => true
+    config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
     config.include FactoryGirl::Syntax::Methods
   end
@@ -36,7 +37,7 @@ Spork.each_run do
 
   # as per railscasts recommendations
   FactoryGirl.reload # spork related
-  
+
   # placed in each_run as per recommendation http://stackoverflow.com/questions/8409286/spork-error-undefined-method-split-for-nilnilclass-nomethoderror
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -84,4 +85,13 @@ def wait_for_dom(timeout = Capybara.default_wait_time)
     });
   EOS
   page.find("##{uuid}")
+end
+
+# see: https://github.com/aivaturi/Selenium-Remote-Driver/issues/28
+def fill_in_token_input(id, value)
+  field = page.find_by_id(id).native
+  field.send_keys value
+  sleep 2
+  field.send_keys "\t\n"
+  sleep 2
 end
