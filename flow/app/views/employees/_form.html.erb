@@ -9,11 +9,13 @@
     <%= f.input :contractor, :as => :radio_buttons %>
     <%= f.input :part_time_status, :as => :radio_buttons %>
     
-    <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @employee.direct_supervisors.map(&:attributes).to_json } %> 
+    <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @employee.direct_supervisors.map(&:attributes).to_json } %>
     
-    <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @employee.dotted_supervisors.map(&:attributes).to_json } %> 
+    <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @employee.dotted_supervisors.map(&:attributes).to_json } %>
     
-    <%= f.input :subordinate_tokens, :label => "Reports", :input_html => { 'data-pre' => @employee.subordinates.map(&:attributes).to_json } %> 
+    <%= f.input :direct_subordinate_tokens, :label => "Reports", :input_html => { 'data-pre' => @employee.direct_subordinates.map(&:attributes).to_json } %> 
+
+    <%= f.input :dotted_subordinate_tokens, :label => "Dotted Reports", :input_html => { 'data-pre' => @employee.dotted_subordinates.map(&:attributes).to_json } %> 
 
     <div class="form-actions">
 
