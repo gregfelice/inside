@@ -8,7 +8,8 @@
   
   <small><div class="muted pull-left"><%= @emps_count %> results</div> </small>
   
-  <small><div class="pull-right"><%= link_to "CSV", employees_path(format: "csv") %> | <%= link_to "Excel", employees_path(format: "xls") %></div></small>
+  <small><div class="pull-right"><%= link_to "CSV", employees_path(format: "csv", :q => @search_params) %> | <%= link_to "Excel", employees_path(format: "xls", :q => @search_params) %></div></small>
+  
   <br>
 </div>
 
@@ -16,7 +17,7 @@
   <div class="close">x</div>  
 
   <%= search_form_for @search, :url => search_employees_path, :class => "form-inline", :html => {:method => :post} do |f| %>
-
+  
     <%= f.condition_fields do |c| %>
       <%= render "condition_fields", f: c %>
     <% end %>
@@ -41,7 +42,7 @@
   <button id="show_search" class="btn pull-right"><i class="icon-search"></i> Search</button>
 </div>
 
-<table class="table table-striped">
+<table id="search_results" class="table table-striped">
 
   <thead>
     <tr>      
