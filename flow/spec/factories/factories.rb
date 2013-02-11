@@ -1,10 +1,10 @@
 require 'factory_girl'
 
 FactoryGirl.define do
-  
+
   factory :employee do
-    full_name "test employee"
+    sequence(:full_name) {|n| "Joe #{n}" }
+    #full_name "employee"
     job_title "president"
   end
-
 end
