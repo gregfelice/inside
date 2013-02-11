@@ -10,6 +10,11 @@ class HomeController < ApplicationController
   end
 
   def orgdendro
+    if params[:id]
+      @employee = Employee.find_by_id(params[:id])
+    else
+      @employee = Employee.find_by_id(183) # marc
+    end
     render :layout => 'orgchart'
   end
 
@@ -22,27 +27,24 @@ class HomeController < ApplicationController
   end
 
   def orgdendro_tree
-    @employee = Employee.find_by_id(183) 
-    # @employee = Employee.find_by_id(183) 
-    tree = to_node @employee
+    if params[:id]
+      e = Employee.find_by_id(params[:id])
+    else
+      e = Employee.find_by_id(183) # marc
+    end
+
+    tstart = Time.now.to_f
+    tree = e.org_context
+    tend = Time.now.to_f - tstart
+    logger.info "time for tree retrieval: #{tend}"
+
     respond_to do |format|
       format.json { render json: tree }
     end
-
   end
 
   def staffingchart
     render :layout => 'orgchart'
-  end
-  
-  private
-  
-  def to_node(n)
-    {
-      "name" => n.full_name,
-      "size" => 1000,
-      "children" => n.subordinates.size > 0 ? n.subordinates.map { |c| to_node c } : ""
-    }
   end
 
 end
