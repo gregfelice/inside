@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Employee Administration" do
 
-  scenario "as an administrator, I can delete an employee", :js => true, :focus => true do
+  scenario "as an administrator, I can delete an employee", :js => true, :focus => false do
     employee = create(:employee)
     login
     visit employee_path(employee.id)
