@@ -2,6 +2,21 @@ require 'spec_helper'
 
 describe "Employees Model" do
 
+  it "appropriately marks itself as dirty if i change an association", :focus => false do
+    employee = create(:employee)
+    employee.changed?.should be_false
+
+    employee.full_name = "change me"
+    employee.changed?.should be_true
+
+    employee2 = create(:employee)
+    employee3 = create(:employee)
+    employee2.add_subordinate employee3
+
+    employee2.changed?.should be_true
+
+  end
+
   it "initializes reporting relationship to dotted on new", :focus => false do
     r = ReportingRelationship.new
     r.dotted.should be_false
