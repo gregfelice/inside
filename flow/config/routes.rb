@@ -16,6 +16,8 @@ Flow::Application.routes.draw do
 
   get "home/index"
 
+  match "/release_calendar"          => "home#release_calendar"
+
   match "/orgchart"                  => "home#orgchart"
 
   match "/orgdendro"                 => "home#orgdendro"

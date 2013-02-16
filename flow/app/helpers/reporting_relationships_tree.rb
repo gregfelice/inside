@@ -3,7 +3,7 @@ require 'singleton'
 class ReportingRelationshipsTree
   include Singleton
 
-  attr_accessor :update_requests
+  attr_accessor :update_requests, :top_node_id
 
   @worker = nil
   @update_requests = nil
