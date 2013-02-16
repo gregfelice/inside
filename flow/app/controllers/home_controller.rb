@@ -1,11 +1,33 @@
+require 'release_calendar_rest_client'
 
 class HomeController < ApplicationController
 
   def index
   end
 
+  def release_calendar
+    @releases = ReleaseCalendarRestClient.get_releases
+    @releases_by_date = @releases.group_by { |r| r['release_date'] }
+    @releases_by_date.each {|a| a[1].sort_by! {|h| h['status']} }
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    respond_to do |format|
+      format.html { render :layout => 'orgchart' }
+    end
+  end
+
+  def release_list
+    @releases = ReleaseCalendarRestClient.get_releases
+    @releases_by_date = @releases.group_by { |r| r['release_date'] }
+    @releases_by_date.each {|a| a[1].sort_by! {|h| h['status']} }
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    respond_to do |format|
+      format.html { render :layout => 'orgchart' }
+    end
+  end
+
+
   def orgchart
-    @reporting_relationships = ReportingRelationship.find(:all)
+    @reporting_relationships = ReportingRelationship.where(:dotted => false)
     render :layout => 'orgchart'
   end
 
@@ -13,7 +35,7 @@ class HomeController < ApplicationController
     if params[:id]
       @employee = Employee.find_by_id(params[:id])
     else
-      @employee = Employee.find_by_id(183) # marc
+      @employee = Employee.find_by_id(ReportingRelationshipsTree.instance.top_node_id)
     end
     render :layout => 'orgchart'
   end
