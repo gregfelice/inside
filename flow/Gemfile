@@ -62,12 +62,15 @@ group :test do
 
 end
 
-gem 'inherited_resources'
-gem 'simple_form'
+gem 'inherited_resources'		# cleans up controller boilerplate
+gem 'simple_form'			# forms
 gem 'country_select'
-gem 'devise'
-gem 'will_paginate'
+gem 'devise'				# authentication
+gem 'will_paginate'			# pagination
 gem 'syntax'
-gem 'ransack'
-gem 'ancestry'
-gem 'dalli'
+gem 'ransack'				# search logic
+# gem 'ancestry'			
+gem 'dalli'				# memcache
+# gem 'rest-client-components'		# rest client for JIRA access
+# gem 'rest-client'
+gem 'httparty'
