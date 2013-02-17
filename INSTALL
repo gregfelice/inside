@@ -1,0 +1,34 @@
+
+development environments
+---
+flow-fe01.dev.ewr1.nyytimes.com
+flow-fe02.dev.ewr1.nyytimes.com
+
+test environments
+---
+xx
+
+ci environments
+---
+xx
+
+production environments
+---
+xx
+
+Reference
+---
+RVM
+https://confluence.em.nytimes.com/display/INFR/HOWTO+-+use+NYT+built+RVM+for+Ruby
+
+Local Gem Repo
+https://confluence.em.nytimes.com/display/INFR/HOWTO+-+Build+a+Ruby+Gems+Local+Mirror
+
+
+Installed
+---
+git (via yum, sudo su)
+
+
+
+
