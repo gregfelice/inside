@@ -2,8 +2,8 @@ module ReleaseCalendarHelper
 
   def link_to_release(release)
 
-    # label = "#{release['summary']}"
-    label = "#{release['key']}: #{release['summary']}"
+    label = "#{release['summary']}"
+    # label = "#{release['key']}: #{release['summary']}"
     url = "http://jira.em.nytimes.com/browse/#{release['key']}"
 
     classes = {'Open' => 'upcoming', 'In Development' => 'in-progress', 'Verified In Production' => 'verified-in-production'}

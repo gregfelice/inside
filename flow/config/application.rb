@@ -21,6 +21,11 @@ end
 module Flow
   class Application < Rails::Application
 
+    # custom config file
+    #CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+    #CONFIG.merge! CONFIG.fetch(Rails.env, {})
+    #CONFIG.symbolize_keys!
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
