@@ -15,7 +15,7 @@ class ReleaseCalendarRestClient
 
   def self.get_releases
     from_cache = true
-    releases = Rails.cache.fetch(:releases, :race_condition_ttl => 10, :expires_in => 5.minutes) do
+    releases = Rails.cache.fetch(:releases, :race_condition_ttl => 30, :expires_in => 5.minutes) do
       from_cache = false
       releases = rebuild_releases
     end
