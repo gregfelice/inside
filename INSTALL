@@ -1,8 +1,15 @@
 
 development environments
 ---
-flow-fe01.dev.ewr1.nyytimes.com
-flow-fe02.dev.ewr1.nyytimes.com
+* app
+flow-fe01.dev.ewr1.nytimes.com
+flow-fe02.dev.ewr1.nytimes.com
+
+* database
+host: flow-db01.dev.ewr1.nytimes.com
+db: flow
+accounts: flow_rwx & flow_rx
+
 
 test environments
 ---

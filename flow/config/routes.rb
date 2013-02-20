@@ -5,7 +5,7 @@ Flow::Application.routes.draw do
   resources :widgets do
     resources :parts
   end
-  
+
   resources :employees do
     collection do
       match 'search' => 'employees#search', :via => [:get, :post], :as => :search
