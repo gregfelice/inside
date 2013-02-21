@@ -70,8 +70,6 @@ gem 'devise'				# authentication
 gem 'will_paginate'			# pagination
 gem 'syntax'
 gem 'ransack'				# search logic
-# gem 'ancestry'			
+gem 'ancestry'				# hierarchical menus
 gem 'dalli'				# memcache
-# gem 'rest-client-components'		# rest client for JIRA access
-# gem 'rest-client'
-gem 'httparty'
+gem 'httparty'				# rest client for JIRA pulls
