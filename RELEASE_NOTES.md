@@ -27,3 +27,17 @@ DONE instance working (vostok)
 DONE get mysql installed on ec2 (vostok)
 DONE employeeware charts / reports port
 DONE testing framework
+
+# Goals
+
+* Code frozen, no new features
+* Get rvmrc working perfectly
+* Get binstubs working
+* Get gems installed under vendor/bundles so I don't need to rely on gem/bundler installs outside my local machine
+* All model and feature tests pass on local machine
+* Deploys successfully to dev2 via tarfile (RPM to follow)
+* Works against official dev1 database (http://dev.mysql.com/doc/workbench/en/wb-forward-engineering-sql-scripts.html)
+* Works successfully with NOMAD process
+
+
+
