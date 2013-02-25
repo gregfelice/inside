@@ -1,28 +1,4 @@
 
-# Project Description
-
-test readme commit 
-
-# Revision Control
-
-See: [http://documentup.com/skwp/git-workflows-book]
-See: [http://git-scm.com/book]
-
-branching strategies?
-http://scottchacon.com/2011/08/31/github-flow.html
-
-master...?
-develop...?
-topic....?
-
-hotfix?
-
-git flow
-https://github.com/nvie/gitflow
-
-
-
-
 ## planning dimension
 
 ### portfolios
@@ -184,24 +160,4 @@ q: do they want more financial discipine around projects?
 goals
 ---
 help cio comms up to ceo
-
-personas
----
-
-ceo persona
-//
-stockholders - keep wall st. happy
-balance sheet, income statement
-
-cio persona
-//
-i want to communicate product lines
-i want to communicate future strategic direction - what the future is - what the plan is (3 year technology strategy)
-i want to communicate undestanding of where my costs are
-i want to communciate where my areas of growth are
-i want to translate the technology strategy into a business strategy that the business understands
-
-strategic planner persona
-//
-???
 
