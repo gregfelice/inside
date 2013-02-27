@@ -1,207 +1,207 @@
 
 # Project Description
 
-test readme commit 
+'Flow' Is Designed To Create A Integrated View Of Product, Planning, People, And Financial Dimensions Of An Organization.
 
-# Revision Control
+# Developers Guide
 
-See: [http://documentup.com/skwp/git-workflows-book]
-See: [http://git-scm.com/book]
+## Revision Control Approach
 
-branching strategies?
-http://scottchacon.com/2011/08/31/github-flow.html
+Flow Uses Git And Git-Flow For Version Control.
+Http://Scottchacon.Com/2011/08/31/Github-Flow.Html
 
-master...?
-develop...?
-topic....?
+# Experimental Data Model
+Using Scaffolding for BOTH Mongoid and ActiveRecord
+* http://stackoverflow.com/questions/6372626/using-active-record-generators-after-mongoid-installation
 
-hotfix?
-
-git flow
-https://github.com/nvie/gitflow
-
+MongoDB data modeling patterns
+* http://docs.mongodb.org/manual/core/data-modeling/
+* http://docs.mongodb.org/manual/crud/#crud-operations
+* http://docs.mongodb.org/manual/tutorial/model-tree-structures-with-materialized-paths/
 
 
+# Data Model
 
-## planning dimension
+## Planning Dimension
 
-### portfolios
-* there are many portfolios
-* portfolio has many plans
+### Portfolios
+* There Are Many Portfolios
+* Portfolio Has Many Plans
 
-### plans
-* plans have many milestones
+### Plans
+* Plans Have Many Milestones
 
-### milestones
-* milestones have one time period
-* milestones have one milestone status
-* milestones have many resource allocations
+### Milestones
+* Milestones Have One Time Period
+* Milestones Have One Milestone Status
+* Milestones Have Many Resource Allocations
 
-### resource allocations
-* resource allocations have one resource allocation type
-* resource allocations have one quantity
-* resource allocations have one person
+### Resource Allocations
+* Resource Allocations Have One Resource Allocation Type
+* Resource Allocations Have One Quantity
+* Resource Allocations Have One Person
 
-### plans
-* plans have many budgets
-* plans have many actuals
-* plans have many business drivers
+### Plans
+* Plans Have Many Budgets
+* Plans Have Many Actuals
+* Plans Have Many Business Drivers
 
-## financial dimension
+## Financial Dimension
 
-### budgets & actuals
-* budgets have many plans
-* actuals have many plans
+### Budgets & Actuals
+* Budgets Have Many Plans
+* Actuals Have Many Plans
 
-## product dimension
+## Product Dimension
 
-### products/systems
-* products/systems have many product/system dependencies
-* products/systems have many themes
-* products have revenue
+### Products/Systems
+* Products/Systems Have Many Product/System Dependencies
+* Products/Systems Have Many Themes
+* Products Have Revenue
 
-## people dimension
+## People Dimension
 
-### people
-* people have many types: open position, employee, contractor, intern
+### People
+* People Have Many Types: Open Position, Employee, Contractor, Intern
 
-### groups
-* groups have many types: tribe, squad/team, chapter, guild, department
+### Groups
+* Groups Have Many Types: Tribe, Squad/Team, Chapter, Guild, Department
 
-### accountabilities::generic
-* groups and people are parties
-* parties have many parties through accountability
-* accountabilities have many types
+### Accountabilities::Generic
+* Groups And People Are Parties
+* Parties Have Many Parties Through Accountability
+* Accountabilities Have Many Types
 
-### accountabilities::instances
-* people directly supervise people
-* people dotted supervise people
-* people mentor people
-* groups support groups
-* people consult for groups
-* people direct groups
+### Accountabilities::Instances
+* People Directly Supervise People
+* People Dotted Supervise People
+* People Mentor People
+* Groups Support Groups
+* People Consult For Groups
+* People Direct Groups
 
 
-anti-stories
+Anti-Stories
 ---
-i dont want to do time entry
-i dont want to do financial planning at the project level
-i dont want to do financial planning at the theme level
-i wont have story level estimates for everything going on in the company
-i dont want to always run agile
-i dont want to take too many surveys
+I Dont Want To Do Time Entry
+I Dont Want To Do Financial Planning At The Project Level
+I Dont Want To Do Financial Planning At The Theme Level
+I Wont Have Story Level Estimates For Everything Going On In The Company
+I Dont Want To Always Run Agile
+I Dont Want To Take Too Many Surveys
 
 
-stories
+Stories
 ---
-service portfolio management
+Service Portfolio Management
 //
-TBD
+Tbd
 
-product management
+Product Management
 //
-i want to see a list of all products
-i want to see a list of all themes for a product
+I Want To See A List Of All Products
+I Want To See A List Of All Themes For A Product
 
-i want to see who requested themes
-i want to see who will use themes
+I Want To See Who Requested Themes
+I Want To See Who Will Use Themes
 
-i want to differentiate between external and internal products
+I Want To Differentiate Between External And Internal Products
 
 
-project management
+Project Management
 //
-i want to see a list of all projects
-i want to see a list of all themes for a project
+I Want To See A List Of All Projects
+I Want To See A List Of All Themes For A Project
 
 
-project and product management
+Project And Product Management
 // 
-i want to see if a project/product is in active feature development mode, or maintenance mode
-i want to see the resources dedicated to a project/product
+I Want To See If A Project/Product Is In Active Feature Development Mode, Or Maintenance Mode
+I Want To See The Resources Dedicated To A Project/Product
 
-i want to see the opportunity costs associated with active projects, vs what's in the backlog
-i want to see cost of delay for a project
+I Want To See The Opportunity Costs Associated With Active Projects, Vs What'S In The Backlog
+I Want To See Cost Of Delay For A Project
 
-i want to take satisfaction surveys at the end of major phases of work
+I Want To Take Satisfaction Surveys At The End Of Major Phases Of Work
 
-i want a capacity planner
+I Want A Capacity Planner
 
-i want to see project health
+I Want To See Project Health
 
 
 
-financial management
+Financial Management
 //
-i want to see the burn rate of each department 
-i want to see the burn rate of each project
-i want to see the burn rate of active development vs maintenance projects (this is good)
+I Want To See The Burn Rate Of Each Department 
+I Want To See The Burn Rate Of Each Project
+I Want To See The Burn Rate Of Active Development Vs Maintenance Projects (This Is Good)
 
-i want to see averages and outliers for project costs
+I Want To See Averages And Outliers For Project Costs
 
-i want to see costs by portfolio entry type (financial automation, CRM services, decision support services, ecommerce, web development)
-i want to see costs by strategic objective (quality, compliance, revenue initiative, cost reduction)
+I Want To See Costs By Portfolio Entry Type (Financial Automation, Crm Services, Decision Support Services, Ecommerce, Web Development)
+I Want To See Costs By Strategic Objective (Quality, Compliance, Revenue Initiative, Cost Reduction)
 
 
-resource management
+Resource Management
 //
-i want to see who reports to whom
-i want to see what skills a person has
-i want to see what skills we have in demand
-i want to see what skills we have in the hiring pipeline, and at what stages (requested, approved, recruiting, interviewing, hired)
+I Want To See Who Reports To Whom
+I Want To See What Skills A Person Has
+I Want To See What Skills We Have In Demand
+I Want To See What Skills We Have In The Hiring Pipeline, And At What Stages (Requested, Approved, Recruiting, Interviewing, Hired)
 
-i want to organize people by department, portfolio entry type
+I Want To Organize People By Department, Portfolio Entry Type
 
-i want to see what titles people have for their skills
-i want to see what roles people have for their skills
-i want to see what compensation packages people have for their titles
+I Want To See What Titles People Have For Their Skills
+I Want To See What Roles People Have For Their Skills
+I Want To See What Compensation Packages People Have For Their Titles
 
-i want to see averages & outliers for titles to compensation packages
+I Want To See Averages & Outliers For Titles To Compensation Packages
 
-i want to take surveys about general employee satisfaction, and record the results over time
-
-
-
-i want to plan projects for the next quarter
+I Want To Take Surveys About General Employee Satisfaction, And Record The Results Over Time
 
 
 
+I Want To Plan Projects For The Next Quarter
 
-backlog
+
+
+
+Backlog
 ---
-employeeware port
-culture data / survey management
-  culture decisions impact
-portfolio management
-strategy maps / scorecards
-governance / cobit?
+Employeeware Port
+Culture Data / Survey Management
+  Culture Decisions Impact
+Portfolio Management
+Strategy Maps / Scorecards
+Governance / Cobit?
 
-todo
+Todo
 --- 
-q: do they want more financial discipine around projects?
+Q: Do They Want More Financial Discipine Around Projects?
 
 
-goals
+Goals
 ---
-help cio comms up to ceo
+Help Cio Comms Up To Ceo
 
-personas
+Personas
 ---
 
-ceo persona
+Ceo Persona
 //
-stockholders - keep wall st. happy
-balance sheet, income statement
+Stockholders - Keep Wall St. Happy
+Balance Sheet, Income Statement
 
-cio persona
+Cio Persona
 //
-i want to communicate product lines
-i want to communicate future strategic direction - what the future is - what the plan is (3 year technology strategy)
-i want to communicate undestanding of where my costs are
-i want to communciate where my areas of growth are
-i want to translate the technology strategy into a business strategy that the business understands
+I Want To Communicate Product Lines
+I Want To Communicate Future Strategic Direction - What The Future Is - What The Plan Is (3 Year Technology Strategy)
+I Want To Communicate Undestanding Of Where My Costs Are
+I Want To Communciate Where My Areas Of Growth Are
+I Want To Translate The Technology Strategy Into A Business Strategy That The Business Understands
 
-strategic planner persona
+Strategic Planner Persona
 //
 ???
+
 
