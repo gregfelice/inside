@@ -1,5 +1,5 @@
 
-development environments
+Development Environments
 ---
 * app
 flow-fe01.dev.ewr1.nytimes.com
@@ -25,14 +25,14 @@ xx
 
 Reference
 ---
-RVM
+RVM Usage
 https://confluence.em.nytimes.com/display/INFR/HOWTO+-+use+NYT+built+RVM+for+Ruby
 
-Local Gem Repo
+Local Gem Repo Usage
 https://confluence.em.nytimes.com/display/INFR/HOWTO+-+Build+a+Ruby+Gems+Local+Mirror
 
 
-Installed
+Installation Dependencies
 ---
 git (via yum, sudo su)
 
