@@ -29,7 +29,8 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+# gem 'unicorn'
+gem 'thin'
 
 # Deploy with Capistrano
 gem 'capistrano'
@@ -44,14 +45,12 @@ group :development do
   gem 'meta_request'
   # get railspanel!
   gem 'quiet_assets'		   # quiet down the log file, omitting asset requests
-  gem 'thin', group: :development
 end
 
 gem 'rspec-rails', group: [:test, :development]
 
 group :test do
   gem 'capybara'
-
   gem 'launchy'
   gem 'poltergeist'
   gem 'factory_girl_rails'
@@ -60,7 +59,6 @@ group :test do
   gem 'listen'
   gem 'spork'
   gem 'guard-spork'
-
 end
 
 gem 'inherited_resources'		# cleans up controller boilerplate
