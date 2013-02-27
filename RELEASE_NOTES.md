@@ -1,4 +1,9 @@
 
+# Release 1.1 / In Planning
+
+
+
+# Release 1.0 / In Progress
 
 implement cleanups
   NO up one level on the org chart, in some form, rather than having it as too big for the screen
@@ -29,7 +34,6 @@ DONE employeeware charts / reports port
 DONE testing framework
 
 # Goals
-
 * Code frozen, no new features
 * Get rvmrc working perfectly
 * Get binstubs working
