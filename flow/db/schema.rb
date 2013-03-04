@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220154440) do
+ActiveRecord::Schema.define(:version => 20130301224910) do
 
   create_table "employees", :force => true do |t|
     t.boolean  "contractor"
@@ -24,6 +24,59 @@ ActiveRecord::Schema.define(:version => 20130220154440) do
     t.string   "cost_center"
   end
 
+  create_table "group_associations", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "type"
+    t.integer  "source_id"
+    t.integer  "sink_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "group_memberships", :force => true do |t|
+    t.text     "description"
+    t.string   "type"
+    t.integer  "group_id"
+    t.integer  "person_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "milestones", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "business_driver"
+    t.string   "status"
+    t.string   "health"
+    t.date     "planned_start"
+    t.date     "planned_finish"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "plan_id"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "ancestry"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "label"
+    t.string   "controller_name"
+    t.string   "action_name"
+  end
+
+  add_index "pages", ["ancestry"], :name => "index_pages_on_ancestry"
+
   create_table "parts", :force => true do |t|
     t.string   "commenter"
     t.text     "description"
@@ -33,6 +86,39 @@ ActiveRecord::Schema.define(:version => 20130220154440) do
   end
 
   add_index "parts", ["widget_id"], :name => "index_parts_on_widget_id"
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "person_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "person_associations", :force => true do |t|
+    t.text     "description"
+    t.string   "person_type"
+    t.integer  "source_id"
+    t.integer  "sink_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "portfolio_category"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "portfolio_id"
+  end
+
+  create_table "portfolios", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "reporting_relationships", :force => true do |t|
     t.integer  "subordinate_id"
@@ -44,6 +130,15 @@ ActiveRecord::Schema.define(:version => 20130220154440) do
 
   add_index "reporting_relationships", ["subordinate_id", "supervisor_id"], :name => "idx_subordinate_and_supervisor_id"
   add_index "reporting_relationships", ["supervisor_id"], :name => "idx_supervisor_id"
+
+  create_table "resource_allocations", :force => true do |t|
+    t.string   "comment"
+    t.decimal  "quantity",     :precision => 10, :scale => 0
+    t.integer  "milestone_id"
+    t.integer  "person_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -70,5 +165,7 @@ ActiveRecord::Schema.define(:version => 20130220154440) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_foreign_key "parts", "widgets", :name => "parts_widget_id_fk"
 
 end
