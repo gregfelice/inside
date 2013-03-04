@@ -1,6 +1,3 @@
-require 'JSON'
-require 'date'
-require 'rubygems'
 require 'httparty'
 require "net/https"
 require "uri"
