@@ -16,7 +16,9 @@ class ReportingRelationshipsTree
   end
 
   def initialize
-    @top_node_id = 685 # BOD by default; will need to set this in a config file, i think.
+    # @top_node_id = 685 # BOD by default; will need to set this in a config file, i think.
+    # @update_requests = Queue.new
+    @top_node_id = CONFIG[:top_node_id]
     Rails.logger.info "reporting_relationships_tree singleton initialized with top node id of #{@top_node_id}."
   end
 
