@@ -31,7 +31,10 @@ Vision
   * lower priority
 
 # Developers Guide
-=======
+
+The Questions
+-------------
+
 how does the network structure show continuous updates of beliefs?
 how might something like a virus/meme be contained?
 how do people plug into the network? 
@@ -123,6 +126,206 @@ Tie in different information sources - see what we can end up with
 Alternatives
 ------------
 * SAP solutions are not resoponsive or adaptive enough
+
+Features
+--------
+* DONE Employeeware Port
+* Culture Data / Survey Management
+   * Culture Decisions Impact
+* Portfolio Management
+* Strategy Maps / Scorecards
+* Governance / Cobit?
+
+
+
+
+Anti-Stories
+-------------
+* I Dont Want To Do Time Entry
+* I Dont Want To Do Financial Planning At The Project Level
+* I Dont Want To Do Financial Planning At The Theme Level
+* I Wont Have Story Level Estimates For Everything Going On In The Company
+* I Dont Want To Always Run Agile
+* I Dont Want To Take Too Many Surveys
+
+Stories
+-------
+### Service Portfolio Management
+* Tbd
+
+### Product Management
+* I Want To See A List Of All Products
+* I Want To See A List Of All Themes For A Product
+* I Want To See Who Requested Themes
+* I Want To See Who Will Use Themes
+* I Want To Differentiate Between External And Internal Products
+
+### Project Management
+* I Want To See A List Of All Projects
+* I Want To See A List Of All Themes For A Project
+
+
+### Project And Product Management
+* I Want To See If A Project/Product Is In Active Feature Development Mode, Or Maintenance Mode
+* I Want To See The Resources Dedicated To A Project/Product
+* I Want To See The Opportunity Costs Associated With Active Projects, Vs What'S In The Backlog
+* I Want To See Cost Of Delay For A Project
+* I Want To Take Satisfaction Surveys At The End Of Major Phases Of Work
+* I Want A Capacity Planner
+* I Want To See Project Health
+
+### Financial Management
+* I Want To See The Burn Rate Of Each Department 
+* I Want To See The Burn Rate Of Each Project
+* I Want To See The Burn Rate Of Active Development Vs Maintenance Projects (This Is Good)
+* I Want To See Averages And Outliers For Project Costs
+* I Want To See Costs By Portfolio Entry Type (Financial Automation, Crm Services, Decision Support Services, Ecommerce, Web Development)
+* I Want To See Costs By Strategic Objective (Quality, Compliance, Revenue Initiative, Cost Reduction)
+
+
+### Resource Management
+* I Want To See Who Reports To Whom
+* I Want To See What Skills A Person Has
+* I Want To See What Skills We Have In Demand
+* I Want To See What Skills We Have In The Hiring Pipeline, And At What Stages (Requested, Approved, Recruiting, Interviewing, Hired)
+* I Want To Organize People By Department, Portfolio Entry Type
+* I Want To See What Titles People Have For Their Skills
+* I Want To See What Roles People Have For Their Skills
+* I Want To See What Compensation Packages People Have For Their Titles
+* I Want To See Averages & Outliers For Titles To Compensation Packages
+* I Want To Take Surveys About General Employee Satisfaction, And Record The Results Over Time
+* I Want To Plan Projects For The Next Quarter
+
+Personas
+---
+
+### Ceo Persona
+* Reports to Stockholders
+* Balance Sheet, Income Statement
+
+### Cio Persona
+* I Want To Communicate Product Lines
+* I Want To Communicate Future Strategic Direction - What The Future Is - What The Plan Is (3 Year Technology Strategy)
+* I Want To Communicate Undestanding Of Where My Costs Are
+* I Want To Communciate Where My Areas Of Growth Are
+* I Want To Translate The Technology Strategy Into A Business Strategy That The Business Understands
+
+### Strategic Planner Persona
+* TBD
+
+Developers Guide
+================
+
+Revision Control Approach
+-------------------------
+* Flow Uses Git And [Git-Flow](http:Scottchacon.Com/2011/08/31/Github-Flow.Html) For Version Control.
+
+Experiments
+-----------
+
+### Experimental Data Model
+* [Using Scaffolding for BOTH Mongoid and ActiveRecord](http:stackoverflow.com/questions/6372626/using-active-record-generators-after-mongoid-installation)
+
+### MongoDB data modeling patterns
+* [Data Modeling](http:docs.mongodb.org/manual/core/data-modeling)
+* [CRUD Operations](http:docs.mongodb.org/manual/crud/#crud-operations)
+* [Trees & Materialized Paths](http:docs.mongodb.org/manual/tutorial/model-tree-structures-with-materialized-paths/)
+
+=======
+
+
+Elevator Descriptions
+---------------------
+* We provide digestible visualizations to show patterns about what we do, between previously disparate data, or data that was expensive to make non-disparate.
+
+
+### People
+* What formal relationships exist? 
+* What informal relationships exist?
+* Where are there connections between people?
+* What is this person:
+  * Working on?
+  * Interested in?
+* Who is in proximity to whom? What are the benefits of that proximity? How can we foster better interconnections between teams and people?
+  * Note: Sit people next to each other for better communication & relationships.
+  * Consider indispersing people and teams, so that there is a cross-fertilization.
+  * Consider scrum guest attendance on a rotating basis.
+* What are the "strongly connected components"?
+  * What data will we have to identify strongly connected components?
+    * Department reporting
+    * Project assignments
+    * Guild membership (perhaps attendance at specific meetings)
+  * How do we create new connections?
+  * Good example: strategy vs product vs project planning
+  * How do we connect these without creating strife?
+  * Can we identify gatekeepers via SNA?
+
+### Planning
+* Where do plans live?
+* Are plans aligned?
+* When do we make decisions on plans? 
+* How long will the project take?
+* How much will the project cost?
+* Is the project proposed/started/completed/abandoned?
+* Show me this person's performance review score.
+* What are the business drivers for this plan?
+* What are the highest priorities in the portfolio for this year?
+* What budgets does this project pull from?
+* What is the budget for this plan?
+* What is the total cost of ownership for this product, including enabling systems and operations costs?
+* What is this person's contact info?
+* What open positions does the organization have?
+* What open positions does this department have?
+* What open positions does this project have?
+* What systems does this product depend on?
+* What will this product cost us to operate for this year?
+* Where does this person sit?
+* Which teams enable this team to deliver?
+* Who is in this department?
+* Who owns this system? Who owns this product?
+* Who reports to whom?
+* Who will work on this project?
+
+3 most innovative things within vision
+--- 
+* Align plans
+* Express formal and informal relationships, richer understanding of the flows inside the times
+
+
+
+The Problem
+-----------
+* Plans exist at strategic & product level
+  * Strategic and product planning not integrated
+  * Resource allocation not integrated
+* No single view on employees & contractors
+* No single view on priorities (getting better)
+* Recruiting pipeline
+* Career development 
+* Morale?
+
+Solution
+--------
+* Get better at managing people data // contractors & employees in same place
+* Reduce costs associated with collecting this kind of information
+* Where are my costs?
+* What are my products, and what revenue do they bring?
+* What skills do we have?
+* What's holding us back?
+* How does technology strategy marry up with business strategy?
+* OK - Metrics drive what do we offer in that area?
+  * Product metrics
+  * Financial metrics
+  * Project metrics
+
+If we look at d3, what is there? what is offered to us in terms of social network analysis?
+Where were we before in terms of what Denise wanted, strategy wise?
+Tie in different information sources - see what we can end up with
+
+Alternatives
+------------
+* SAP solutions are not resoponsive or adaptive enough
+
 
 Features
 --------
