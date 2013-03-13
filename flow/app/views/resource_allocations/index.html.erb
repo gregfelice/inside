@@ -1,0 +1,29 @@
+<h1>Listing resource_allocations</h1>
+
+<table>
+  <tr>
+    <th>Comment</th>
+    <th>Quantity</th>
+    <th>Milestone</th>
+    <th>Person</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resource_allocations.each do |resource_allocation| %>
+  <tr>
+    <td><%= resource_allocation.comment %></td>
+    <td><%= resource_allocation.quantity %></td>
+    <td><%= resource_allocation.milestone_id %></td>
+    <td><%= resource_allocation.person_id %></td>
+    <td><%= link_to 'Show', resource_allocation %></td>
+    <td><%= link_to 'Edit', edit_resource_allocation_path(resource_allocation) %></td>
+    <td><%= link_to 'Destroy', resource_allocation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resource allocation', new_resource_allocation_path %>

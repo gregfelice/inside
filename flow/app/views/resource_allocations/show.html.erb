@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comment:</b>
+  <%= @resource_allocation.comment %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @resource_allocation.quantity %>
+</p>
+
+<p>
+  <b>Milestone:</b>
+  <%= @resource_allocation.milestone_id %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @resource_allocation.person_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_resource_allocation_path(@resource_allocation) %> |
+<%= link_to 'Back', resource_allocations_path %>
