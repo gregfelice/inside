@@ -1,0 +1,29 @@
+<h1>Listing person_associations</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Source</th>
+    <th>Sink</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @person_associations.each do |person_association| %>
+  <tr>
+    <td><%= person_association.description %></td>
+    <td><%= person_association.type %></td>
+    <td><%= person_association.source_id %></td>
+    <td><%= person_association.sink_id %></td>
+    <td><%= link_to 'Show', person_association %></td>
+    <td><%= link_to 'Edit', edit_person_association_path(person_association) %></td>
+    <td><%= link_to 'Destroy', person_association, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Person association', new_person_association_path %>

@@ -1,0 +1,23 @@
+<%= simple_form_for(@milestone) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :facing, 
+	collection: ['Internal', 'External'] %>
+    <%= f.input :business_driver, 
+	collection: ['Revenue (Subscriber or Ad)', 'Contractual / Compliance', 
+	'Maintenance / Efficiency', 'Strategic (Blue Sky / Innovation)','Journalism', 
+	'User Experience', 'Table Stakes (Competitive)', 'NYT5 Support'] %>
+    <%= f.input :status, 
+	collection: ['Open', 'Upcoming Releases', 'In Development', 'Production Ready', 'In Production', 'Verified in Production'] %>
+    <%= f.input :health, collection: ['Green', 'Yellow', 'Red'] %>
+    <%= f.input :planned_start %>
+    <%= f.input :planned_finish %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

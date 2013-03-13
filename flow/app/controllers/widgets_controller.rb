@@ -12,18 +12,18 @@ class WidgetsController < ApplicationController
       format.json { render json: @widgets }
     end
   end
-  
+
   # GET /widgets/1
   # GET /widgets/1.json
   def show
     @widget = Widget.find(params[:id])
-    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @widget }
     end
   end
- 
+
    # GET /widgets/new
   # GET /widgets/new.json
   def new
@@ -38,9 +38,9 @@ class WidgetsController < ApplicationController
   # GET /widgets/1/edit
   def edit
     @widget = Widget.find(params[:id])
-    
+
     # go to the default view here, which is edit.html.erb
-  
+
   end
 
   # POST /widgets
