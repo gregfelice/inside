@@ -56,6 +56,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   #  gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-fsevent', '~> 0.9.1'
   gem 'listen'
   gem 'spork'
   gem 'guard-spork'
@@ -68,6 +69,6 @@ gem 'devise'				# authentication
 gem 'will_paginate'			# pagination
 gem 'syntax'
 gem 'ransack'				# search logic
-gem 'ancestry'				# hierarchical menus
+# gem 'ancestry'				# hierarchical menus
 gem 'dalli'				# memcache
 gem 'httparty'				# rest client for JIRA pulls
