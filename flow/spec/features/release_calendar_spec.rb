@@ -11,10 +11,7 @@ require "uri"
 feature "Release Calendar View" do
 
   scenario "I can do a basic post", :js => false, :focus => true do
-
-    r = ReleaseCalendarRestClient.new.get_releases
-    puts r.inspect
-
+    r = ReleaseCalendarRestClient.get_releases
   end
 
 =begin
@@ -38,12 +35,7 @@ feature "Release Calendar View" do
 =end
 
   scenario "i can retrieve JIRA release issue types", :js => false, :focus => false do
-    rch = ReleaseCalendarRestClient.new
-    releases = rch.get_releases
-    releases.each {|r|
-      puts r.inspect
-    }
-
+    releases = ReleaseCalendarRestClient.get_releases
   end
 
 end

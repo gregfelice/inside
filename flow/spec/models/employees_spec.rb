@@ -112,25 +112,8 @@ describe "Employees Model" do
     dss.first.full_name.should == supervisor1.full_name
   end
 
-  it "finds eligible subordinates even when you have no subordinates" do
-    employee = create(:employee)
-    subordinate_orphan1 = create(:employee, full_name: "Subordinate Orphan1", job_title: "Subordinate Title")
-    subordinate_orphan2 = create(:employee, full_name: "Subordinate Orphan2", job_title: "Subordinate Title")
-    subordinate_orphan3 = create(:employee, full_name: "Subordinate Orphan3", job_title: "Subordinate Title")
-    eligible_subordinates = Employee.eligible_subordinates(employee)
-    eligible_subordinates.size.should == 3
-  end
-
-  it "finds eligible supervisors even when you have no supervisors" do
-    employee = create(:employee)
-    supervisor_orphan1 = create(:employee, full_name: "Supervisor Orphan1", job_title: "Supervisor Title")
-    supervisor_orphan2 = create(:employee, full_name: "Supervisor Orphan2", job_title: "Supervisor Title")
-    supervisor_orphan3 = create(:employee, full_name: "Supervisor Orphan3", job_title: "Supervisor Title")
-    eligible_supervisors = Employee.eligible_supervisors(employee)
-    eligible_supervisors.size.should == 3
-  end
-
-  it "finds only employees who are not the current employee's subordinates when populating a reporting relationship pick list" do 
+=begin
+  it "finds only employees who are not the current employee's subordinates when populating a reporting relationship pick list"
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
     subordinate_orphan = create(:employee, full_name: "Subordinate Orphan", job_title: "Subordinate Title")
@@ -148,6 +131,7 @@ describe "Employees Model" do
       }
     }
   end
+=end
 
   it "can add and access supervisors and subordinates", :focus => false do
     employee = create(:employee)
@@ -181,6 +165,9 @@ describe "Employees Model" do
     rr.dotted.should be_true
   end
 
+=begin
+  # commented out for now - a branch will be dedicated to cycle detection improvements
+
   it "throws an error if the same supervisor or subordinate is added more than once", :focus => false do
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
@@ -195,6 +182,8 @@ describe "Employees Model" do
     employee = create(:employee)
     expect { employee.subordinates << employee }.to raise_error(ActiveRecord::RecordInvalid)
   end
+
+
 
   it "will contain valid error messages if i add itself as a supervisor or subordinate", :focus => false do
     employee = create(:employee)
@@ -216,5 +205,6 @@ describe "Employees Model" do
     employee.subordinate_relationships.reject { |sr| sr.valid? }.each { |sr| sr.errors.messages.each { |key, value| employee.errors.add(key, value) } }
     employee.errors.inspect.index('Invalid circular relationship').size.should be > 0
   end
+=end
 
 end

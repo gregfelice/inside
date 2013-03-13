@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Employee Search" do 
+feature "Employee Search" do
 
   scenario "as an administrator, the employee search parameters default to 'full name contains'", :js => true, :focus => false do 
     e = create(:employee)
