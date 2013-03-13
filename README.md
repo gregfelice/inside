@@ -3,6 +3,33 @@
 
 'Flow' Is Designed To Create A Integrated View Of Product, Planning, People, And Financial Dimensions Of An Organization.
 
+# Developer Notes
+### Development Branches
+
+* feature/app-cleanup (active)
+  * parameter files
+  * limited to non-infrastructure compliant changes 
+
+* feature/faster-org-tree (active)
+  * faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
+  * cycle detection (working, but parameterization for all input fields is messy, needs to be branched off separate from new tree retrieval)
+  * cycle detection is important for future work
+
+* feature/people-project-structures (active)
+  * new people & project structures. people structures need to be put in place and stabilized before finishing work on cycle detection branch.
+
+* feature/prettier-org-tree
+  * proposed
+  * better d3 interactivity
+  * important for interface evolution
+
+* feature/angular-spike
+  * for taking the data entry inteface to the next level
+  * lower priority
+
+* feature/menu-redesign
+  * lower priority
+
 # Developers Guide
 
 ## Revision Control Approach
