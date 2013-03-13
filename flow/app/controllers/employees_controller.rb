@@ -49,8 +49,11 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(params[:employee])
 
+    # no_cycles = detect_cycles(params)
+    no_cycles = true
+
     respond_to do |format|
-      if @employee.save
+      if no_cycles && @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render json: @employee, status: :created, location: @employee }
       else
@@ -60,15 +63,70 @@ class EmployeesController < ApplicationController
     end
   end
 
+=begin
+
+  def detect_cycles_all(params)
+    return false if !detect_cycles(params, :direct_supervisor_tokens)
+    return false if !detect_cycles(params, :dotted_supervisor_tokens)
+    return false if !detect_cycles(params, :direct_subordinate_tokens)
+    return false if !detect_cycles(params, :dotted_subordinate_tokens)
+    return true
+  end
+
+  def detect_cycles(params, field)
+
+    # works for direct supervisor field right now. -- needs to work for other 3.
+
+    ############################################################################################
+    id_params = params[:employee][field].split(",").map(&:to_i)       # from the front end & database
+    id_saved = @employee.method(field).call                           # from the database
+    id_unsaved = id_params - id_saved                                 # subtracting out the saved, leaving the new
+
+    h = Employee.build_adjacency_list_ids(:direct_reporting)          # build adjacency list of ids for a specific relationship type
+
+    id_unsaved.each {|supervisor_id|                                  # add the unsaved tokens to the list
+      h[supervisor_id] = [] if h[supervisor_id].nil?
+      h[supervisor_id] << @employee.new_record? ? 0 : @employee.id
+    }
+    ############################################################################################
+
+    # test for scc (strongly connnected components AKA cycles)
+    scc = Employee.get_graph_cycles(h)
+    logger.info "cycles report: #{scc.inspect}"
+
+    no_cycles = nil
+    if scc.size > 0 # halt!
+      no_cycles = false
+      cycles_names = []
+      scc.each {|s| # s is an array of all employee ids caught in the cycle
+        e = Employee.find(s).map {|e| e.full_name}
+        cycles_names << e
+      }
+      cycles_names.flatten!
+      cycles_message = "Cycle detected with the following people: #{cycles_names.join(", ")}. New supervisor entries cleared."
+      @employee.errors.clear
+      @employee.errors[:base] << cycles_message
+    else
+      no_cycles = true
+    end
+    no_cycles
+  end
+=end
+
   def update
+
     @employee = Employee.find(params[:id])
+
+    # no_cycles = detect_cycles_all(params)
+    no_cycles = true
+
     respond_to do |format|
-      if @employee.update_attributes(params[:employee])
+      if no_cycles && @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
         format.json { head :no_content }
       else
         alert = ""
-        @employee.errors.messages.each {|key, value| alert << "#{key} #{value} "}
+        @employee.errors[:base].each {|e| alert << e}
         flash[:alert] = alert
         format.html { render action: "edit" }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
