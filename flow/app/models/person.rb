@@ -1,3 +1,15 @@
+=begin
+
+todos
+
+excel export
+front end token support
+refactor and extraction of faster tree creation
+refactor and extraction of cycle detection into service object
+refactor of subordinate association validation error percolation
+rules around person type, validation (hold off on creating lookup db tables for types, keep in code for now)
+
+=end
 class Person < ActiveRecord::Base
   include DirtyAssociations
 
@@ -40,5 +52,8 @@ class Person < ActiveRecord::Base
   private
 
   # foo
+
+
+
 
 end
