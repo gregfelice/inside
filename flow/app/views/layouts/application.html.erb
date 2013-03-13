@@ -43,7 +43,7 @@
               <li><%= link_to "Employees", employees_path %></li>
               <!-- <li><#%= link_to "Reporting Relationships", reporting_relationships_path %></li> -->
               <li><%= link_to "Org Chart", orgdendro_path %></li>
-              <li><%= link_to "Releases", release_calendar_path %></li>
+              <%# <li>< %= link_to "Releases", release_calendar_path % ></li> %>
               <li><%= link_to "Trends", staffingchart_path %></li>
             </ul>
 
@@ -54,8 +54,8 @@
 	      <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
 	      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 	    <% else %>
-	      <li><%= link_to "Login", new_user_session_path %></li>
-	    <%#   <li>< %= link_to "New User", new_user_registration_path % ></li>  %>
+	    <li><%= link_to "Login", new_user_session_path %></li>
+	    <%# <li>< %= link_to "New User", new_user_registration_path % ></li> %>
 	    <% end %>
 	    </ul>
 
