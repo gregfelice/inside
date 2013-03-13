@@ -1,21 +1,30 @@
 # Developer Notes
 
-### Development Branches
+### Active Development Branches
 
-* feature/app-cleanup (active)
+* feature/people-project-structures
+  * Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
+  * New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
+  * Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
+
+### Completed Development Branches
+
+* feature/app-cleanup (Release 1.0)
   * parameter files
   * limited to non-infrastructure compliant changes 
 
-* feature/faster-org-tree (active)
+* feature/faster-org-tree (Release 1.0)
   * faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
   * cycle detection (working, but parameterization for all input fields is messy, needs to be branched off separate from new tree retrieval)
   * cycle detection is important for future work
 
-* feature/people-project-structures (active)
-  * new people & project structures. people structures need to be put in place and stabilized before finishing work on cycle detection branch.
+### Backlog Development Branches
+
+* feature/cycle-detection
+  * code in alpha state
+  * detects cycles in org trees
 
 * feature/prettier-org-tree
-  * proposed
   * better d3 interactivity
   * important for interface evolution
 
@@ -24,7 +33,9 @@
   * lower priority
 
 * feature/menu-redesign
+  * more scalabile menu architecture for easier adding of reports, features
   * lower priority
+
 
 # Developers Guide
 
