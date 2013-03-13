@@ -140,17 +140,9 @@ class Employee < ActiveRecord::Base
   # all of my subordinates direct relationship
   scope :direct_subordinates, lambda { |employee| employee.subordinate_relationships.where(:dotted => false).map { |ds| ds.subordinate } }
 
-  # give me all employees that are not currently me, or currently my subordinate
-  # (not used since show.erb.html changes)
-  scope :eligible_subordinates, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.subordinates.size == 0 ? 0 : employee.subordinates).order("full_name") }
-
-  # give me all employees that are not currently me, or currently my supervisor
-  scope :eligible_supervisors, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.supervisors.size == 0 ? 0 : employee.supervisors).order("full_name") }
-
   def org_context
     ReportingRelationshipsTree.instance.get_direct_reporting_relationships_tree(self)
   end
-
 
   # update associated error messages, add to self
   def update_errors
