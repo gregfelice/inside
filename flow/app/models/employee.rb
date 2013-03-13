@@ -8,7 +8,6 @@ class Employee < ActiveRecord::Base
 
   validates_associated :supervisor_relationships, :subordinate_relationships
 
-  after_update :update_cache
   after_validation :update_errors
 
   has_many :supervisor_relationships,  :class_name => "ReportingRelationship", :foreign_key => :subordinate_id, :dependent => :destroy, :after_add => :make_dirty, :after_remove => :make_dirty
@@ -141,19 +140,9 @@ class Employee < ActiveRecord::Base
   # all of my subordinates direct relationship
   scope :direct_subordinates, lambda { |employee| employee.subordinate_relationships.where(:dotted => false).map { |ds| ds.subordinate } }
 
-
-  # give me all employees that are not currently me, or currently my subordinate
-  # (not used since show.erb.html changes)
-  scope :eligible_subordinates, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.subordinates.size == 0 ? 0 : employee.subordinates).order("full_name") }
-
-  # give me all employees that are not currently me, or currently my supervisor
-  scope :eligible_supervisors, lambda { |employee| where("id != ?", employee.id).where("id NOT IN (?)", employee.supervisors.size == 0 ? 0 : employee.supervisors).order("full_name") }
-
   def org_context
     ReportingRelationshipsTree.instance.get_direct_reporting_relationships_tree(self)
   end
-
-  private
 
   # update associated error messages, add to self
   def update_errors
@@ -161,8 +150,71 @@ class Employee < ActiveRecord::Base
     self.subordinate_relationships.reject { |sr| sr.valid? }.each { |sr| sr.errors.messages.each { |key, value| self.errors.add(key, value) } }
   end
 
-  def update_cache
-    ReportingRelationshipsTree.instance.touch_direct_reporting_relationships_tree if self.changed?
+  # select the direct reporting relationships and all associated employee information needed to construct tree
+  def self.join_employees_by_relationship_type
+
+    sql = <<EOF
+select supers.id, supers.full_name, subs.id, subs.full_name
+from reporting_relationships rr
+inner join employees as supers
+  on supers.id = rr.supervisor_id
+inner join employees as subs
+  on subs.id = rr.subordinate_id
+and dotted = false
+order by supers.id
+EOF
+
+    r = ActiveRecord::Base.connection.execute(sql)
+  end
+
+  # place SQL results into a hashkeyed off of supervisor ids, pointing to a list of subordinates for that supervisor
+  def self.build_adjacency_list
+
+    r = Employee.join_employees_by_relationship_type
+
+    h = {}
+    r.each {|rr|
+      id = rr[0]
+      h[id] = {:id => id, :name => rr[1], :children => []} if h[id].nil?   # if there's no hash entry for this employee, make one.
+      h[id][:children] << {:id => rr[2], :name => rr[3], :children => []}  # enter the employee's subordinates as children into the hash. (source / sink)
+    }
+    h
   end
 
 end
+
+=begin
+
+  # build an adjacnecy list with JUST the ids.
+  def self.build_adjacency_list_ids(relationship_type)
+
+    r = self.class.join_employees_by_relationship_type(relationship_type)
+    h = {}
+    r.each {|rr|
+      id = rr[0]
+      h[id] = [] if h[id].nil?
+      h[id] << rr[2]
+    }
+    h
+  end
+
+  # takes output of build_adjacency_list_ids
+  def self.get_graph_cycles(h)
+    scc = []
+    ts = h.strongly_connected_components
+    ts.each {|s| scc << s if s.size > 1}
+    scc
+  end
+
+=end
+
+# used for tsorts
+=begin
+class Hash
+  include TSort
+  alias tsort_each_node each_key
+  def tsort_each_child(node, &block)
+    fetch(node).each(&block) if self.has_key?(node)
+  end
+end
+=end
