@@ -1,13 +1,18 @@
-<%= simple_form_for(@person) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @person, :html => { :class => "form-horizontal" } do |f| %>
 
-  <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :title %>
-    <%= f.input :person_type %>
-  </div>
+    <%= f.input :person_type, collection: ['employee', 'contractor', 'open_position'] %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @person.direct_supervisors.map(&:attributes).to_json } %>
+    <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @person.dotted_supervisors.map(&:attributes).to_json } %>
+    <%= f.input :direct_subordinate_tokens, :label => "Direct Reports", :input_html => { 'data-pre' => @person.direct_subordinates.map(&:attributes).to_json } %> 
+    <%= f.input :dotted_subordinate_tokens, :label => "Dotted Reports", :input_html => { 'data-pre' => @person.dotted_subordinates.map(&:attributes).to_json } %> 
+
+    <div class="form-actions">
+      <%= f.submit "Update Person", :class => "btn btn-primary" %>
+      <%= link_to "Cancel", people_path, :class => "btn" %>
+    </div>
+
 <% end %>
+
