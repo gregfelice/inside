@@ -1,9 +1,26 @@
 class Person < ActiveRecord::Base
   include DirtyAssociations
 
-  attr_accessible :id, :name, :title, :person_type, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens
+  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :band, :cost_center, :business_unit, :hiring_status, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens
 
-  validates_presence_of :name, :title
+  validates_presence_of :name, :title, :person_type # todo <- add more attributes as required
+
+  validates :person_type, :inclusion => { :in => [:employee, :contractor], :message => "%{value} is not a valid person type" }
+  validates :temporary, :inclusion => { :in => [true, false] }
+  validates :hr_status, :inclusion => { :in => [:active, :resigned], :message => "%{value} is not a valid HR status" }
+  validates :part_time, :inclusion => { :in => [true, false] }
+  validates :hiring_status, :inclusion => { :in => [:open, :filled], :message => "%{value} is not a valid hiring status" }
+
+  validate :miscellaneous_rules
+  def miscellaneous_rules
+    # todo -- add complex inter-field rules here
+    # errors.add(:expiration_date, "can't be in the past")
+  end
+
+  before_save :adjust_attributes
+  def adjust_attributes
+    # in the event that some fields must change based upon other values, set here..
+  end
 
   has_many :source_associations, :class_name => "PersonAssociation",  :foreign_key => :sink_id,    :dependent => :destroy,  :after_add => :make_dirty, :after_remove => :make_dirty
   has_many :sink_associations,   :class_name => "PersonAssociation",  :foreign_key => :source_id,  :dependent => :destroy,  :after_add => :make_dirty, :after_remove => :make_dirty
@@ -13,13 +30,20 @@ class Person < ActiveRecord::Base
   has_many :sources, :through => :source_associations, :after_add => :make_dirty, :after_remove => :make_dirty
   has_many :sinks,   :through => :sink_associations,   :after_add => :make_dirty, :after_remove => :make_dirty
 
-  # validates person type in ... blah blah
-
   public
 
   def initialize(attributes={})
     super
-    @person_type ||= 'employee' # default to employee
+    @person_type ||= 'employee'
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |person|
+        csv << person.attributes.values_at(*column_names)
+      end
+    end
   end
 
   # direct supervisor accessors

@@ -1,5 +1,9 @@
 class PeopleController < InheritedResources::Base
 
+  def search
+    index
+  end
+
   def index
     if params[:jqst] # being called from jquery token input plugin (expecting json)
       @people = Person.where("name like ?", "%#{params[:jqst]}%")

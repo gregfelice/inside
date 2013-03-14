@@ -8,5 +8,6 @@ class PersonAssociation < ActiveRecord::Base
   validates_presence_of :association_type
   validates_uniqueness_of :sink_id, :scope => [:source_id, :association_type]
 
-  # validates assocation type in ... blah blah
+  validates :association_type, :inclusion => { :in => [:direct_reporting, :dotted_reporting], :message => "%{value} is not a valid person association type" }
+
 end
