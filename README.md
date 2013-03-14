@@ -1,13 +1,28 @@
 # Developer Notes
 
-### Active Development Branches
+## Active Development Branches
 
-* feature/people-project-structures
-  * Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
-  * New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
-  * Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
+### feature/people-project-structures
+* Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
+* New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
+* Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
 
-### Completed Development Branches
+#### Tasks
+* Basic scaffolding for people
+* Proper menu items
+* Integration of jquery tokens for easy person to person associations
+* Rework of search (baseline with ransack, no major refactor of search here)
+* Export to xls, csv
+* Part time/full time attributes
+* Person type (employee, contractor, open position
+* person assocation type (dotted, non-dotted)
+* Validate assocation type and person type in set
+
+#### Out of Scope (For a different branch)
+* Pagination style fix (upgrade bootstrap gems for this)
+* Org chart for person types
+
+## Completed Development Branches
 
 * feature/app-cleanup (Release 1.0)
   * parameter files
@@ -18,7 +33,7 @@
   * cycle detection (working, but parameterization for all input fields is messy, needs to be branched off separate from new tree retrieval)
   * cycle detection is important for future work
 
-### Backlog Development Branches
+## Backlog Development Branches
 
 * feature/cycle-detection
   * code in alpha state

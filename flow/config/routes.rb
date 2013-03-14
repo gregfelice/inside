@@ -4,7 +4,13 @@ Flow::Application.routes.draw do
   resources :plans
   resources :milestones
   resources :resource_allocations
-  resources :people
+
+  resources :people do
+    collection do
+      match 'search' => 'people#search', :via => [:get, :post], :as => :search
+    end
+  end
+
   resources :person_associations
 
   devise_for :users
