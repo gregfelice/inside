@@ -8,18 +8,16 @@
     <Table>
       <Row>
         <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Full Name</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
         <Cell><Data ss:Type="String">Job Title</Data></Cell>
-        <Cell><Data ss:Type="String">Level</Data></Cell>
-        <Cell><Data ss:Type="String">Cost Center</Data></Cell>
+        <Cell><Data ss:Type="String">Person Type</Data></Cell>
       </Row>
-    <% @employees.each do |employee| %>
+    <% @people.each do |person| %>
       <Row>
-        <Cell><Data ss:Type="Number"><%= employee.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= employee.full_name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= employee.job_title %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= employee.level %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= employee.cost_center %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= person.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.title %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.person_type %></Data></Cell>
       </Row>
     <% end %>
     </Table>

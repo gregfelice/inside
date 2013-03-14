@@ -40,6 +40,8 @@
           <%= link_to app_title, root_path, :class => "brand" %>
           <div class="nav-collapse">
             <ul class="nav">
+              <li><%= link_to "People", people_path %></li>
+              <li><%= link_to "People Org Chart", people_tree_path %></li>
               <li><%= link_to "Employees", employees_path %></li>
               <!-- <li><#%= link_to "Reporting Relationships", reporting_relationships_path %></li> -->
               <li><%= link_to "Org Chart", orgdendro_path %></li>

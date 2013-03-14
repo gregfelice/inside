@@ -29,12 +29,20 @@ Flow::Application.routes.draw do
   get "home/index"
 
   match "/release_calendar"          => "home#release_calendar"
-  match "/orgchart"                  => "home#orgchart"
-  match "/orgdendro"                 => "home#orgdendro"
-  match "/orgdendro_tree"            => "home#orgdendro_tree" # json
+
+  match "/orgchart"                  => "home#orgchart"                            # deprecated
+
+  match "/people_tree"               => "home#people_tree"                         # people
+  match "/people_tree_data"          => "home#people_tree_data"                    # people, json
+
+  match "/orgdendro"                 => "home#orgdendro"                           # employees
+  match "/orgdendro_tree"            => "home#orgdendro_tree"                      # employees, json
+
+  match "/staffingchart"             => "home#staffingchart"
+
   match "/budgetchart"               => "home#budgetchart"
   match "/budgetchart_dynamic"       => "home#budgetchart_dynamic"
-  match "/staffingchart"             => "home#staffingchart"
+
 
   root :to => 'home#index'
 end

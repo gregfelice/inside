@@ -1,5 +1,4 @@
 jQuery ->
-  
   # jquery token input
   $("#person_direct_supervisor_tokens").tokenInput "/people.json",
     crossDomain: false
@@ -41,15 +40,15 @@ jQuery ->
     event.preventDefault()
 
   # collapsing search section
-  $("#search-section").hide()
+  $("#people-search-section").hide()
   
-  $("#show_search").click ->
-    $(this).hide()
-    $("#search-section").toggle "slide", 500
+  $("#show_people_search").click ->
+    $("#people-search-section").toggle "slide", 500
+    $("#show_people_search").show()
 
   $(".close").click ->
-    $("#search-section").toggle "slide", 500
-    $("#show_search").show()
+    $(this).hide()
+    $("#people-search-section").toggle "slide", 500
 
   # change person label to supervisor
   if $('#q_c_0_a_0_name').length > 0 then $('#q_c_0_a_0_name optgroup')[1].label = 'Supervisor'

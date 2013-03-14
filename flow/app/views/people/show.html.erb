@@ -3,7 +3,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human %> | <%= @person.name %></h1> 
 </div>
 
-<%= button_to "Org Context", orgdendro_path(:id => @person.id), :class => "btn btn-small btn-info" %>
+<%= button_to "Org Context", people_tree_path(:id => @person.id), :class => "btn btn-small btn-info" %>
 
 <table class="table">
   <thead>

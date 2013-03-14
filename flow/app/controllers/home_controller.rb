@@ -26,9 +26,36 @@ class HomeController < ApplicationController
   end
 
 
+
   def orgchart
     @reporting_relationships = ReportingRelationship.where(:dotted => false)
     render :layout => 'orgchart'
+  end
+
+
+
+  def people_tree
+    if params[:id]
+      @person = Person.find_by_id(params[:id])
+    else
+      @person = Person.find_by_id(PeopleTree.instance.top_node_id)
+    end
+    render :layout => 'orgchart'
+  end
+
+  def people_tree_data
+    if params[:id]
+      person = Person.find_by_id(params[:id])
+    else
+      person = Person.find(PeopleTree.instance.top_node_id)
+    end
+
+    logger.info "top node id from people tree data: #{person.inspect}"
+
+    tree = PeopleTree.instance.get_people_tree(person)
+    respond_to do |format|
+      format.json { render json: tree }
+    end
   end
 
   def orgdendro
@@ -37,14 +64,6 @@ class HomeController < ApplicationController
     else
       @employee = Employee.find_by_id(ReportingRelationshipsTree.instance.top_node_id)
     end
-    render :layout => 'orgchart'
-  end
-
-  def budgetchart
-    render :layout => 'orgchart'
-  end
-
-  def budgetchart_dynamic
     render :layout => 'orgchart'
   end
 
@@ -63,6 +82,17 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.json { render json: tree }
     end
+  end
+
+
+
+
+  def budgetchart
+    render :layout => 'orgchart'
+  end
+
+  def budgetchart_dynamic
+    render :layout => 'orgchart'
   end
 
   def staffingchart
