@@ -3,6 +3,8 @@
 
 # Developer Notes
 
+* HOT [Towards reusable charts](http://bost.ocks.org/mike/chart/)
+
 ## Active Development Branches
 
 ### feature/people-project-structures
@@ -10,7 +12,10 @@
 * New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
 * Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
 
-#### Tasks
+#### Tasks:
+* Implement person fields on show and form screens
+
+#### Tasks Commit: 8beb579cfeb8129abf6f66c75dc31da70e83e7e1
 * DONE Basic scaffolding for people
 * DONE Integration of jquery tokens for easy person to person associations
 * DONE Proper menu items

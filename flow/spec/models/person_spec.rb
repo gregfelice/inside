@@ -6,8 +6,16 @@ describe "Person Model" do
   # person
   # rails g scaffold Person name:string title:string type:string
   it "can be created", :focus => true do
-    person = create(:person)
-    person.should_not be_nil
+    person = build(:person)
+    # puts person.inspect
+    person.save!
+  end
+
+  it "can show class variables", :focus => true do
+    #Person.person_types.each {|x| # puts x.to_s.humanize }
+    #Person.hr_statuses.each {|x| # puts x.to_s.humanize }
+    #Person.hiring_statuses.each {|x| # puts x.to_s.humanize }
+    #PersonAssociation.association_types.each {|x| puts x.to_s.humanize }
   end
 
   it "can have a direct supervisor", :focus => true do
@@ -15,29 +23,29 @@ describe "Person Model" do
     p = create(:person)
     op = create(:person, name: "direct super")
 
-    # puts Person.all.to_yaml
+    # # puts Person.all.to_yaml
 
     p.add_direct_supervisor(op)
 
     p.save!
 
     assocs = p.source_associations
-    # puts "source assocs #{assocs.inspect}"
+    # # puts "source assocs #{assocs.inspect}"
     assocs.size.should == 1
     assocs.first.source_id.should == op.id
     assocs.first.sink_id.should == p.id
 
     supers = p.direct_supervisors
-    # puts "supers #{supers.inspect}"
+    # # puts "supers #{supers.inspect}"
     supers.size.should == 1
     supers.first.id.should == op.id
 
     sinks = p.sinks
     sinks.size.should == 0
-    # puts "sinks #{sinks.inspect}"
+    # # puts "sinks #{sinks.inspect}"
 
     sources = p.sources
-    # puts "sources #{sources.inspect}"
+    # # puts "sources #{sources.inspect}"
     sources.size.should == 1
     sources.first.id.should == op.id
 

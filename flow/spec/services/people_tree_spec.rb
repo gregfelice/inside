@@ -29,7 +29,7 @@ describe "People Tree Service" do
   end
 =end
 
-  it "can report the default top node id", :focus => true do
+  it "can report the default top node id", :focus => false do
 
     p = create(:person)
     s = create(:person)

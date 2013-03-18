@@ -1,15 +1,51 @@
 class Person < ActiveRecord::Base
   include DirtyAssociations
 
+  @person_types = ['employee', 'contractor']
+  @hr_statuses = ['active', 'resigned']
+  @hiring_statuses = ['open', 'filled']
+
+  class << self
+    attr_accessor :person_types, :hr_statuses, :hiring_statuses
+  end
+
   attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :band, :cost_center, :business_unit, :hiring_status, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens
 
-  validates_presence_of :name, :title, :person_type # todo <- add more attributes as required
+  validates_presence_of :name, :title, :person_type, :hr_status, :hiring_status
 
-  validates :person_type, :inclusion => { :in => [:employee, :contractor], :message => "%{value} is not a valid person type" }
-  validates :temporary, :inclusion => { :in => [true, false] }
-  validates :hr_status, :inclusion => { :in => [:active, :resigned], :message => "%{value} is not a valid HR status" }
+  validates :person_type,   :inclusion => { :in => @person_types,    :message => "%{value} is not a valid person type" }
+  validates :hr_status,     :inclusion => { :in => @hr_statuses,     :message => "%{value} is not a valid HR status" }
+  validates :hiring_status, :inclusion => { :in => @hiring_statuses, :message => "%{value} is not a valid hiring status" }
+
   validates :part_time, :inclusion => { :in => [true, false] }
-  validates :hiring_status, :inclusion => { :in => [:open, :filled], :message => "%{value} is not a valid hiring status" }
+  validates :temporary, :inclusion => { :in => [true, false] }
+
+  before_validation :checks
+
+  has_many :source_associations, :class_name => "PersonAssociation",  :foreign_key => :sink_id,    :dependent => :destroy,  :after_add => :make_dirty, :after_remove => :make_dirty
+  has_many :sink_associations,   :class_name => "PersonAssociation",  :foreign_key => :source_id,  :dependent => :destroy,  :after_add => :make_dirty, :after_remove => :make_dirty
+
+  has_many :resource_allocations, :dependent => :destroy
+
+  has_many :sources, :through => :source_associations, :after_add => :make_dirty, :after_remove => :make_dirty
+  has_many :sinks,   :through => :sink_associations,   :after_add => :make_dirty, :after_remove => :make_dirty
+
+  #def initialize(attributes={})
+  #  super
+  #  @person_type   ||= :employee
+  #  @hr_status     ||= :active
+  #  @hiring_status ||= :filled
+  #  logger.info "initialize values: #{self.inspect}"
+  #end
+
+  ################################################################################################
+  # start custom validations, update hooks
+  #
+  def checks
+    #logger.info "checks"
+    #logger.info self.person_type
+    #logger.info self.person_type.class
+  end
 
   validate :miscellaneous_rules
   def miscellaneous_rules
@@ -21,22 +57,13 @@ class Person < ActiveRecord::Base
   def adjust_attributes
     # in the event that some fields must change based upon other values, set here..
   end
+  #
+  # end custom validations, update hooks
+  ################################################################################################
 
-  has_many :source_associations, :class_name => "PersonAssociation",  :foreign_key => :sink_id,    :dependent => :destroy,  :after_add => :make_dirty, :after_remove => :make_dirty
-  has_many :sink_associations,   :class_name => "PersonAssociation",  :foreign_key => :source_id,  :dependent => :destroy,  :after_add => :make_dirty, :after_remove => :make_dirty
-
-  has_many :resource_allocations, :dependent => :destroy
-
-  has_many :sources, :through => :source_associations, :after_add => :make_dirty, :after_remove => :make_dirty
-  has_many :sinks,   :through => :sink_associations,   :after_add => :make_dirty, :after_remove => :make_dirty
-
-  public
-
-  def initialize(attributes={})
-    super
-    @person_type ||= 'employee'
-  end
-
+  #
+  # csv export support
+  #
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
@@ -47,22 +74,22 @@ class Person < ActiveRecord::Base
   end
 
   # direct supervisor accessors
-  def add_direct_supervisor(person); self.source_associations.build( { :association_type => :direct_reporting, :source_id => person.id, :sink_id => self.id } ); end
+  def add_direct_supervisor(person); self.source_associations.build( { :association_type => 'direct_reporting', :source_id => person.id, :sink_id => self.id } ); end
   scope :direct_supervisors, lambda { |person| person.source_associations.where(:association_type => :direct_reporting).map { |ds| ds.source } }
   def direct_supervisors; self.class.direct_supervisors(self); end
 
   # dotted supervisor accesors
-  def add_dotted_supervisor(person); self.source_associations.build( { :association_type => :dotted_reporting, :source_id => person.id, :sink_id => self.id } ); end
+  def add_dotted_supervisor(person); self.source_associations.build( { :association_type => 'dotted_reporting', :source_id => person.id, :sink_id => self.id } ); end
   scope :dotted_supervisors, lambda { |person| person.source_associations.where(:association_type => :dotted_reporting).map { |ds| ds.source } }
   def dotted_supervisors; self.class.dotted_supervisors(self); end
 
   # direct subordinate accessors
-  def add_direct_subordinate(person); self.sink_associations.build( { :association_type => :direct_reporting, :source_id => self.id, :sink_id => person.id } ); end
+  def add_direct_subordinate(person); self.sink_associations.build( { :association_type => 'direct_reporting', :source_id => self.id, :sink_id => person.id } ); end
   scope :direct_subordinates, lambda { |person| person.sink_associations.where(:association_type => :direct_reporting).map { |ds| ds.sink } }
   def direct_subordinates; self.sink_associations.where(:association_type => :direct_reporting).map { |ds| ds.sink }; end
 
   # dotted subordinate accessors
-  def add_dotted_subordinate(person); self.sink_associations.build( { :association_type => :dotted_reporting, :source_id => self.id, :sink_id => person.id } ); end
+  def add_dotted_subordinate(person); self.sink_associations.build( { :association_type => 'dotted_reporting', :source_id => self.id, :sink_id => person.id } ); end
   scope :dotted_subordinates, lambda { |person| person.sink_associations.where(:association_type => :dotted_reporting).map { |ds| ds.sink } }
   def dotted_subordinates; self.class.dotted_subordinates(self); end
 
@@ -77,7 +104,7 @@ class Person < ActiveRecord::Base
     current_ids  = self.direct_supervisors.collect { |s| s.id }
     to_be_added = returned_ids - current_ids
     to_be_removed = current_ids - returned_ids
-    to_be_added.each { |s| self.source_associations.build(:association_type => :direct_reporting, :source_id => s, :sink_id => self.id) }
+    to_be_added.each { |s| self.source_associations.build(:association_type => 'direct_reporting', :source_id => s, :sink_id => self.id) }
     to_be_removed.each {|s| self.sources.delete( self.class.where(:id => s)) }
   end
 
@@ -90,7 +117,7 @@ class Person < ActiveRecord::Base
     current_ids  = self.dotted_supervisors.collect { |s| s.id }
     to_be_added = returned_ids - current_ids
     to_be_removed = current_ids - returned_ids
-    to_be_added.each { |s| self.source_associations.build(:association_type => :dotted_reporting, :source_id => s, :sink_id => self.id) }
+    to_be_added.each { |s| self.source_associations.build(:association_type => 'dotted_reporting', :source_id => s, :sink_id => self.id) }
     to_be_removed.each {|s| self.sources.delete( self.class.where(:id => s)) }
   end
 
@@ -103,7 +130,7 @@ class Person < ActiveRecord::Base
     current_ids  = self.direct_subordinates.collect { |s| s.id }
     to_be_added = returned_ids - current_ids
     to_be_removed = current_ids - returned_ids
-    to_be_added.each { |s| self.sink_associations.build(:association_type => :direct_reporting, :source_id => self.id, :sink_id => s) }
+    to_be_added.each { |s| self.sink_associations.build(:association_type => 'direct_reporting', :source_id => self.id, :sink_id => s) }
     to_be_removed.each {|s| self.sinks.delete( self.class.where(:id => s)) }
   end
 
@@ -116,7 +143,7 @@ class Person < ActiveRecord::Base
     current_ids  = self.dotted_subordinates.collect { |s| s.id }
     to_be_added = returned_ids - current_ids
     to_be_removed = current_ids - returned_ids
-    to_be_added.each { |s| self.sink_associations.build(:association_type => :dotted_reporting, :source_id => self.id, :sink_id => s) }
+    to_be_added.each { |s| self.sink_associations.build(:association_type => 'dotted_reporting', :source_id => self.id, :sink_id => s) }
     to_be_removed.each {|s| self.sinks.delete( self.class.where(:id => s)) }
   end
 
