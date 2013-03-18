@@ -15,7 +15,20 @@
   <tbody>
   <tr><td><strong><%= model_class.human_attribute_name(:name) %>:</strong></td><td><%= @person.name %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:title) %>:</strong></td><td><%= @person.title %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:person_type) %>:</strong></td>
+  <tr><td><strong><%= model_class.human_attribute_name(:person_type) %>:</strong></td><td><%= @person.person_type %></td></tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:temporary) %>:</strong></td>
+    <td><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
+  </tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:hr_status) %>:</strong></td><td><%= @person.hr_status %></td></tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:part_time) %>:</strong></td>
+    <td><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
+  </tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:band) %>:</strong></td><td><%= @person.band %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:cost_center) %>:</strong></td><td><%= @person.cost_center %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:business_unit) %>:</strong></td><td><%= @person.business_unit %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:hiring_status) %>:</strong></td><td><%= @person.hiring_status %></td></tr>
   <tbody>
 </table>
 

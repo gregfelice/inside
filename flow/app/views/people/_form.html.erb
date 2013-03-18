@@ -2,7 +2,15 @@
 
     <%= f.input :name %>
     <%= f.input :title %>
-    <%= f.input :person_type, collection: ['employee', 'contractor', 'open_position'] %>
+    <%= f.input :person_type, collection: Person.person_types %>
+
+    <%= f.input :temporary, :as => :radio_buttons %>
+    <%= f.input :hr_status, collection: Person.hr_statuses %>
+    <%= f.input :part_time, :as => :radio_buttons %>
+    <%= f.input :band %>
+    <%= f.input :cost_center %>
+    <%= f.input :business_unit %>
+    <%= f.input :hiring_status, collection: Person.hiring_statuses %>
 
     <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @person.direct_supervisors.map(&:attributes).to_json } %>
     <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @person.dotted_supervisors.map(&:attributes).to_json } %>
