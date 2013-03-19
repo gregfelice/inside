@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Employee Model" do
 
-  it "appropriately marks itself as dirty if i change an association", :focus => true do
+  it "appropriately marks itself as dirty if i change an association", :focus => false do
     employee = create(:employee)
     employee.changed?.should be_false
 
@@ -17,19 +17,19 @@ describe "Employee Model" do
 
   end
 
-  it "initializes reporting relationship to dotted on new", :focus => true do
+  it "initializes reporting relationship to dotted on new", :focus => false do
     r = ReportingRelationship.new
     r.dotted.should be_false
   end
 
-  it "can use << notation to push objects onto relationships", :focus => true do
+  it "can use << notation to push objects onto relationships", :focus => false do
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
     employee.subordinates << subordinate
     ReportingRelationship.all.each { |rr| rr.dotted.should_not be_nil }
   end
 
-  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => true do
+  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => false do
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
     supervisor = create(:employee, full_name: "Supervisor Full Name", job_title: "Supervisor Title")
@@ -43,7 +43,7 @@ describe "Employee Model" do
     rr.dotted.should == false
   end
 
-  it "destroys reporting relationships correctly upon dissassociation", :focus => true do
+  it "destroys reporting relationships correctly upon dissassociation", :focus => false do
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
     employee.subordinates << subordinate
@@ -55,7 +55,7 @@ describe "Employee Model" do
     ReportingRelationship.all.size.should == 0
   end
 
-  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => true do
+  it "can save a new supervisor relationship, and set the relationship to dotted", :focus => false do
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
     employee.supervisor_relationships.build(:dotted => true, :supervisor => supervisor1, :subordinate => employee)
@@ -63,7 +63,7 @@ describe "Employee Model" do
     employee.supervisors.size.should == 1
   end
 
-  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => true do
+  it "can retrieve a list of dotted OR direct supervisor tokens for an employee", :focus => false do
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
     supervisor2 = create(:employee, full_name: "Supervisor2", job_title: "Supervisor Title")
@@ -94,7 +94,7 @@ describe "Employee Model" do
     employee.supervisors.size.should == 4
   end
 
-  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => true do
+  it "can retrieve a list of dotted OR direct supervisors for an employee", :focus => false do
     employee = create(:employee)
     supervisor1 = create(:employee, full_name: "Supervisor1", job_title: "Supervisor Title")
     supervisor2 = create(:employee, full_name: "Supervisor2", job_title: "Supervisor Title")
@@ -133,7 +133,7 @@ describe "Employee Model" do
   end
 =end
 
-  it "can add and access supervisors and subordinates", :focus => true do
+  it "can add and access supervisors and subordinates", :focus => false do
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title X")
     subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title X")
@@ -149,7 +149,7 @@ describe "Employee Model" do
     employee.supervisors.first.full_name.should eql(supervisor.full_name)
   end
 
-  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => true do
+  it "can access the reporting relationship to supervisors and subordinates, and make them dotted", :focus => false do
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
     subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
@@ -180,13 +180,13 @@ describe "Employee Model" do
     expect { employee.subordinates << subordinate }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "can not add itself as a supervisor or subordinate", :focus => true do
+  it "can not add itself as a supervisor or subordinate", :focus => false do
     employee = create(:employee)
     expect { employee.subordinates << employee }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
 
-  it "will contain valid error messages if i add itself as a supervisor or subordinate", :focus => true do
+  it "will contain valid error messages if i add itself as a supervisor or subordinate", :focus => false do
     employee = create(:employee)
     subordinate = create(:employee, :full_name => "Foo Name")
     employee.full_name = nil

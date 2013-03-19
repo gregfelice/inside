@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def app_title
-    "Technology Decision Support"
+    "TimesPeople / Inside Edition"
   end
 
   # employee search condition field helper

@@ -1,13 +1,49 @@
+
+# Times People / Inside Edition
+
 # Developer Notes
 
-### Active Development Branches
+* HOT [Towards reusable charts](http://bost.ocks.org/mike/chart/)
 
-* feature/people-project-structures
-  * Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
-  * New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
-  * Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
+## Active Development Branches
 
-### Completed Development Branches
+### feature/people-project-structures
+* Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
+* New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
+* Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
+
+#### Tasks:
+* Implement person fields on show and form screens
+
+#### Tasks Commit: 8beb579cfeb8129abf6f66c75dc31da70e83e7e1
+* DONE Basic scaffolding for people
+* DONE Integration of jquery tokens for easy person to person associations
+* DONE Proper menu items
+* DONE Rework of search (baseline with ransack, no major refactor of search here)
+* DONE Export to xls, csv
+* DONE Person assocation type (dotted, non-dotted) (see Marc Frons)
+* DONE Port of org context chart
+* DONE Validate assocation type and person type in set
+* DONE Part time/full time attributes (see Steve Ottenstein)
+* DONE Person type (employee, contractor, open position) (see Steve Ottenstein)
+* DONE Top level org chart off of menu
+* DONE People attributes
+  * DONE Regular/Temporary                         boolean: temporary
+  * DONE HR Status: Active, Resigned               string: active | resigned
+  * DONE Full/Part                                 boolean: part_time
+  * DONE Band                                      string: 
+  * DONE Cost Center                               string:
+  * DONE Title                                     string:
+  * DONE Business Unit                             string:
+  * DONE Hiring Status			      string: open | filled
+
+#### Out of Scope (For a different branch)
+* Pagination style fix (upgrade bootstrap gems for this)
+* Org chart for person types
+* New assocation types: provider|customer, consultant|consultee, mentor|protoge, etc.
+* Internet Explorer support
+
+## Completed Development Branches
 
 * feature/app-cleanup (Release 1.0)
   * parameter files
@@ -18,15 +54,20 @@
   * cycle detection (working, but parameterization for all input fields is messy, needs to be branched off separate from new tree retrieval)
   * cycle detection is important for future work
 
-### Backlog Development Branches
+## Backlog Development Branches
 
 * feature/cycle-detection
   * code in alpha state
-  * detects cycles in org trees
+  * detects cycles in org trees, needed for complex org structures
 
 * feature/prettier-org-tree
+  * supports multiple supervisor relationships
   * better d3 interactivity
   * important for interface evolution
+
+* feature/project-portfolio
+  * shows project data
+  * shows who is working on what
 
 * feature/angular-spike
   * for taking the data entry inteface to the next level
@@ -35,7 +76,6 @@
 * feature/menu-redesign
   * more scalabile menu architecture for easier adding of reports, features
   * lower priority
-
 
 # Developers Guide
 
