@@ -1,20 +1,80 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %> | <%= @person.name %></h1> 
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @person.name %>
-</p>
+<%= button_to "Org Context", people_tree_path(:id => @person.id), :class => "btn btn-small btn-info" %>
 
-<p>
-  <b>Title:</b>
-  <%= @person.title %>
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <tbody>
+  <tr><td><strong><%= model_class.human_attribute_name(:name) %>:</strong></td><td><%= @person.name %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:title) %>:</strong></td><td><%= @person.title %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:person_type) %>:</strong></td><td><%= @person.person_type %></td></tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:temporary) %>:</strong></td>
+    <td><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
+  </tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:hr_status) %>:</strong></td><td><%= @person.hr_status %></td></tr>
+  <tr>
+    <td><strong><%= model_class.human_attribute_name(:part_time) %>:</strong></td>
+    <td><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
+  </tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:band) %>:</strong></td><td><%= @person.band %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:cost_center) %>:</strong></td><td><%= @person.cost_center %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:business_unit) %>:</strong></td><td><%= @person.business_unit %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:hiring_status) %>:</strong></td><td><%= @person.hiring_status %></td></tr>
+  <tbody>
+</table>
 
-<p>
-  <b>Type:</b>
-  <%= @person.person_type %>
-</p>
+<% if @person.source_associations.size > 0 %>
+<strong><%= @person.name %> reports to:</strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <% @person.source_associations.each do |sr| %>
+    <tr><td><%= link_to sr.source.name, sr.source %></td><td class="muted"><em><%= sr.source.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <% end %>
+</table>
+
+<% else %>
+<strong><%= @person.name %> does not have any supervisors.</strong>
+<br><br><br>
+<% end %>
 
 
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+<% if @person.sink_associations.size > 0 %>
+<strong>The following people report to <%= @person.name %>:</strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <% @person.sink_associations.each do |sr| %>
+    <tr><td><%= link_to sr.sink.name, sr.sink %></td><td class="muted"><em><%= sr.sink.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <% end %>
+</table>
+
+<% else %>
+<strong><%= @person.name %> does not have any reports.</strong>
+<br><br><br>
+<% end %>
+
+
+<div class="form-actions">
+  <%= link_to 'Back', people_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_person_path(@person), :class => 'btn' %>
+  <%= link_to 'Destroy', person_path(@person), :method => 'delete', :data => { :confirm => 'Confirm', :default => 'Are you sure?' }, :class => 'btn btn-danger' %>
+</div>
+

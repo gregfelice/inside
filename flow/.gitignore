@@ -19,3 +19,5 @@
 .emacs.desktop
 xx
 public/tests.html
+vendor/bundle
+public/experimental

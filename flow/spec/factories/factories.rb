@@ -11,7 +11,11 @@ FactoryGirl.define do
   factory :person do
     sequence(:name) {|n| "Joe #{n}" }
     title "worker"
-    person_type "employee"
+    person_type 'employee'
+    temporary false
+    hr_status 'active'
+    part_time false
+    hiring_status 'filled'
   end
 
   factory :portfolio do
