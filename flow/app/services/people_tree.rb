@@ -24,7 +24,7 @@ class PeopleTree
     end
   end
 
-  private
+  #private
 
   # if i have no supervisor, return me
   def get_tree_top_id(person)

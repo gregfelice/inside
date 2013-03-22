@@ -1,87 +1,54 @@
-
 # Times People / Inside Edition
 
-# Developer Notes
 
-* HOT [Towards reusable charts](http://bost.ocks.org/mike/chart/)
+example of cluster dendrogram / http://localhost:3000/experimental/cluster.html
+* this shows an assoication that skips levels, but still doesnt have single node with mult parent (yet)
 
-## Active Development Branches
+force layout is a true graph: 
+* http://bl.ocks.org/mbostock/4062045
+* this accepts nodes and edges as parameters. but i cant find one with a cluster layout....
 
-### feature/people-project-structures
-* Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
-* New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
-* Last thing is to rip out employee/reporting relationship. Build person / person association features off of existing features.
+force directed tree
+* http://bl.ocks.org/mbostock/1138500
 
-#### Tasks:
-* Implement person fields on show and form screens
+another force directed graph
+* http://bl.ocks.org/mbostock/3311124
 
-#### Tasks Commit: 8beb579cfeb8129abf6f66c75dc31da70e83e7e1
-* DONE Basic scaffolding for people
-* DONE Integration of jquery tokens for easy person to person associations
-* DONE Proper menu items
-* DONE Rework of search (baseline with ransack, no major refactor of search here)
-* DONE Export to xls, csv
-* DONE Person assocation type (dotted, non-dotted) (see Marc Frons)
-* DONE Port of org context chart
-* DONE Validate assocation type and person type in set
-* DONE Part time/full time attributes (see Steve Ottenstein)
-* DONE Person type (employee, contractor, open position) (see Steve Ottenstein)
-* DONE Top level org chart off of menu
-* DONE People attributes
-  * DONE Regular/Temporary                         boolean: temporary
-  * DONE HR Status: Active, Resigned               string: active | resigned
-  * DONE Full/Part                                 boolean: part_time
-  * DONE Band                                      string: 
-  * DONE Cost Center                               string:
-  * DONE Title                                     string:
-  * DONE Business Unit                             string:
-  * DONE Hiring Status			      string: open | filled
 
-#### Out of Scope (For a different branch)
-* Pagination style fix (upgrade bootstrap gems for this)
-* Org chart for person types
-* New assocation types: provider|customer, consultant|consultee, mentor|protoge, etc.
-* Internet Explorer support
+labeled force layout
+* http://bl.ocks.org/mbostock/950642
 
-## Completed Development Branches
+javascript UMNL edior. nice
+* http://www.tikalk.com/js/building-uml-editor-javascript-part-3
 
-* feature/app-cleanup (Release 1.0)
-  * parameter files
-  * limited to non-infrastructure compliant changes 
+brackt layout
+* http://bl.ocks.org/jdarling/2503502
 
-* feature/faster-org-tree (Release 1.0)
-  * faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
-  * cycle detection (working, but parameterization for all input fields is messy, needs to be branched off separate from new tree retrieval)
-  * cycle detection is important for future work
+building a tree
+* http://blog.pixelingene.com/2011/07/building-a-tree-diagram-in-d3-js/
 
-## Backlog Development Branches
 
-* feature/cycle-detection
-  * code in alpha state
-  * detects cycles in org trees, needed for complex org structures
+force layout 
+* http://flowingdata.com/2012/08/02/how-to-make-an-interactive-network-visualization/
 
-* feature/prettier-org-tree
-  * supports multiple supervisor relationships
-  * better d3 interactivity
-  * important for interface evolution
+network analysis and representation
+* http://dhs.stanford.edu/dh/networks/
 
-* feature/project-portfolio
-  * shows project data
-  * shows who is working on what
+metro maps
+* https://github.com/ezyang/metromaps
 
-* feature/angular-spike
-  * for taking the data entry inteface to the next level
-  * lower priority
+d3 and angular
+* http://briantford.com/blog/angular-d3.html
 
-* feature/menu-redesign
-  * more scalabile menu architecture for easier adding of reports, features
-  * lower priority
+wow. 
+* http://flowingdata.com/category/tutorials/
+
+* [Project Roadmap](./roadmap.md)
 
 # Developers Guide
 
 ### NYT Infra Guides
 * [NYT RVM and Ruby](https://confluence.em.nytimes.com/display/INFR/HOWTO+-+Install+and+use+NYT+built+RVM+and+Ruby)
-
 
 Anti-Stories
 -------------

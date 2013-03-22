@@ -76,3 +76,5 @@ gem 'httparty'				# rest client for JIRA pulls
 gem 'foreigner'				# migration fk support
 gem 'immigrant'				# generator fk support
 gem 'composite_primary_keys'		# composite foreign key support for rails. sigh.
+
+gem 'ruby-graphviz'

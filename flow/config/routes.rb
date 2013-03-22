@@ -1,5 +1,9 @@
 Flow::Application.routes.draw do
 
+  get "chart/org_context"
+
+  # match "/chart/org_context"          => "chart#org_context"
+
   resources :portfolios
   resources :plans
   resources :milestones
