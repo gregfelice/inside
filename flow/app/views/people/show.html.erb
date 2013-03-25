@@ -5,6 +5,8 @@
 
 <%= button_to "Org Context", people_tree_path(:id => @person.id), :class => "btn btn-small btn-info" %>
 
+<%= link_to "Static Org Context", chart_org_context_path(:id => @person.id), :class => "btn btn-small btn-info", :method => :get %>
+
 <table class="table">
   <thead>
     <tr>
