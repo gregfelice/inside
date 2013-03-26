@@ -1,54 +1,9 @@
 # Times People / Inside Edition
 
 
-example of cluster dendrogram / http://localhost:3000/experimental/cluster.html
-* this shows an assoication that skips levels, but still doesnt have single node with mult parent (yet)
-
-force layout is a true graph: 
-* http://bl.ocks.org/mbostock/4062045
-* this accepts nodes and edges as parameters. but i cant find one with a cluster layout....
-
-force directed tree
-* http://bl.ocks.org/mbostock/1138500
-
-another force directed graph
-* http://bl.ocks.org/mbostock/3311124
-
-
-labeled force layout
-* http://bl.ocks.org/mbostock/950642
-
-javascript UMNL edior. nice
-* http://www.tikalk.com/js/building-uml-editor-javascript-part-3
-
-brackt layout
-* http://bl.ocks.org/jdarling/2503502
-
-building a tree
-* http://blog.pixelingene.com/2011/07/building-a-tree-diagram-in-d3-js/
-
-
-force layout 
-* http://flowingdata.com/2012/08/02/how-to-make-an-interactive-network-visualization/
-
-network analysis and representation
-* http://dhs.stanford.edu/dh/networks/
-
-metro maps
-* https://github.com/ezyang/metromaps
-
-d3 and angular
-* http://briantford.com/blog/angular-d3.html
-
-wow. 
-* http://flowingdata.com/category/tutorials/
-
 * [Project Roadmap](./roadmap.md)
 
 # Developers Guide
-
-### NYT Infra Guides
-* [NYT RVM and Ruby](https://confluence.em.nytimes.com/display/INFR/HOWTO+-+Install+and+use+NYT+built+RVM+and+Ruby)
 
 Anti-Stories
 -------------
