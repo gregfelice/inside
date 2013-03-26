@@ -1,27 +1,30 @@
 class ChartController < ApplicationController
 
-=begin
-
-show / dont show titles
-
-show 2 levels, 3 levels... what about more / less levels... yes.. i like that.
-
-start with 2.
-
-ok - so, that's a button and a saved value..
-
-=end
-
   def org_context
 
-    max_sink_depth = params[:max_sink_depth].nil? ? 2 : params[:max_sink_depth]
-    @svg_xml = OrgChart.instance.generate_org_context_svg_xml(params[:id], max_sink_depth.to_i)
+    max_sink_depth = params[:max_sink_depth].nil? ? 2 : params[:max_sink_depth].to_i
+    logger.info max_sink_depth
+
+    if params[:increase_max_sink_depth]
+      max_sink_depth += 1 if max_sink_depth < 10
+    end
+
+    if params[:decrease_max_sink_depth]
+      max_sink_depth -= 1 if max_sink_depth > 1
+    end
+    logger.info max_sink_depth
+
     @person = Person.find(params[:id])
-    @max_sink_depth = params[:max_sink_depth]
+    @max_sink_depth = max_sink_depth
 
     respond_to do |format|
-      format.html { render :layout => 'full_screen' }
-      format.svg { render :xml => @svg_xml }
+      format.html {
+        render :layout => 'full_screen'
+      }
+      format.svg {
+        @svg_xml = OrgChart.instance.generate_org_context_svg_xml(params[:id], max_sink_depth.to_i)
+        render :xml => @svg_xml
+      }
     end
   end
 

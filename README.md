@@ -62,23 +62,6 @@ Stories
 * I Want To Take Surveys About General Employee Satisfaction, And Record The Results Over Time
 * I Want To Plan Projects For The Next Quarter
 
-Personas
----
-
-### Ceo Persona
-* Reports to Stockholders
-* Balance Sheet, Income Statement
-
-### Cio Persona
-* I Want To Communicate Product Lines
-* I Want To Communicate Future Strategic Direction - What The Future Is - What The Plan Is (3 Year Technology Strategy)
-* I Want To Communicate Undestanding Of Where My Costs Are
-* I Want To Communciate Where My Areas Of Growth Are
-* I Want To Translate The Technology Strategy Into A Business Strategy That The Business Understands
-
-### Strategic Planner Persona
-* TBD
-
 Data Model
 ==========
 

@@ -4,7 +4,7 @@ require 'graphviz'
 class OrgChart
   include Singleton
 
-  def generate_org_context_svg_xml(person_id, max_sink_depth)
+  def generate_org_context_svg_xml(person_id, max_sink_depth=2)
 
     start = Time.now.to_f
 
