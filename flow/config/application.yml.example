@@ -1,0 +1,9 @@
+
+development: 
+  top_node_id: 999
+  people_tree_top_node_id: 999
+  jira_hostname: jira.yourdomain.com
+  jira_username: joe.smith
+  jira_password: foobar
+
+
