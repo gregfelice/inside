@@ -16,8 +16,6 @@
 
 
 
-
-
 ## Done, Waiting to be Released (Release 1.1)
 
 * feature/people-project-structures
@@ -37,15 +35,23 @@
 * Org chart printing and PDF support
 
 #### Stories & Tasks
-* I want an org chart that explicitly shows all association types (direct, dotted)
+* DONE I want an org chart that explicitly shows all association types (direct, dotted)
 * I want an org chart for this person, showing supervisors N levels up, and subordinates N levels down
 * I want to select the levels up and down
+* I want to select what node & edge label details to show
 * I want to select what association types to show
 * I want to print an org chart for a person on one page
-* I want to print an org chart for a person on several pages, at a size I dictate
+
+* works on safari
+* works on firefox
+* works on chrome
+* works on IE 9
+
+* I want to an org chart exported as PDF
+
 * I want to print an org chart for a group
 * I want to print an org chart for each group, as a stack
-* I want to an org chart exported as PDF
+* I want to print an org chart for a person on several pages, at a size I dictate
 
 ### feature/miscellaneous
 * Add Person Floor, Work Location #
