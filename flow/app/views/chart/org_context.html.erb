@@ -1,24 +1,16 @@
 
+<div class="well">
+  <%= link_to "Back", person_path(@person.id), :method => "get" %>
+  |
+  <%= link_to "Show Less", chart_org_context_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :decrease_max_sink_depth => true) %> 
+  |
+  <%= link_to "Show More", chart_org_context_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true) %> 
+  |
+  <%= link_to "Print", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true), :target => "_blank" %> 
+</div>
 
-<%= link_to "Show Less Layers", chart_org_context_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :decrease_max_sink_depth => true) %> 
-|
-<%= link_to "Show More Layers", chart_org_context_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true) %> 
-
-<p>
-<%= button_to "Back", :back, :class => "btn btn-small btn-info", :method => "get" %>
-</p>
-
-<!--
-<%= form_tag chart_org_context_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :max_sink_depth, params[:max_sink_depth] %>
-    <%= hidden_field_tag 'id', @person.id %>
-    <%= submit_tag "go!",:class => 'btn' %>
-  </p>
-<% end %>
--->
-
-<object type="image/svg+xml" height="100000" width="100000" data="/chart/org_context.svg?id=<%= @person.id %>&max_sink_depth=<%= @max_sink_depth %>">
+<object type="image/svg+xml" data="/chart/org_context.svg?id=<%= @person.id %>&max_sink_depth=<%= @max_sink_depth %>">
   Your browser does not support SVG
 </object>
+
 
