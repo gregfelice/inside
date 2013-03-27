@@ -18,14 +18,10 @@
 
 ## Done, Waiting to be Released (Release 1.1)
 
-* feature/people-project-structures
-  * Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
-  * New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
-  * Disable employee/reporting relationship
-
-
-
-## In Progress (Release 1.1)
+### feature/people-project-structures
+* Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
+* New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
+* Disable employee/reporting relationship
 
 ### feature/improved-org-chart
 * Critical for supporting multiple supervisor & other complex relationships
@@ -37,17 +33,19 @@
 * DONE I want an org chart for this person, showing supervisors N levels up, and subordinates N levels down
 * DONE I want to select the levels up and down
 * DONE I want to an org chart exported as PDF
-* Works on all browsers
-  * Works on safari (omitting width/height effects svg render)
-  * Works on firefox
-  * Works on chrome
-  * Works on IE 9+
-* I want to select what association types to show
-* I want to print an org chart for a person on one page
-* I want to select what node & edge label details to show
+* DONE Works on all browsers
+  * DONE Works on safari (omitting width/height effects svg render)
+  * DONE Works on firefox
+  * DONE Works on chrome
+  * DONE Works on IE 9+
 
 ### feature/miscellaneous
 * DONE Add Person Floor, Work Location #
+* DONE Internet Explorer support (IE9 required for D3.js)
+
+
+## In Progress (Release 1.1)
+* None in progress, wrapping up release 1.1 for ship
 
 ## Upcoming (Release 1.2)
 
@@ -79,7 +77,10 @@
 
 
 ## To Be Sorted
-* Internet Explorer support (IE9 required for D3.js)
 * Pagination style fix (Bootstrap gem upgrade)
+* Org Chart Related
+  * I want to select what association types to show
+  * I want to print an org chart for a person on one page
+  * I want to select what node & edge label details to show
 
 
