@@ -42,18 +42,18 @@ class MoveEmployeesToPeople
     people.each do |p|
 
       e = Employee.find_by_full_name(p.name)
-      puts "working on #{e.full_name}"
 
-      e.direct_supervisors.each {|o|
-        puts "finding by name: #{o.full_name}"
+      e.direct_subordinates.each {|o|
         op = Person.find_by_name(o.full_name)
-        puts "found: #{op.inspect}"
-
-        p.add_direct_supervisor(op)
-
+        p.add_direct_subordinate(op)
         p.save!
       }
 
+      e.dotted_subordinates.each {|o|
+        op = Person.find_by_name(o.full_name)
+        p.add_dotted_subordinate(op)
+        p.save!
+      }
     end
   end
 

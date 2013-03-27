@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
     attr_accessor :person_types, :hr_statuses, :hiring_statuses
   end
 
-  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :band, :cost_center, :business_unit, :hiring_status, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens
+  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :band, :cost_center, :business_unit, :hiring_status, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens, :location_floor, :location_code
 
   validates_presence_of :name, :title, :person_type, :hr_status, :hiring_status
 
