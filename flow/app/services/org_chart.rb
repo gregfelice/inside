@@ -4,7 +4,7 @@ require 'graphviz'
 class OrgChart
   include Singleton
 
-  def generate_org_context_svg_xml(person_id, max_sink_depth=2)
+  def generate_org_context_svg_xml(person_id, max_sink_depth=2, mime_type)
 
     start = Time.now.to_f
 
@@ -36,8 +36,12 @@ class OrgChart
 
     rec_sources(g, p, 2)
     rec_sinks(g, p, max_sink_depth)
-    svg_xml = g.output( :svg => String )
 
+    if mime_type == 'svg'
+      svg_xml = g.output( :svg => String )
+    elsif mime_type == 'png'
+      svg_xml = g.output( :png => String )
+    end
     Rails.logger.info "Time to generate org chart: #{Time.now.to_f - start}"
 
     svg_xml
@@ -50,7 +54,7 @@ class OrgChart
     id = subject.id.to_s
     return if current_depth == max_depth
     (nodes[id] = g.add_nodes(id,
-        'label' => get_node_label(subject),
+        :label => get_node_label(subject),
         :URL => Rails.application.routes.url_helpers.person_path(:id => id),
         :target => "_parent"
         )) if !nodes.has_key?(id)
@@ -91,7 +95,7 @@ EOF
     id = subject.id.to_s
     return if current_depth == max_depth
     nodes[id] = g.add_nodes(id,
-      'label' => get_node_label(subject),
+      :label => get_node_label(subject),
       :URL => Rails.application.routes.url_helpers.person_path(:id => id),
       :target => "_parent"
       ) if !nodes.has_key?(id)
