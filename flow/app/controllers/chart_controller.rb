@@ -1,6 +1,9 @@
 class ChartController < ApplicationController
 
   def org_context
+
+    logger.info "User agent: #{request.env['HTTP_USER_AGENT']}"
+
     max_sink_depth = params[:max_sink_depth].nil? ? 2 : params[:max_sink_depth].to_i
 
     if params[:increase_max_sink_depth]

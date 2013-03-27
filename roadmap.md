@@ -36,22 +36,18 @@
 * DONE I want an org chart that explicitly shows all association types (direct, dotted)
 * DONE I want an org chart for this person, showing supervisors N levels up, and subordinates N levels down
 * DONE I want to select the levels up and down
-
+* DONE I want to an org chart exported as PDF
+* Works on all browsers
+  * Works on safari (omitting width/height effects svg render)
+  * Works on firefox
+  * Works on chrome
+  * Works on IE 9+
 * I want to select what association types to show
 * I want to print an org chart for a person on one page
-
-* Works on safari
-* Works on firefox
-* Works on chrome
-* Works on IE 9
-
-* I want to an org chart exported as PDF
-
 * I want to select what node & edge label details to show
 
 ### feature/miscellaneous
-* Add Person Floor, Work Location #
-
+* DONE Add Person Floor, Work Location #
 
 ## Upcoming (Release 1.2)
 

@@ -36,6 +36,7 @@ GEM
       erubis (>= 2.7.0)
     binding_of_caller (0.6.8)
     bootstrap-sass (2.1.0.0)
+    browser (0.1.6)
     builder (3.0.4)
     capistrano (2.14.1)
       highline
@@ -259,6 +260,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (= 2.1)
+  browser
   capistrano
   capybara
   coffee-rails (~> 3.2.1)
