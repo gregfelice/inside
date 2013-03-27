@@ -12,6 +12,9 @@
     <%= f.input :business_unit %>
     <%= f.input :hiring_status, collection: Person.hiring_statuses %>
 
+    <%= f.input :location_floor %>
+    <%= f.input :location_code %>
+
     <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @person.direct_supervisors.map(&:attributes).to_json } %>
     <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @person.dotted_supervisors.map(&:attributes).to_json } %>
     <%= f.input :direct_subordinate_tokens, :label => "Direct Reports", :input_html => { 'data-pre' => @person.direct_subordinates.map(&:attributes).to_json } %> 
