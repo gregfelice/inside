@@ -1,3 +1,4 @@
 <body onload="window.print()">
-  <img src="/chart/org_context.png?id=<%= @person.id %>&max_sink_depth=<%= @max_sink_depth %>">
+  <h4>Org Chart | <%= @person.name %></h4>
+  <img src="/chart/org_context.svg?id=<%= @person.id %>&max_sink_depth=<%= @max_sink_depth %>">
 </body>
