@@ -49,6 +49,16 @@
 
 ## Upcoming (Release 1.2)
 
+* feature/audit-trail
+  * Who updated what?
+
+* feature/facebook-replacement
+  * see: https://github.com/centresource/angularjs_rails_demo
+  * Replacement of existing facebook/rolodex app
+  * Expansion of user base to general staff
+  * LDAP login integration
+  * Photo uploads
+
 * feature/project-portfolio
   * Shows project data
   * Shows who is working on what
@@ -57,13 +67,8 @@
   * Code currently alpha state, working, needs to be modularized
   * Detects cycles in org trees, needed for complex org structures
 
-## Backlog
 
-* feature/facebook-replacement
-  * Replacement of existing facebook/rolodex app
-  * Expansion of user base to general staff
-  * LDAP login integration
-  * Photo uploads
+## Backlog
 
 * feature/financial-views
   * Integration to budget and financials data
