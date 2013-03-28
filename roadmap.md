@@ -6,15 +6,13 @@
 
 * Baseline application to replace EmployeeWare
 
-* feature/app-cleanup
-  * Parameter files
-  * Limited to non-infrastructure compliant changes 
+### feature/app-cleanup
+* Parameter files
+* Limited to non-infrastructure compliant changes 
 
-* feature/faster-org-tree
-  * Faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
-  * Graph cycle detection (alpha state, important for future work)
-
-
+### feature/faster-org-tree
+* Faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
+* Graph cycle detection (alpha state, important for future work)
 
 ## Done, Waiting to be Released (Release 1.1)
 
@@ -43,43 +41,48 @@
 * DONE Add Person Floor, Work Location #
 * DONE Internet Explorer support (IE9 required for D3.js)
 
-
 ## In Progress (Release 1.1)
 * None in progress, wrapping up release 1.1 for ship
 
+### Wrap-Up Tasks
+* Print one page to letter, legal, A4 dimensions
+* Simplify graph navigation
+* Clean up graph mode menu
+
+
 ## Upcoming (Release 1.2)
 
-* feature/audit-trail
-  * Who updated what?
+### feature/facebook-replacement
+* see: https://github.com/centresource/angularjs_rails_demo
+* Replacement of existing facebook/rolodex app
+* Where does this person sit?
+* Expansion of user base to general staff
+* Allow read only access
+* LDAP login integration
+* Photo uploads
 
-* feature/facebook-replacement
-  * see: https://github.com/centresource/angularjs_rails_demo
-  * Replacement of existing facebook/rolodex app
-  * Expansion of user base to general staff
-  * LDAP login integration
-  * Photo uploads
+### feature/audit-trail
+* Who updated what?
 
-* feature/project-portfolio
-  * Shows project data
-  * Shows who is working on what
-
-* feature/cycle-detection
-  * Code currently alpha state, working, needs to be modularized
-  * Detects cycles in org trees, needed for complex org structures
-
+### feature/cycle-detection
+* Code currently alpha state, working, needs to be modularized
+* Detects cycles in org trees, needed for complex org structures
 
 ## Backlog
 
-* feature/financial-views
-  * Integration to budget and financials data
-  * Access control lists
+### feature/project-portfolio
+* Shows project data
+* Shows who is working on what
 
-* feature/angular-spike
-  * For taking the data entry interface to the next level
+### feature/financial-views
+* Integration to budget and financials data
+* Access control lists
 
-* feature/menu-redesign
-  * More scalabile menu architecture for easier adding of reports, features
+### feature/angular-spike
+* For taking the data entry interface to the next level
 
+### feature/menu-redesign
+* More scalabile menu architecture for easier adding of reports, features
 
 ## To Be Sorted
 * Pagination style fix (Bootstrap gem upgrade)
