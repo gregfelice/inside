@@ -1,3 +1,4 @@
+
 # Times People / Inside Edition: Roadmap
 
 ## Shipped
@@ -45,10 +46,9 @@
 * None in progress, wrapping up release 1.1 for ship
 
 ### Wrap-Up Tasks
-* Print one page to letter, legal, A4 dimensions
-* Simplify graph navigation
-* Clean up graph mode menu
-
+* DONE Simplify graph navigation
+* DONE Print one page to letter, legal, A4 dimensions
+* DONE Clean up graph mode menu
 
 ## Upcoming (Release 1.2)
 
@@ -90,5 +90,4 @@
   * I want to select what association types to show
   * I want to print an org chart for a person on one page
   * I want to select what node & edge label details to show
-
-
+* Clean up show page for people - getting crowded!!

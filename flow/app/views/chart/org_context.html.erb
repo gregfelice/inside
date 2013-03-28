@@ -1,12 +1,35 @@
 
+
+
+
 <div class="well">
-  <%= link_to "Back", person_path(@person.id), :method => "get" %>
+  <%= link_to "Go to #{@person.name}", person_path(@person.id), :method => "get" %>
   |
   <%= link_to "Show Less", chart_org_context_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :decrease_max_sink_depth => true) %> 
   |
   <%= link_to "Show More", chart_org_context_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true) %> 
-  |
-  <%= link_to "Print", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true), :target => "_blank" %> 
+
+  <div class="pull-right">
+
+    <div class="btn-group">
+
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	Print
+	<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+	<%= link_to "Letter Portrait", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true, :paper_choice => 'letter_portrait'), :target => "_blank" %> 
+	<%= link_to "Legal Portrait", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true, :paper_choice => 'legal_portrait'), :target => "_blank" %> 
+	<%= link_to "A4 Portrait", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true, :paper_choice => 'a4_portrait'), :target => "_blank" %> 
+
+	<%= link_to "Letter Landscape", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true, :paper_choice => 'letter_landscape'), :target => "_blank" %> 
+	<%= link_to "Legal Landscape", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true, :paper_choice => 'legal_landscape'), :target => "_blank" %> 
+	<%= link_to "A4 Landscape", chart_org_context_print_path(:id => @person.id, :max_sink_depth => @max_sink_depth, :increase_max_sink_depth => true, :paper_choice => 'a4_landscape'), :target => "_blank" %> 
+      </ul>
+    </div>
+    
+  </div>
+
 </div>
 
 <% if browser.safari? %>
