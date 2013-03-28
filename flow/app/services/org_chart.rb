@@ -40,7 +40,7 @@ class OrgChart
     g.node[:shape]    = "box"
     g.node[:penwidth] = "1"
     g.node[:fontname] = "Arial"
-    g.node[:fontsize] = "11"
+    g.node[:fontsize] = "10"
     g.node[:fillcolor]= "#ffeecc"
     g.node[:fontcolor]= "#775500"
     g.node[:margin]   = "0.1"
