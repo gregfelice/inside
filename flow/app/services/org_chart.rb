@@ -14,10 +14,10 @@ class OrgChart
     paper = {
       'letter_portrait'  => [8.5, 11.0],
       'legal_portrait'   => [8.5, 14.0],
-      'a4_portrait'      => [8.26, 11.69],
+      'a3_portrait'      => [11.69, 16.54],
       'letter_landscape' => [11.0, 8.5],
       'legal_landscape'  => [14.0, 8.5],
-      'a4_landscape'     => [11.69, 8.26],
+      'a3_landscape'     => [16.54, 11.69],
       'none'             => [1550, 50]
     }
 
