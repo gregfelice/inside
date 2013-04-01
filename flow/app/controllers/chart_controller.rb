@@ -2,6 +2,8 @@ class ChartController < ApplicationController
 
   def org_context
 
+    logger.info "org context paper choice: #{params[:paper_choice]}"
+
     max_sink_depth = params[:max_sink_depth].nil? ? 2 : params[:max_sink_depth].to_i
 
     if params[:increase_max_sink_depth]
@@ -29,10 +31,14 @@ class ChartController < ApplicationController
   end
 
   def org_context_print
+
+    logger.info "org context print paper choice: #{params[:paper_choice]}"
+
     max_sink_depth = params[:max_sink_depth].nil? ? 2 : params[:max_sink_depth].to_i
 
     @person = Person.find(params[:id])
     @max_sink_depth = max_sink_depth
+    @paper_choice = params[:paper_choice]
 
     respond_to do |format|
       format.html { render :layout => 'print_screen' }

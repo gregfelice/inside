@@ -6,4 +6,5 @@
 
 Mime::Type.register "application/xls", :xls
 Mime::Type.register "image/svg+xml", :svg
+Mime::Type.register "application/pdf", :pdf
 

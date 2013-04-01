@@ -3,19 +3,17 @@ class Person < ActiveRecord::Base
 
   @person_types = ['employee', 'contractor']
   @hr_statuses = ['active', 'resigned']
-  @hiring_statuses = ['open', 'filled']
 
   class << self
-    attr_accessor :person_types, :hr_statuses, :hiring_statuses
+    attr_accessor :person_types, :hr_statuses
   end
 
-  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :band, :cost_center, :business_unit, :hiring_status, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens, :location_floor, :location_code
+  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :cost_center, :business_unit, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens, :location_floor, :location_code
 
-  validates_presence_of :name, :title, :person_type, :hr_status, :hiring_status
+  validates_presence_of :name, :title, :person_type, :hr_status
 
   validates :person_type,   :inclusion => { :in => @person_types,    :message => "%{value} is not a valid person type" }
   validates :hr_status,     :inclusion => { :in => @hr_statuses,     :message => "%{value} is not a valid HR status" }
-  validates :hiring_status, :inclusion => { :in => @hiring_statuses, :message => "%{value} is not a valid hiring status" }
 
   validates :part_time, :inclusion => { :in => [true, false] }
   validates :temporary, :inclusion => { :in => [true, false] }
@@ -34,7 +32,6 @@ class Person < ActiveRecord::Base
   #  super
   #  @person_type   ||= :employee
   #  @hr_status     ||= :active
-  #  @hiring_status ||= :filled
   #  logger.info "initialize values: #{self.inspect}"
   #end
 

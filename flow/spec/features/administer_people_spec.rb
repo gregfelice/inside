@@ -89,7 +89,6 @@ feature "Person Administration" do
       choose('person_temporary_true')
       choose('person_part_time_true')
       select(e.hr_status, :from => 'Hr status')
-      select(e.hiring_status, :from => 'Hiring status')
     end
     click_on "Update Person"
     page.should have_content "Person was successfully created."

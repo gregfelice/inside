@@ -21,10 +21,11 @@ class OrgChart
       'none'             => [1550, 50]
     }
 
-    if !paper_choice.nil?
-      graph_size = "#{paper[paper_choice][0] - top_margin} #{paper[paper_choice][1] - side_margin}"
-    else
-      graph_size = "#{paper['none'][0] }, #{ (paper['none'][1] * (Math.log(max_sink_depth))).to_i}"
+    Rails.logger.info "paper choice: #{paper_choice}"
+    if !paper_choice.nil? # print view
+      graph_size = "#{paper[paper_choice][0] - side_margin}, #{paper[paper_choice][1] - top_margin}!"
+    else # screen view
+      graph_size = "#{paper['none'][0] }, #{ (1 * paper['none'][1] * (Math.log(max_sink_depth))).to_i}"
     end
     Rails.logger.info "graph size: #{graph_size}"
 
@@ -32,7 +33,12 @@ class OrgChart
       :splines => :curved,
       :size => graph_size
       )
+
     g[:rankdir] = "LR"
+    g[:fontname]      = "Arial"
+    g[:fontsize]      = "17"
+    g[:labeljust]     = "l"
+    g[:labelloc]      = "t"
 
     g.node[:color]    = "#ddaa66"
     g.node[:style]    = "filled"
@@ -53,6 +59,7 @@ class OrgChart
     g.edge[:arrowsize]= "0.5"
 
     p = Person.find(person_id)
+    g[:label]         = "Org Chart | #{p.name}"
 
     g.add_nodes(p.id.to_s, :label => p.name).fillcolor("darkseagreen1")
 
@@ -141,7 +148,6 @@ EOF
   end
 
   def get_node_color(person)
-    return :lightgray if person.hiring_status == 'open'
     return :wheat if person.person_type == 'contractor'
     return :snow
   end
