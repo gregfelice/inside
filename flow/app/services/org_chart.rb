@@ -4,12 +4,41 @@ require 'graphviz'
 class OrgChart
   include Singleton
 
-  def generate_org_context_svg_xml(person_id, max_sink_depth=2, mime_type)
+  def generate_org_context_svg_xml(person_id, max_sink_depth=2, mime_type, paper_choice)
 
     start = Time.now.to_f
 
-    g = GraphViz.digraph(:G, :splines => :curved)
+    # scale one page letter
+    top_margin = 1.0 * 2
+    side_margin = 0.5 * 2
+    paper = {
+      'letter_portrait'  => [8.5, 11.0],
+      'legal_portrait'   => [8.5, 14.0],
+      'a3_portrait'      => [11.69, 16.54],
+      'letter_landscape' => [11.0, 8.5],
+      'legal_landscape'  => [14.0, 8.5],
+      'a3_landscape'     => [16.54, 11.69],
+      'none'             => [1550, 50]
+    }
+
+    Rails.logger.info "paper choice: #{paper_choice}"
+    if !paper_choice.nil? # print view
+      graph_size = "#{paper[paper_choice][0] - side_margin}, #{paper[paper_choice][1] - top_margin}!"
+    else # screen view
+      graph_size = "#{paper['none'][0] }, #{ (1 * paper['none'][1] * (Math.log(max_sink_depth))).to_i}"
+    end
+    Rails.logger.info "graph size: #{graph_size}"
+
+    g = GraphViz.digraph(:G,
+      :splines => :curved,
+      :size => graph_size
+      )
+
     g[:rankdir] = "LR"
+    g[:fontname]      = "Arial"
+    g[:fontsize]      = "17"
+    g[:labeljust]     = "l"
+    g[:labelloc]      = "t"
 
     g.node[:color]    = "#ddaa66"
     g.node[:style]    = "filled"
@@ -21,7 +50,6 @@ class OrgChart
     g.node[:fillcolor]= "#ffeecc"
     g.node[:fontcolor]= "#775500"
     g.node[:margin]   = "0.1"
-
     g.edge[:color]    = "#999999"
     g.edge[:weight]   = "1"
     g.edge[:fontsize] = "6"
@@ -31,6 +59,7 @@ class OrgChart
     g.edge[:arrowsize]= "0.5"
 
     p = Person.find(person_id)
+    g[:label]         = "Org Chart | #{p.name}"
 
     g.add_nodes(p.id.to_s, :label => p.name).fillcolor("darkseagreen1")
 
@@ -55,7 +84,7 @@ class OrgChart
     return if current_depth == max_depth
     (nodes[id] = g.add_nodes(id,
         :label => get_node_label(subject),
-        :URL => Rails.application.routes.url_helpers.person_path(:id => id),
+        :URL => Rails.application.routes.url_helpers.chart_org_context_path(:id => id),
         :target => "_parent"
         )) if !nodes.has_key?(id)
     subject.source_associations.each {|sa|
@@ -65,7 +94,7 @@ class OrgChart
         sa_id,
         :label => get_node_label(sa.source),
         :fillcolor => get_node_color(sa.source),
-        :URL => Rails.application.routes.url_helpers.person_path(:id => sa_id),
+        :URL => Rails.application.routes.url_helpers.chart_org_context_path(:id => sa_id),
         :target => "_parent"
         ) unless nodes.has_key?(sa_id)
     }
@@ -75,9 +104,6 @@ class OrgChart
       edges[ [ nodes[sa_id], nodes[id] ] ] = g.add_edges(
         nodes[sa_id], nodes[id],
         :style => get_edge_style(sa.association_type),
-        :label => current_depth.to_s,
-        :edgeURL => Rails.application.routes.url_helpers.chart_org_context_path(:id => sa_id),
-        :target => "_parent"
         )
       rec_sources(g, sa.source, max_depth, current_depth, nodes, edges, subgraphs)
     }
@@ -96,7 +122,7 @@ EOF
     return if current_depth == max_depth
     nodes[id] = g.add_nodes(id,
       :label => get_node_label(subject),
-      :URL => Rails.application.routes.url_helpers.person_path(:id => id),
+      :URL => Rails.application.routes.url_helpers.chart_org_context_path(:id => id),
       :target => "_parent"
       ) if !nodes.has_key?(id)
     subject.sink_associations.each {|sa|
@@ -106,7 +132,7 @@ EOF
         sa_id,
         :label => get_node_label(sa.sink),
         :fillcolor => get_node_color(sa.sink),
-        :URL => Rails.application.routes.url_helpers.person_path(:id => sa_id),
+        :URL => Rails.application.routes.url_helpers.chart_org_context_path(:id => sa_id),
         :target => "_parent"
         ) unless nodes.has_key?(sa_id)
     }
@@ -116,16 +142,12 @@ EOF
       edges[ [ nodes[id], nodes[sa_id] ] ] = g.add_edges(
         nodes[id], nodes[sa_id],
         :style => get_edge_style(sa.association_type),
-        :label => current_depth.to_s,
-        :edgeURL => Rails.application.routes.url_helpers.chart_org_context_path(:id => sa_id),
-        :target => "_parent"
         )
       rec_sinks(g, sa.sink, max_depth, current_depth, nodes, edges, subgraphs)
     }
   end
 
   def get_node_color(person)
-    return :lightgray if person.hiring_status == 'open'
     return :wheat if person.person_type == 'contractor'
     return :snow
   end
