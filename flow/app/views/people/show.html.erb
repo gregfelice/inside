@@ -27,16 +27,18 @@
     <td><strong><%= model_class.human_attribute_name(:part_time) %>:</strong></td>
     <td><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
   </tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:band) %>:</strong></td><td><%= @person.band %></td></tr>
+
   <tr><td><strong><%= model_class.human_attribute_name(:cost_center) %>:</strong></td><td><%= @person.cost_center %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:business_unit) %>:</strong></td><td><%= @person.business_unit %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:hiring_status) %>:</strong></td><td><%= @person.hiring_status %></td></tr>
 
   <tr><td><strong><%= model_class.human_attribute_name(:location_floor) %>:</strong></td><td><%= @person.location_floor %></td></tr>
   <tr><td><strong><%= model_class.human_attribute_name(:location_code) %>:</strong></td><td><%= @person.location_code %></td></tr>
 
   <tbody>
 </table>
+
+
+
 
 <% if @person.source_associations.size > 0 %>
 <strong><%= @person.name %> reports to:</strong>

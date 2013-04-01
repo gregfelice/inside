@@ -47,32 +47,37 @@
 
 ### Wrap-Up Tasks
 * DONE Simplify graph navigation
-* DONE Print one page to letter, legal, A4 dimensions
+* DONE Print one page to letter, legal, A3 dimensions
 * DONE Clean up graph mode menu
+* DONE Remove band field
+* DONE Remote hiring status
 
 ## Upcoming (Release 1.2)
-
-### feature/facebook-replacement
-* see: https://github.com/centresource/angularjs_rails_demo
-* Replacement of existing facebook/rolodex app
-* Where does this person sit?
-* Expansion of user base to general staff
-* Allow read only access
-* LDAP login integration
-* Photo uploads
-
-### feature/audit-trail
-* Who updated what?
-
-### feature/cycle-detection
-* Code currently alpha state, working, needs to be modularized
-* Detects cycles in org trees, needed for complex org structures
-
-## Backlog
 
 ### feature/project-portfolio
 * Shows project data
 * Shows who is working on what
+
+### feature/audit-trail
+* As a person, I can see who has performed what actions in the system
+
+### feature/cycle-detection
+* As a person, I cannot enter a cyclic relationship
+
+## Backlog
+
+### feature/facebook-replacement
+* See: https://github.com/centresource/angularjs_rails_demo
+* Replacement of existing facebook/rolodex app
+* Where does this person sit?
+
+* As a person, I can change some details of my profile
+* As a person, I can upload photos for my profile
+* As a person, I can login with my LDAP credentials, so I can update my info
+* As a person, I can use search and show tools without logging in
+
+Out of Scope
+* As a director, I can change some details of my reports
 
 ### feature/financial-views
 * Integration to budget and financials data
