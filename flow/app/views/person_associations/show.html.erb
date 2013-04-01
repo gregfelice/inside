@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @person_association.description %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @person_association.type %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%= @person_association.source_id %>
+</p>
+
+<p>
+  <b>Sink:</b>
+  <%= @person_association.sink_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_person_association_path(@person_association) %> |
+<%= link_to 'Back', person_associations_path %>

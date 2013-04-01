@@ -1,36 +1,9 @@
-# Developer Notes
+# Times People / Inside Edition
 
-### Development Branches
 
-* feature/app-cleanup (active)
-  * parameter files
-  * limited to non-infrastructure compliant changes 
-
-* feature/faster-org-tree (active)
-  * faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
-  * cycle detection (working, but parameterization for all input fields is messy, needs to be branched off separate from new tree retrieval)
-  * cycle detection is important for future work
-
-* feature/people-project-structures (active)
-  * new people & project structures. people structures need to be put in place and stabilized before finishing work on cycle detection branch.
-
-* feature/prettier-org-tree
-  * proposed
-  * better d3 interactivity
-  * important for interface evolution
-
-* feature/angular-spike
-  * for taking the data entry inteface to the next level
-  * lower priority
-
-* feature/menu-redesign
-  * lower priority
+* [Project Roadmap](./roadmap.md)
 
 # Developers Guide
-
-### NYT Infra Guides
-* [NYT RVM and Ruby](https://confluence.em.nytimes.com/display/INFR/HOWTO+-+Install+and+use+NYT+built+RVM+and+Ruby)
-
 
 Anti-Stories
 -------------
@@ -88,23 +61,6 @@ Stories
 * I Want To See Averages & Outliers For Titles To Compensation Packages
 * I Want To Take Surveys About General Employee Satisfaction, And Record The Results Over Time
 * I Want To Plan Projects For The Next Quarter
-
-Personas
----
-
-### Ceo Persona
-* Reports to Stockholders
-* Balance Sheet, Income Statement
-
-### Cio Persona
-* I Want To Communicate Product Lines
-* I Want To Communicate Future Strategic Direction - What The Future Is - What The Plan Is (3 Year Technology Strategy)
-* I Want To Communicate Undestanding Of Where My Costs Are
-* I Want To Communciate Where My Areas Of Growth Are
-* I Want To Translate The Technology Strategy Into A Business Strategy That The Business Understands
-
-### Strategic Planner Persona
-* TBD
 
 Data Model
 ==========
