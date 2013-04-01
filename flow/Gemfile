@@ -72,3 +72,10 @@ gem 'ransack'				# search logic
 # gem 'ancestry'				# hierarchical menus
 gem 'dalli'				# memcache
 gem 'httparty'				# rest client for JIRA pulls
+
+gem 'foreigner'				# migration fk support
+gem 'immigrant'				# generator fk support
+gem 'composite_primary_keys'		# composite foreign key support for rails. sigh.
+
+gem 'ruby-graphviz'
+gem 'browser'                           # simplified user agent detection

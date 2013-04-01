@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Employees Model" do
+describe "Employee Model" do
 
   it "appropriately marks itself as dirty if i change an association", :focus => false do
     employee = create(:employee)
@@ -29,7 +29,7 @@ describe "Employees Model" do
     ReportingRelationship.all.each { |rr| rr.dotted.should_not be_nil }
   end
 
-  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => false do 
+  it "initializes the reporting relationship dotted to false on save if its not initialized", :focus => false do
     employee = create(:employee)
     subordinate = create(:employee, full_name: "Subordinate Full Name", job_title: "Subordinate Title")
     supervisor = create(:employee, full_name: "Supervisor Full Name", job_title: "Supervisor Title")
@@ -165,10 +165,12 @@ describe "Employees Model" do
     rr.dotted.should be_true
   end
 
+
 =begin
   # commented out for now - a branch will be dedicated to cycle detection improvements
 
   it "throws an error if the same supervisor or subordinate is added more than once", :focus => false do
+
     employee = create(:employee)
     supervisor = create(:employee, full_name: "Supervisor", job_title: "Supervisor Title")
     subordinate = create(:employee, full_name: "Subordinate", job_title: "Subordinate Title")
@@ -182,7 +184,6 @@ describe "Employees Model" do
     employee = create(:employee)
     expect { employee.subordinates << employee }.to raise_error(ActiveRecord::RecordInvalid)
   end
-
 
 
   it "will contain valid error messages if i add itself as a supervisor or subordinate", :focus => false do

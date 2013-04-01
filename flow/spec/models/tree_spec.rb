@@ -4,7 +4,7 @@ require 'yaml'
 describe "Tree Model" do
 
 =begin
-  it "can detect cycles in the adjacency list", :focus => true do
+  it "can detect cycles in the adjacency list", :focus => false do
     a1 = create(:employee)
     b1 = create(:employee)
     c1 = create(:employee)
@@ -36,7 +36,7 @@ describe "Tree Model" do
   end
 =end
 
-  it "has a tree that works", :focus => true do
+  it "has a tree that works", :focus => false do
     a1 = create(:employee)
     b1 = create(:employee)
     c1 = create(:employee)
