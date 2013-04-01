@@ -1,0 +1,73 @@
+<%- model_class = Person -%>
+
+<div class="page-header">
+  <h1>
+    <%=t '.title', :default => model_class.model_name.human.pluralize %>
+    <%= link_to raw("<i class='icon-plus icon-white'></i> New Person"), new_person_path, :class => 'btn-large btn-primary pull-right' %>
+  </h1>
+  
+  <small><div class="muted pull-left"><%= @ppl_count %> results</div> </small>
+  
+  <small><div class="pull-right"><%= link_to "CSV", people_path(format: "csv", :q => @search_params) %> | <%= link_to "Excel", people_path(format: "xls", :q => @search_params) %></div></small>
+  
+  <br>
+</div>
+
+<div id="people-search-section" class="well">
+  <div class="close">x</div>  
+
+  <%= search_form_for @search, :url => search_people_path, :class => "form-inline", :html => {:method => :post} do |f| %>
+  
+    <%= f.condition_fields do |c| %>
+      <%= render "condition_fields", f: c %>
+    <% end %>
+    
+    <p><%= link_to_add_fields raw("<small>Add Conditions</small>"), f, :condition %></p>
+    
+    <div class="form-inline">
+      Sort<br>
+      <%= f.sort_fields do |s| %>
+        <%= s.sort_select %>
+      <% end %>
+    </div>
+
+    <%= submit_tag "Search", :name => nil, :class => 'btn pull-right' %>
+
+  <% end %>
+    
+</div>	
+
+<div class="muted">
+
+  <button id="show_people_search" class="btn pull-right"><i class="icon-search"></i> Search</button>
+</div>
+
+<table id="search_results" class="table table-striped">
+
+  <thead>
+    <tr>      
+      <th><%= sort_link @search, :id, "Id" %></th>
+      <th><%= sort_link @search, :name, "Name" %></th>
+      <th><%= sort_link @search, :title, "Title" %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= link_to person.id, person_path(person) %></td>
+        <td><%= person.name %></td>
+        <td><%= person.title %></td>
+        <td>
+          <%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', 
+            :default => t("helpers.links.destroy")),
+            person_path(person), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+            :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @people %>

@@ -7,8 +7,8 @@ class ReleaseCalendarRestClient
   include HTTParty
   format :json
   default_params :output => 'json'
-  base_uri 'jira.em.nytimes.com'
-  basic_auth 'greg.felice', 'scene24'
+  base_uri CONFIG[:jira_hostname]
+  basic_auth CONFIG[:jira_username], CONFIG[:jira_password]
 
   def self.get_releases
     from_cache = true

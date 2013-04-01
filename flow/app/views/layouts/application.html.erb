@@ -13,7 +13,7 @@
       })();
     </script>
 
-    <title>Technology Decision Support</title>
+    <title><%= app_title %></title>
     <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
 	<![endif]-->    
@@ -40,9 +40,12 @@
           <%= link_to app_title, root_path, :class => "brand" %>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Employees", employees_path %></li>
-              <!-- <li><#%= link_to "Reporting Relationships", reporting_relationships_path %></li> -->
-              <li><%= link_to "Org Chart", orgdendro_path %></li>
+              <li><%= link_to "People", people_path %></li>
+              <li><%= link_to "Org Chart", people_tree_path %></li>
+	      
+              <!-- <li><%= link_to "Legacy / Employees", employees_path %></li> -->
+              <!-- <li><%= link_to "Legacy / Employees Org Chart", orgdendro_path %></li> -->
+	      
               <%# <li>< %= link_to "Releases", release_calendar_path % ></li> %>
               <li><%= link_to "Trends", staffingchart_path %></li>
             </ul>
@@ -76,19 +79,10 @@
       <% end %>
 
       <div class="row">
-	<div class="span9">
-	  <%= yield %></div>
-	<div class="span3">
-
-<h2>About Us</h2>
-	  The New York Times (NYT) is an American daily newspaper, founded and continuously published in New York City since 1851. It has won 108 Pulitzer Prizes, more than any other news organization. Its website is the most popular American newspaper website, receiving more than 30 million unique visitors per month.</p> 
-
-The print version of the paper remains the largest local metropolitan newspaper in the United States; it is the third-largest newspaper overall, behind The Wall Street Journal and USA Today, though its weekday circulation has fallen since 1990 (as have other newspapers' circulations) to fewer than one million copies daily. Nicknamed "the Old Gray Lady", and long regarded within the industry as a national "newspaper of record", The New York Times is owned by The New York Times Company, which also publishes 18 other newspapers including the International Herald Tribune and The Boston Globe.</p> 
-The company's chairman is Arthur Ochs Sulzberger Jr., whose family has controlled the paper since 1896. The paper's motto, printed in the upper left-hand corner of the front page, is "All the News That's Fit to Print." The New York Times website (NYTimes.com) has the motto "All the News That's Fit to Click,".</p>
-It is organized into sections: News, Opinions, Business, Arts, Science, Sports, Style, Home, and Features. The New York Times stayed with the eight-column format for several years after most papers switched to six columns, and it was one of the last newspapers to adopt color photography.  
+	<div class="span10">
+	  <%= yield %>
 	</div>
       </div>
-    </div>
-    
+      
   </body>
 </html>

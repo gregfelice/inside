@@ -1,0 +1,16 @@
+<br/><br/>
+<div class="well">
+  <fieldset>
+    <!-- milestone -->
+    <%= f.label :name, "Milestone" %><%= f.text_field :name %><br>
+    <%= f.label :_destroy, "Remove milestone" %><%= f.check_box :_destroy %>
+    
+    <!-- resource allocations -->
+    <%= f.fields_for :resource_allocations do |builder| %>
+    <%= render 'resource_allocation_fields', f: builder %>
+    <% end %>
+    
+    <br/><br/>
+    <%= link_to_add_associations "Add Resource", f, :resource_allocations %>
+  </fieldset>
+</div>
