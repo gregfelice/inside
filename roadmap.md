@@ -1,3 +1,4 @@
+
 # Times People / Inside Edition: Roadmap
 
 ## Shipped
@@ -6,15 +7,13 @@
 
 * Baseline application to replace EmployeeWare
 
-* feature/app-cleanup
-  * Parameter files
-  * Limited to non-infrastructure compliant changes 
+### feature/app-cleanup
+* Parameter files
+* Limited to non-infrastructure compliant changes 
 
-* feature/faster-org-tree
-  * Faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
-  * Graph cycle detection (alpha state, important for future work)
-
-
+### feature/faster-org-tree
+* Faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
+* Graph cycle detection (alpha state, important for future work)
 
 ## Done, Waiting to be Released (Release 1.1)
 
@@ -43,43 +42,52 @@
 * DONE Add Person Floor, Work Location #
 * DONE Internet Explorer support (IE9 required for D3.js)
 
-
 ## In Progress (Release 1.1)
 * None in progress, wrapping up release 1.1 for ship
 
+### Wrap-Up Tasks
+* DONE Simplify graph navigation
+* DONE Print one page to letter, legal, A3 dimensions
+* DONE Clean up graph mode menu
+* DONE Remove band field
+* DONE Remote hiring status
+
 ## Upcoming (Release 1.2)
 
-* feature/audit-trail
-  * Who updated what?
+### feature/project-portfolio
+* Shows project data
+* Shows who is working on what
 
-* feature/facebook-replacement
-  * see: https://github.com/centresource/angularjs_rails_demo
-  * Replacement of existing facebook/rolodex app
-  * Expansion of user base to general staff
-  * LDAP login integration
-  * Photo uploads
+### feature/audit-trail
+* As a person, I can see who has performed what actions in the system
 
-* feature/project-portfolio
-  * Shows project data
-  * Shows who is working on what
-
-* feature/cycle-detection
-  * Code currently alpha state, working, needs to be modularized
-  * Detects cycles in org trees, needed for complex org structures
-
+### feature/cycle-detection
+* As a person, I cannot enter a cyclic relationship
 
 ## Backlog
 
-* feature/financial-views
-  * Integration to budget and financials data
-  * Access control lists
+### feature/facebook-replacement
+* See: https://github.com/centresource/angularjs_rails_demo
+* Replacement of existing facebook/rolodex app
+* Where does this person sit?
 
-* feature/angular-spike
-  * For taking the data entry interface to the next level
+* As a person, I can change some details of my profile
+* As a person, I can upload photos for my profile
+* As a person, I can login with my LDAP credentials, so I can update my info
+* As a person, I can use search and show tools without logging in
 
-* feature/menu-redesign
-  * More scalabile menu architecture for easier adding of reports, features
+Out of Scope
+* As a director, I can change some details of my reports
 
+### feature/financial-views
+* Integration to budget and financials data
+* Access control lists
+
+### feature/angular-spike
+* For taking the data entry interface to the next level
+
+### feature/menu-redesign
+* More scalabile menu architecture for easier adding of reports, features
 
 ## To Be Sorted
 * Pagination style fix (Bootstrap gem upgrade)
@@ -87,5 +95,4 @@
   * I want to select what association types to show
   * I want to print an org chart for a person on one page
   * I want to select what node & edge label details to show
-
-
+* Clean up show page for people - getting crowded!!
