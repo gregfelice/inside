@@ -50,7 +50,7 @@
 * DONE Print one page to letter, legal, A3 dimensions
 * DONE Clean up graph mode menu
 * DONE Remove band field
-* DONE Remote hiring status
+* DONE Remove hiring status
 
 ## Upcoming (Release 1.2)
 
