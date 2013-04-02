@@ -1,3 +1,30 @@
+# Release 1.1
+
+### feature/improved-org-chart
+* Critical for supporting multiple supervisor & other complex relationships
+* Important for interface evolution
+* Org chart printing and PDF support
+
+#### Stories & Tasks
+* DONE I want an org chart that explicitly shows all association types (direct, dotted)
+* DONE I want an org chart for this person, showing supervisors N levels up, and subordinates N levels down
+* DONE I want to select the levels up and down
+* DONE I want to an org chart exported as PDF
+* DONE Simplify graph navigation
+* DONE Print one page to letter, legal, A3 dimensions
+* DONE Clean up graph mode menu
+
+### feature/miscellaneous-changes
+* DONE Internet Explorer support (IE9 required for D3.js)
+* DONE Works on all browsers
+  * DONE Works on safari (omitting width/height effects svg render)
+  * DONE Works on firefox
+  * DONE Works on chrome
+  * DONE Works on IE 9+
+* DONE Add Person Floor, Work Location #
+* DONE Remove person band field
+* DONE Remove person hiring status
+
 # Release 1.0
 
 * DONE implement bulk updates to reporting_relationships
