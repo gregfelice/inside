@@ -42,17 +42,13 @@
 * DONE Add Person Floor, Work Location #
 * DONE Internet Explorer support (IE9 required for D3.js)
 
-## In Progress (Release 1.1)
-* None in progress, wrapping up release 1.1 for ship
+## In Progress (Release 1.2)
 
-### Wrap-Up Tasks
-* DONE Simplify graph navigation
-* DONE Print one page to letter, legal, A3 dimensions
-* DONE Clean up graph mode menu
-* DONE Remove band field
-* DONE Remove hiring status
+### feature/hiring-support
+* Shows hiring status
+* Shows who updated what, when
 
-## Upcoming (Release 1.2)
+## Upcoming (Release 1.3)
 
 ### feature/project-portfolio
 * Shows project data

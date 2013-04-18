@@ -23,6 +23,7 @@
     <td><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
   </tr>
   <tr><td><strong><%= model_class.human_attribute_name(:hr_status) %>:</strong></td><td><%= @person.hr_status %></td></tr>
+  <tr><td><strong><%= model_class.human_attribute_name(:hiring_status) %>:</strong></td><td><%= @person.hiring_status %></td></tr>
   <tr>
     <td><strong><%= model_class.human_attribute_name(:part_time) %>:</strong></td>
     <td><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>

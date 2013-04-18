@@ -6,6 +6,7 @@
 
     <%= f.input :temporary, :as => :radio_buttons %>
     <%= f.input :hr_status, collection: Person.hr_statuses %>
+    <%= f.input :hiring_status, collection: Person.hiring_statuses %>
     <%= f.input :part_time, :as => :radio_buttons %>
     <%= f.input :cost_center %>
     <%= f.input :business_unit %>
