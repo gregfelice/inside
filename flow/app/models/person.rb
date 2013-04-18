@@ -1,17 +1,91 @@
 class Person < ActiveRecord::Base
   include DirtyAssociations
 
+=begin
+
+DONE budget
+---
+Digital, Digital IITT, Digital PP2, S&T CES
+
+DONE seating
+---
+offsite
+hotel
+hotel w/home
+home
+
+NOT DONE comments
+
+DONE hiring
+---
+employment start date
+employment end date
+
+** NOT DONE / hire req-id
+
+DONE hiring-status
+-----
+requested
+approved not posted
+approved posted (requires reqid)
+hired (employement start date required)
+
+DONE group
+---
+Ecommerce & Customer Service
+Emerging Technologies
+Infrastructure Engineering
+Web & Mobile Engineering
+Business Intelligence
+Ad Ops
+Digital Paid Products
+CMS
+Ecommerce UI Engineering
+Project Management
+Platform Technologies
+Web Technologies
+Technology Management
+Quality Assurance
+New Products
+Planning
+Finance
+Business Development
+
+=end
+
+
   @person_types = ['employee', 'contractor']
   @hr_statuses = ['active', 'resigned']
-  @hiring_statuses = ['hire requested', 'hire approved', 'hired']
+  @hiring_statuses = ['requested', 'approved / not posted', 'approved / posted', 'hired']
+  @budgets = ['Digital', 'Digital IITT', 'Digital PP2', 'S&T CES']
+  @groups = [
+    'Ad Ops',
+    'Business Development',
+    'Business Intelligence',
+    'CMS',
+    'Digital Paid Products',
+    'Ecommerce & Customer Service',
+    'Ecommerce UI Engineering',
+    'Emerging Technologies',
+    'Finance',
+    'Infrastructure Engineering',
+    'New Products',
+    'Planning',
+    'Platform Technologies',
+    'Project Management',
+    'Quality Assurance',
+    'Technology Management',
+    'Web & Mobile Engineering',
+    'Web Technologies'
+  ]
 
-  # todo - start date, end date
+  @seatings = ['offsite', 'hotel', 'hotel w/home', 'home']
 
   class << self
-    attr_accessor :person_types, :hr_statuses, :hiring_statuses
+    attr_accessor :person_types, :hr_statuses, :hiring_statuses, :budgets, :groups, :seatings
   end
 
-  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :cost_center, :business_unit, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens, :location_floor, :location_code, :hiring_status
+  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :cost_center, :business_unit, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens, :location_floor, :location_code, :hiring_status, :seating, :employment_start_date, :employment_end_date, :budget, :group
 
   validates_presence_of :name, :title, :person_type, :hr_status, :hiring_status
 
@@ -19,8 +93,12 @@ class Person < ActiveRecord::Base
   validates :hr_status,     :inclusion => { :in => @hr_statuses,         :message => "%{value} is not a valid HR status" }
   validates :hiring_status, :inclusion => { :in => @hiring_statuses,     :message => "%{value} is not a valid hiring status" }
 
-  validates :part_time, :inclusion => { :in => [true, false] }
-  validates :temporary, :inclusion => { :in => [true, false] }
+  validates :budget,        :inclusion => { :in => @budgets,             :message => "%{value} is not a valid budget" }
+  validates :group,         :inclusion => { :in => @groups,              :message => "%{value} is not a valid group" }
+  validates :seating,       :inclusion => { :in => @seatings,            :message => "%{value} is not a valid seating" }
+
+  validates :part_time,     :inclusion => { :in => [true, false] }
+  validates :temporary,     :inclusion => { :in => [true, false] }
 
   before_validation :checks
 

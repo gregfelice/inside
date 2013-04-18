@@ -1,8 +1,14 @@
 <%= simple_form_for @person, :html => { :class => "form-horizontal" } do |f| %>
 
     <%= f.input :name %>
-    <%= f.input :title %>
     <%= f.input :person_type, collection: Person.person_types %>
+    <%= f.input :title %>
+
+    <%= f.input :group, collection: Person.groups %>
+    <%= f.input :budget, collection: Person.budgets %>
+
+    <%= f.input :employment_start_date %>
+    <%= f.input :employment_end_date %>
 
     <%= f.input :temporary, :as => :radio_buttons %>
     <%= f.input :hr_status, collection: Person.hr_statuses %>
@@ -11,6 +17,7 @@
     <%= f.input :cost_center %>
     <%= f.input :business_unit %>
 
+    <%= f.input :seating, collection: Person.seatings %>
     <%= f.input :location_floor %>
     <%= f.input :location_code %>
 

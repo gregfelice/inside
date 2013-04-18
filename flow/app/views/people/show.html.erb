@@ -1,45 +1,64 @@
 <%- model_class = Person -%>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %> | <%= @person.name %></h1> 
 </div>
 
+<p>
 <%= link_to "Org Chart", chart_org_context_path(:id => @person.id), :class => "btn btn-small btn-info", :method => :get %>
-<!--
-<#% = button_to "Org Tree", people_tree_path(:id => @person.id), :class => "btn btn-small btn-info" %>
--->
+</p>
+
 <table class="table">
-  <thead>
-    <tr>
-      <th style="width: 50%"></th>
-      <th style="width: 50%"></th>
-    </tr>
-  </thead> 
-  <tbody>
-  <tr><td><strong><%= model_class.human_attribute_name(:name) %>:</strong></td><td><%= @person.name %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:title) %>:</strong></td><td><%= @person.title %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:person_type) %>:</strong></td><td><%= @person.person_type %></td></tr>
-  <tr>
-    <td><strong><%= model_class.human_attribute_name(:temporary) %>:</strong></td>
-    <td><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
-  </tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:hr_status) %>:</strong></td><td><%= @person.hr_status %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:hiring_status) %>:</strong></td><td><%= @person.hiring_status %></td></tr>
-  <tr>
-    <td><strong><%= model_class.human_attribute_name(:part_time) %>:</strong></td>
-    <td><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></td>
-  </tr>
 
-  <tr><td><strong><%= model_class.human_attribute_name(:cost_center) %>:</strong></td><td><%= @person.cost_center %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:business_unit) %>:</strong></td><td><%= @person.business_unit %></td></tr>
+<tr><td>
+<dl class="dl-horizontal">
+  <dt><%= model_class.human_attribute_name(:name) %></dt><dd><%= @person.name %></dd>
+  <dt><%= model_class.human_attribute_name(:title) %></dt><dd><%= @person.title %></dd>
+  <dt><%= model_class.human_attribute_name(:group) %></dt><dd><%= @person.group %></dd>
+</dl>
+</td>
 
-  <tr><td><strong><%= model_class.human_attribute_name(:location_floor) %>:</strong></td><td><%= @person.location_floor %></td></tr>
-  <tr><td><strong><%= model_class.human_attribute_name(:location_code) %>:</strong></td><td><%= @person.location_code %></td></tr>
+<td>
+<dl class="dl-horizontal">
+  <dt><%= model_class.human_attribute_name(:person_type) %></dt><dd><%= @person.person_type %></dd>
+  <dt><%= model_class.human_attribute_name(:part_time) %></dt><dd><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
+  <dt><%= model_class.human_attribute_name(:temporary) %></dt><dd><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
 
-  <tbody>
+<tr><td>
+<dl class="dl-horizontal">
+  <dt><%= model_class.human_attribute_name(:budget) %></dt><dd><%= @person.budget %></dd>
+  <dt><%= model_class.human_attribute_name(:hr_status) %></dt><dd><%= @person.hr_status %></dd>
+  <dt><%= model_class.human_attribute_name(:hiring_status) %></dt><dd><%= @person.hiring_status %></dd>
+</dl>
+</td>
+
+<td>
+<dl class="dl-horizontal">
+  <dt><%= model_class.human_attribute_name(:cost_center) %></dt><dd><%= @person.cost_center %></dd>
+  <dt><%= model_class.human_attribute_name(:business_unit) %></dt><dd><%= @person.business_unit %></dd>
+</dl>
+</td></tr>
+
+<tr><td colspan="2">
+<dl class="dl-horizontal">
+  <dt><%= model_class.human_attribute_name(:seating) %></dt><dd><%= @person.seating %></dd>
+  <dt><%= model_class.human_attribute_name(:location_floor) %></dt><dd><%= @person.location_floor %></dd>
+  <dt><%= model_class.human_attribute_name(:location_code) %></dt><dd><%= @person.location_code %></dd>
+</dl>
+</td></tr>
+
 </table>
 
-
-
+<!--
+<br>
+<br>
+<br>
+<p>
+  <%= model_class.human_attribute_name(:employment_start_date) %>:<%= @person.employment_start_date %>
+  <%= model_class.human_attribute_name(:employment_end_date) %>:<%= @person.employment_end_date %>
+</p>
+-->
+<br>
 
 <% if @person.source_associations.size > 0 %>
 <strong><%= @person.name %> reports to:</strong>
@@ -51,7 +70,7 @@
     </tr>
   </thead> 
   <% @person.source_associations.each do |sr| %>
-    <tr><td><%= link_to sr.source.name, sr.source %></td><td class="muted"><em><%= sr.source.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <tr><td><%= link_to sr.source.name, sr.source %></td><td class="muted"><em><%= sr.source.title %> (<%= sr.association_type.humanize %>)</td></tr>
   <% end %>
 </table>
 
@@ -71,7 +90,7 @@
     </tr>
   </thead> 
   <% @person.sink_associations.each do |sr| %>
-    <tr><td><%= link_to sr.sink.name, sr.sink %></td><td class="muted"><em><%= sr.sink.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <tr><td><%= link_to sr.sink.name, sr.sink %></td><td class="muted"><em><%= sr.sink.title %> (<%= sr.association_type.humanize %>)</td></tr>
   <% end %>
 </table>
 
@@ -79,7 +98,6 @@
 <strong><%= @person.name %> does not have any reports.</strong>
 <br><br><br>
 <% end %>
-
 
 <div class="form-actions">
   <%= link_to 'Back', people_path, :class => 'btn'  %>
