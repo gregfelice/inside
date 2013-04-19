@@ -84,3 +84,17 @@
 
 
 </div>
+
+<div class="well">
+<h3>Live Updates</h3>
+<table class="table table-condensed">
+  <tr>
+    <th>When</th><th>Who</th><th>Action</th>
+  </tr>
+  <% @activities.each do |a| %>
+  <tr>
+    <td><%= distance_of_time_in_words(Time.now, a.created_at) %> ago...</td><td><%= a.owner %></td><td><%= a.summary %></td>
+  </tr>
+  <% end %>
+</table>
+</div>

@@ -3,6 +3,7 @@ require 'release_calendar_rest_client'
 class HomeController < ApplicationController
 
   def index
+    @activities = Activity.order('created_at DESC').limit(20)
   end
 
   def release_calendar
