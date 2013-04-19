@@ -7,8 +7,8 @@
     <%= f.input :group, collection: Person.groups %>
     <%= f.input :budget, collection: Person.budgets %>
 
-    <%= f.input :employment_start_date %>
-    <%= f.input :employment_end_date %>
+    <%= f.input :employment_start_date, :include_blank => true %>
+    <%= f.input :employment_end_date, :include_blank => true %>
 
     <%= f.input :temporary, :as => :radio_buttons %>
     <%= f.input :hr_status, collection: Person.hr_statuses %>

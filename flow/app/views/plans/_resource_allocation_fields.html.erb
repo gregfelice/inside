@@ -1,11 +1,16 @@
-<br/><br/><br/><br/>
-<fieldset>
-  <%= f.input :resource_name, 
-      input_html: { class: 'resource_allocation_resource_name', data: {autocomplete_source: people_path} }
-      %>
-  <br/>
-  <%= f.input :quantity, collection: [1, 0.5, 0.2] %>
-  <%= f.input :comment %>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "Remove", "#", class: "remove_fields" %>
-</fieldset>
+<tr>
+  <td>
+    <%= f.input :resource_name, 
+	input_html: { class: 'resource_allocation_resource_name', 
+	data: {autocomplete_source: people_path} }
+	%>
+  </td>
+  <td>
+    <%= f.input :quantity, collection: [1, 0.5, 0.2] %>
+  </td>
+  <td>
+    <%= f.input :comment %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "Remove", "#", class: "remove_fields" %>
+  </td>
+</tr>

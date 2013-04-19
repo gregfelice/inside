@@ -15,7 +15,7 @@ class PeopleController < InheritedResources::Base
       ppl = @search.result
       @ppl_count = ppl.size
       if request.format == 'text/html'
-        @people = ppl.paginate(:per_page => 25, :page => params[:page])
+        @people = ppl.paginate(:per_page => 15, :page => params[:page])
       else
         @people = ppl
       end

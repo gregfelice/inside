@@ -1,9 +1,61 @@
+<style type="text/css">
+  .status {
+    color: red;
+    font-size: x-small; 
+    font-weight: normal; 
+    vertical-align: text-top;
+  }
+  .fineprint {
+    color: midnightblue;
+    font-size: x-small; 
+    font-weight: normal; 
+    vertical-align: text-top;
+  }
+</style>
 
-# Times People / Inside Edition: Roadmap
+<span style="font-size: xx-large; color: orange">Times People / Inside Edition</span>
 
-## Shipped
+# Shipped
 
-### Release 1.0
+## Release 1.3 <span class='fineprint'>(4.18.2013)</span>
+
+### feature/hiring-support
+* Support for hiring status, budget, seating type, group fields
+* Can filter on any of these, export as excel
+* Improved show person page, better handling of growing # of data points
+
+## Release 1.2 <span class="fineprint">(4.18.2013)</span>
+
+### feature/audit-trail
+* As an admin, I can see who has performed what actions in the system
+* Visible, filterable via SQL client
+
+## Release 1.1 <span class="fineprint">(4.2.2013)</span>
+
+### feature/people-project-structures
+* Lays foundation for creation of staffing book & portfolio views 
+* Provides 'who is working on what' data structures
+* Disable employee/reporting relationship
+
+### feature/improved-org-chart
+* Critical for supporting multiple supervisor & other complex relationships
+* Important for interface evolution
+* Org chart printing and PDF support
+* I want an org chart that explicitly shows all association types (direct, dotted)
+* I want an org chart for this person, showing supervisors N levels up, and subordinates N levels down
+* I want to select the levels up and down
+* I want to an org chart exported as PDF
+* Works on all browsers
+  * Works on safari (omitting width/height effects svg render)
+  * Works on firefox
+  * Works on chrome
+  * Works on IE 9+
+
+### feature/miscellaneous
+* Add Person Floor, Work Location #
+* Internet Explorer support (IE9 required for D3.js)
+
+## Release 1.0  <span class="fineprint">(3.13.2013)</span>
 
 * Baseline application to replace EmployeeWare
 
@@ -15,80 +67,101 @@
 * Faster query for tree, elimination of worker threads and cache (from 25 seconds to .01 second!)
 * Graph cycle detection (alpha state, important for future work)
 
-## Done, Waiting to be Released (Release 1.1)
+# Sorted Backlog
 
-### feature/people-project-structures
-* Lays foundation for creation of staffing book & portfolio views. Provides 'who is working on what' view.
-* New people & project structures. People structures need to be put in place and stabilized before finishing work on cycle detection branch.
-* Disable employee/reporting relationship
+### bug/employment date fields don't default to null
+* Need to allow for null employment start and end dates
 
-### feature/improved-org-chart
-* Critical for supporting multiple supervisor & other complex relationships
-* Important for interface evolution
-* Org chart printing and PDF support
+### feature/practical-reports
+* See https://www.ruby-toolbox.com/categories/reporting
+* Update xls, csv export to include new fields
+* Quick reports for PMO, finance, management
+  * Show me people with no supervisors
+  * Show me people with more than one supervisor
+  * Show me people grouped by hiring status
+  * Show me contractors ordered by employment end date
+  * Show me employees ordered by employment end date (people who have announced their resignation)
+  * Show me people by group, with counts
 
-#### Stories & Tasks
-* DONE I want an org chart that explicitly shows all association types (direct, dotted)
-* DONE I want an org chart for this person, showing supervisors N levels up, and subordinates N levels down
-* DONE I want to select the levels up and down
-* DONE I want to an org chart exported as PDF
-* DONE Works on all browsers
-  * DONE Works on safari (omitting width/height effects svg render)
-  * DONE Works on firefox
-  * DONE Works on chrome
-  * DONE Works on IE 9+
+### feature/basic-people-roles
+* Basic select field to choose primary job function
+* Supports basic staffing reports
 
-### feature/miscellaneous
-* DONE Add Person Floor, Work Location #
-* DONE Internet Explorer support (IE9 required for D3.js)
+### feature/role-based-access-control
+* Security roles
+* Role based access control to fields, functions
 
-## In Progress (Release 1.2)
+### feature/facilities-support-basic
+* Load spreadsheet based seating data 
+* Drop down lists for floor field
+* Phone # fields
+* Onboard facilities onto TPIE
 
-### feature/hiring-support
-* Shows hiring status
-* Shows who updated what, when
+### feature/facilities-support-plus
+* I want to assign a seat from a autocomplete search
+* I want a report on home seat availability
+* I want a report on hoteling availability
 
-## Upcoming (Release 1.3)
+### feature/orgchart-niceties
+* Color coded org chart based on attributes
+  * Color by hiring status
+* Visualize org chart top-to-bottom (as opposed to left-to-right)
+
+### feature/ldap-integration
+* Authenticate using LDAP credentials
 
 ### feature/project-portfolio
-* Shows project data
-* Shows who is working on what
+* I want to see plans within a portfolio
+* I want to see who is working on what
+* I want basic, non-sexy forms for data entry
+* I want to indicate % utilization for this person on this plan
+* I want to allocate resources at the  plan level
 
-### feature/audit-trail
-* As a person, I can see who has performed what actions in the system
+### feature/budget-to-resource-allocation
+* Affix a specific budget to a resource allocation
 
 ### feature/cycle-detection
 * As a person, I cannot enter a cyclic relationship
-
-## Backlog
 
 ### feature/facebook-replacement
 * See: https://github.com/centresource/angularjs_rails_demo
 * Replacement of existing facebook/rolodex app
 * Where does this person sit?
 
+### feature/director-access
+* As a director, I can change my staff's info
+
+### feature/profle-self-service
 * As a person, I can change some details of my profile
 * As a person, I can upload photos for my profile
 * As a person, I can login with my LDAP credentials, so I can update my info
 * As a person, I can use search and show tools without logging in
 
-Out of Scope
-* As a director, I can change some details of my reports
+### feature/bulk-updates
+* I want to change a specific field, or person association for a bunch of people
 
 ### feature/financial-views
 * Integration to budget and financials data
-* Access control lists
-
-### feature/angular-spike
-* For taking the data entry interface to the next level
 
 ### feature/menu-redesign
 * More scalabile menu architecture for easier adding of reports, features
 
-## To Be Sorted
-* Pagination style fix (Bootstrap gem upgrade)
-* Org Chart Related
-  * I want to select what association types to show
-  * I want to print an org chart for a person on one page
-  * I want to select what node & edge label details to show
-* Clean up show page for people - getting crowded!!
+### bug/pagination css
+* requires Bootstrap gem upgrade, UI tweaks
+
+### capability/systems-catalog
+* Records of all system components
+* I want to see the owner of a system
+* I want to see the lifecycle of a system (draft, in production, sunset, retired)
+* I want to see the status of a system
+* I want to see the service interface for a system
+* I want to see a graph of system interdependencies
+* I want to see all tickets for a system
+* I want to see tests associated with a system, and their pass/fail status
+* I want to see system stats (load, IO)
+
+### capability/value-chain-visualization
+* Express the core NYT value chains visually
+* Show collaborators
+* Show clusters of communication
+* Show time through the loop

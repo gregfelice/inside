@@ -49,6 +49,10 @@
       <th><%= sort_link @search, :id, "Id" %></th>
       <th><%= sort_link @search, :name, "Name" %></th>
       <th><%= sort_link @search, :title, "Title" %></th>
+      <th><%= sort_link @search, :group, "Group" %></th>
+      <th><%= sort_link @search, :hiring_status, "Hiring Status" %></th>
+      <th><%= sort_link @search, :hr_status, "HR Status" %></th>
+      <th><%= sort_link @search, :hr_status, "Budget" %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -58,6 +62,13 @@
         <td><%= link_to person.id, person_path(person) %></td>
         <td><%= person.name %></td>
         <td><%= person.title %></td>
+
+        <td><%= person.group %></td>
+        <td><%= person.hiring_status %></td>
+        <td><%= person.hr_status %></td>
+        <td><%= person.budget %></td>
+
+
         <td>
           <%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', 

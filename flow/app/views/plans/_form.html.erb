@@ -1,15 +1,28 @@
 <%= simple_form_for(@plan) do |f| %>
+
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description, :input_html => { :rows => 3 } %>
-    <%= f.input :portfolio_category %>
+  <table class="table" border="1">
     
-    <%= f.fields_for :milestones do |builder| %>
-    <%= render 'milestone_fields', f: builder %>
-    <% end %>
-  </div>
+    <tr>
+      <td>
+      <%= f.input :name %>
+      <%= f.input :description, :input_html => { :rows => 3 } %>
+      <%= f.input :portfolio_category %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+	<%= f.fields_for :milestones do |builder| %>
+	<%= render 'milestone_fields', f: builder %>
+      </td>
+    </tr>
+
+  </table>
+
+  <% end %>
+
 
   <div class="form-actions">
     <%= f.button :submit %>
