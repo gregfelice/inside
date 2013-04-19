@@ -1,0 +1,67 @@
+
+<div class="accordion" id="accordion2">
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+	People without a Budget
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+
+	<table class="table table-striped table-condensed">
+	  <% @people_without_a_budget.each do |o| %>
+	  <tr><td>
+	      <%= link_to o[1], person_path(o[0]) %>
+	  </td></tr>
+	  <% end %>
+	</table>
+	
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+	People with No Supervisor
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+
+	<table class="table table-striped table-condensed">
+	  <% @people_with_no_supervisors.each do |o| %>
+	  <tr><td>
+	      <%= link_to o[1], person_path(o[0]) %>
+	  </td></tr>
+	  <% end %>
+	</table>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+	People with More Than One Supervisor
+      </a>
+    </div>
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">
+
+	<table class="table table-striped table-condensed">
+	  <% @people_with_more_than_one_supervisor.each do |o| %>
+	  <tr><td>
+	      <%= link_to o[1], person_path(o[0]) %>
+	  </td></tr>
+	  <% end %>
+	</table>
+
+      </div>
+    </div>
+  </div>
+
+</div>

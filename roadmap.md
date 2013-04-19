@@ -17,20 +17,27 @@
 
 # Shipped
 
-## Release 1.3 <span class='fineprint'>(4.18.2013)</span>
+## 4.19.2013
+### feature/activity-ticker
+* Front page ticker of who updated what, when
 
+### bug/employment date fields don't default to null
+* Need to allow for null employment start and end dates
+
+### feature/required-fields
+* Temporary disable required fields validation for group, budget, hiring status
+
+## 4.18.2013
 ### feature/hiring-support
 * Support for hiring status, budget, seating type, group fields
 * Can filter on any of these, export as excel
 * Improved show person page, better handling of growing # of data points
 
-## Release 1.2 <span class="fineprint">(4.18.2013)</span>
-
 ### feature/audit-trail
 * As an admin, I can see who has performed what actions in the system
 * Visible, filterable via SQL client
 
-## Release 1.1 <span class="fineprint">(4.2.2013)</span>
+## 4.2.2013
 
 ### feature/people-project-structures
 * Lays foundation for creation of staffing book & portfolio views 
@@ -55,7 +62,7 @@
 * Add Person Floor, Work Location #
 * Internet Explorer support (IE9 required for D3.js)
 
-## Release 1.0  <span class="fineprint">(3.13.2013)</span>
+## 3.13.2013
 
 * Baseline application to replace EmployeeWare
 
@@ -69,8 +76,10 @@
 
 # Sorted Backlog
 
-### bug/employment date fields don't default to null
-* Need to allow for null employment start and end dates
+### feature/hiring status add "posted - not approved"
+
+### bug/employment date selects don't go back far enough
+* simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
 
 ### feature/practical-reports
 * See https://www.ruby-toolbox.com/categories/reporting
@@ -165,3 +174,20 @@
 * Show collaborators
 * Show clusters of communication
 * Show time through the loop
+
+
+# Data Ownership
+
+### sue kim
+* hiring status
+* budget 
+
+### marko
+* group
+
+### karen
+* location
+
+### role / type
+* rajiv
+* brian
