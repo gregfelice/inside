@@ -18,6 +18,14 @@
 # Shipped
 
 ## 4.19.2013
+
+### feature/practical-reports
+* Quick reports for PMO, finance, management
+  * Show me people with no supervisors
+  * Show me people with more than one supervisor
+  * Show me people with no budget
+  * More reports to follow
+
 ### feature/activity-ticker
 * Front page ticker of who updated what, when
 
@@ -80,17 +88,6 @@
 
 ### bug/employment date selects don't go back far enough
 * simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
-
-### feature/practical-reports
-* See https://www.ruby-toolbox.com/categories/reporting
-* Update xls, csv export to include new fields
-* Quick reports for PMO, finance, management
-  * Show me people with no supervisors
-  * Show me people with more than one supervisor
-  * Show me people grouped by hiring status
-  * Show me contractors ordered by employment end date
-  * Show me employees ordered by employment end date (people who have announced their resignation)
-  * Show me people by group, with counts
 
 ### feature/basic-people-roles
 * Basic select field to choose primary job function
@@ -175,6 +172,9 @@
 * Show clusters of communication
 * Show time through the loop
 
+### Unsorted
+* See https://www.ruby-toolbox.com/categories/reporting
+* Update xls, csv export to include new fields
 
 # Data Ownership
 
