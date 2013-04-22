@@ -17,6 +17,9 @@
 
 # Shipped
 
+## 4.22.2013
+* TBD
+
 ## 4.19.2013
 
 ### feature/practical-reports
@@ -84,24 +87,42 @@
 
 # Sorted Backlog
 
-### feature/hiring status add "posted - not approved"
+### feature/hiring-status 
+* Add "posted - not approved" as option
 
 ### bug/employment date selects don't go back far enough
-* simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
+* Simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
 
 ### feature/basic-people-roles
-* Basic select field to choose primary job function
+* Basic select field to choose primary job function (developer, infra, pm, etc)
 * Supports basic staffing reports
+  * Software Engineers
+  * Systems Engineers
+  * Quality Assurance
+  * Project Management
+* Replication of Rajiv's staff mix reports
+  * Engineers
+  * People management
+  * Group by budget
+  * Group by group
+  * Show as chart & table
 
 ### feature/role-based-access-control
 * Security roles
 * Role based access control to fields, functions
+* Supports data entry ownership for finance, PMO, location/facilities
 
 ### feature/facilities-support-basic
 * Load spreadsheet based seating data 
 * Drop down lists for floor field
 * Phone # fields
 * Onboard facilities onto TPIE
+* Formalize facilities data entry workflow
+
+### feature/ldap-integration
+* Authenticate using LDAP credentials
+
+-------------------------------------------------------------------
 
 ### feature/facilities-support-plus
 * I want to assign a seat from a autocomplete search
@@ -112,9 +133,6 @@
 * Color coded org chart based on attributes
   * Color by hiring status
 * Visualize org chart top-to-bottom (as opposed to left-to-right)
-
-### feature/ldap-integration
-* Authenticate using LDAP credentials
 
 ### feature/project-portfolio
 * I want to see plans within a portfolio
@@ -175,5 +193,8 @@
 ### Unsorted
 * See https://www.ruby-toolbox.com/categories/reporting
 * Update xls, csv export to include new fields
+<<<<<<< HEAD
 * Gravatar integration
 * Linkedin integration
+=======
+>>>>>>> backbone-fun
