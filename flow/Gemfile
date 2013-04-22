@@ -79,3 +79,5 @@ gem 'composite_primary_keys'		# composite foreign key support for rails. sigh.
 
 gem 'ruby-graphviz'
 gem 'browser'                           # simplified user agent detection
+
+gem 'cancan'				# access control

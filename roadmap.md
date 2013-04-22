@@ -175,19 +175,5 @@
 ### Unsorted
 * See https://www.ruby-toolbox.com/categories/reporting
 * Update xls, csv export to include new fields
-
-# Data Ownership
-
-### sue kim
-* hiring status
-* budget 
-
-### marko
-* group
-
-### karen
-* location
-
-### role / type
-* rajiv
-* brian
+* Gravatar integration
+* Linkedin integration
