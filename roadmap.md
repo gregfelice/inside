@@ -18,7 +18,26 @@
 # Shipped
 
 ## 4.22.2013
-* TBD
+
+### bug/employment date selects don't go back far enough
+* Simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
+
+### feature/hiring-status 
+* Add "posted - not approved" as option
+
+### feature/basic-people-roles
+* Basic select field to choose primary job function (developer, infra, pm, etc)
+* Supports basic staffing reports
+  * Software Engineers
+  * Systems Engineers
+  * Quality Assurance
+  * Project Management
+* Allows for replication of Rajiv's staff mix reports
+  * Engineers
+  * People management
+  * Group by budget
+  * Group by group
+  * Show as chart & table
 
 ## 4.19.2013
 
@@ -87,25 +106,8 @@
 
 # Sorted Backlog
 
-### feature/hiring-status 
-* Add "posted - not approved" as option
-
-### bug/employment date selects don't go back far enough
-* Simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
-
-### feature/basic-people-roles
-* Basic select field to choose primary job function (developer, infra, pm, etc)
-* Supports basic staffing reports
-  * Software Engineers
-  * Systems Engineers
-  * Quality Assurance
-  * Project Management
-* Replication of Rajiv's staff mix reports
-  * Engineers
-  * People management
-  * Group by budget
-  * Group by group
-  * Show as chart & table
+### feature/miscellaneous
+* Hide resigned people
 
 ### feature/role-based-access-control
 * Security roles

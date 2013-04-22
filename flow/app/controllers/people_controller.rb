@@ -36,7 +36,7 @@ class PeopleController < InheritedResources::Base
     @person = Person.find(params[:id])
 
     respond_to do |format|
-      post_activity "viewed person #{@person.name}"
+      post_activity nil, "viewed person #{@person.name}"
       format.html # show.html.erb
       format.json { render json: @person }
     end
@@ -45,10 +45,11 @@ class PeopleController < InheritedResources::Base
 
   ###################### system writes ############################
 
-  def post_activity(summary)
+  def post_activity(object, summary)
     activity = Activity.new
     activity.owner = User.find(current_user).email
-    activity.summary = summary
+    #activity.summary = "#{summary}: #{object.changed if !object.nil?}" TODO - get this working
+    activity.summary = "#{summary}"
     activity.save!
   end
 
@@ -61,7 +62,7 @@ class PeopleController < InheritedResources::Base
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render json: @person, status: :created, location: @person }
-        post_activity "created person #{@person.name}"
+        post_activity @person, "created person #{@person.name}"
       else
         format.html { render action: "new" }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -78,7 +79,7 @@ class PeopleController < InheritedResources::Base
       if @person.update_attributes(params[:person])
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
-        post_activity "updated person #{@person.name}"
+        post_activity @person, "updated person #{@person.name}"
       else
         format.html { render action: "edit" }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -96,7 +97,7 @@ class PeopleController < InheritedResources::Base
     respond_to do |format|
       format.html { redirect_to people_url }
       format.json { head :no_content }
-      post_activity "deleted person #{person_name}"
+      post_activity @person, "deleted person #{person_name}"
     end
   end
 

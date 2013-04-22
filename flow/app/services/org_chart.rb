@@ -39,7 +39,7 @@ class OrgChart
     g[:fontsize]      = "17"
     g[:labeljust]     = "l"
     g[:labelloc]      = "t"
-
+    g[:bgcolor]       ="transparent"
     g.node[:color]    = "#ddaa66"
     g.node[:style]    = "filled"
     g.node[:style]    = "rounded, filled"

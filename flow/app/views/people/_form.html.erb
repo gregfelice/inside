@@ -3,11 +3,13 @@
     <%= f.input :name %>
     <%= f.input :person_type, collection: Person.person_types %>
     <%= f.input :title %>
+    <%= f.input :person_role, collection: Person.person_roles %>
+    <%= f.input :person_focus, collection: Person.person_foci %>
 
     <%= f.input :group, collection: Person.groups %>
     <%= f.input :budget, collection: Person.budgets %>
 
-    <%= f.input :employment_start_date, :include_blank => true %>
+    <%= f.input :employment_start_date, start_year: Date.today.year - 50, :include_blank => true %>
     <%= f.input :employment_end_date, :include_blank => true %>
 
     <%= f.input :temporary, :as => :radio_buttons %>
@@ -18,8 +20,11 @@
     <%= f.input :business_unit %>
 
     <%= f.input :seating, collection: Person.seatings %>
-    <%= f.input :location_floor %>
+    <%= f.input :location_floor, collection: Person.location_floors %>
     <%= f.input :location_code %>
+
+    <%= f.input :office_phone %>
+    <%= f.input :cell_phone %>
 
     <%= f.input :direct_supervisor_tokens, :label => "Direct Supervisors", :input_html => { 'data-pre' => @person.direct_supervisors.map(&:attributes).to_json } %>
     <%= f.input :dotted_supervisor_tokens, :label => "Dotted Supervisors", :input_html => { 'data-pre' => @person.dotted_supervisors.map(&:attributes).to_json } %>

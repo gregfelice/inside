@@ -14,36 +14,44 @@
 <dl class="dl-horizontal">
   <dt><%= model_class.human_attribute_name(:name) %></dt><dd><%= @person.name %></dd>
   <dt><%= model_class.human_attribute_name(:title) %></dt><dd><%= @person.title %></dd>
-  <dt><%= model_class.human_attribute_name(:group) %></dt><dd><%= @person.group %></dd>
+  <dt><%= model_class.human_attribute_name(:group) %></dt><dd><%= b @person.group %></dd>
 </dl>
 </td>
 
 <td>
 <dl class="dl-horizontal">
-  <dt><%= model_class.human_attribute_name(:person_type) %></dt><dd><%= @person.person_type %></dd>
+  <dt><%= model_class.human_attribute_name(:person_type) %></dt><dd><%= b @person.person_type %></dd>
+  <dt><%= model_class.human_attribute_name(:person_role) %></dt><dd><%= b @person.person_role %></dd>
+  <dt><%= model_class.human_attribute_name(:person_focus) %></dt><dd><%= b @person.person_focus %></dd>
   <dt><%= model_class.human_attribute_name(:part_time) %></dt><dd><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
   <dt><%= model_class.human_attribute_name(:temporary) %></dt><dd><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
 
 <tr><td>
 <dl class="dl-horizontal">
-  <dt><%= model_class.human_attribute_name(:budget) %></dt><dd><%= @person.budget %></dd>
-  <dt><%= model_class.human_attribute_name(:hr_status) %></dt><dd><%= @person.hr_status %></dd>
-  <dt><%= model_class.human_attribute_name(:hiring_status) %></dt><dd><%= @person.hiring_status %></dd>
+
+  <dt><%= model_class.human_attribute_name(:budget) %></dt><dd><%= b @person.budget %></dd>
+
+  <dt><%= model_class.human_attribute_name(:hr_status) %></dt><dd><%= b @person.hr_status %></dd>
+
+  <dt><%= model_class.human_attribute_name(:hiring_status) %></dt><dd><%= b @person.hiring_status %></dd>
+
 </dl>
 </td>
 
 <td>
 <dl class="dl-horizontal">
-  <dt><%= model_class.human_attribute_name(:cost_center) %></dt><dd><%= @person.cost_center %></dd>
-  <dt><%= model_class.human_attribute_name(:business_unit) %></dt><dd><%= @person.business_unit %></dd>
+  <dt><%= model_class.human_attribute_name(:cost_center) %></dt><dd><%= b @person.cost_center %></dd>
+  <dt><%= model_class.human_attribute_name(:business_unit) %></dt><dd><%= b @person.business_unit %></dd>
 </dl>
 </td></tr>
 
 <tr><td colspan="2">
 <dl class="dl-horizontal">
-  <dt><%= model_class.human_attribute_name(:seating) %></dt><dd><%= @person.seating %></dd>
-  <dt><%= model_class.human_attribute_name(:location_floor) %></dt><dd><%= @person.location_floor %></dd>
-  <dt><%= model_class.human_attribute_name(:location_code) %></dt><dd><%= @person.location_code %></dd>
+  <dt><%= model_class.human_attribute_name(:seating) %></dt><dd><%= b @person.seating %></dd>
+  <dt><%= model_class.human_attribute_name(:location_floor) %></dt><dd><%= b @person.location_floor %></dd>
+  <dt><%= model_class.human_attribute_name(:location_code) %></dt><dd><%= b @person.location_code %></dd>
+  <dt><%= model_class.human_attribute_name(:office_phone) %></dt><dd><%= b @person.office_phone %></dd>
+  <dt><%= model_class.human_attribute_name(:cell_phone) %></dt><dd><%= b @person.cell_phone %></dd>
 </dl>
 </td></tr>
 

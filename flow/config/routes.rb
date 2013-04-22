@@ -21,7 +21,9 @@ Flow::Application.routes.draw do
 
   resources :person_associations
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users,  :controllers => { :registrations => "users/registrations" }
+  resources :users
 
   resources :widgets do
     resources :parts
