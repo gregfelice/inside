@@ -1,5 +1,11 @@
 class ReportsController < ApplicationController
 
+  def report_data_completeness
+    @data_completeness = DataCompleteness.instance.get_data_completeness
+
+    logger.info @data_completeness
+  end
+
   def report_data_entry
 
     # people with no supervisors

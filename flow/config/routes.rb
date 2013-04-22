@@ -1,8 +1,7 @@
 Flow::Application.routes.draw do
 
   match "/report_data_entry"                     => "reports#report_data_entry"
-
-
+  match "/report_data_completeness"              => "reports#report_data_completeness"
   get "chart/org_context"
   get "chart/org_context_print"
 

@@ -1,0 +1,9 @@
+
+<h1>% Completeness of People Data</h1>
+<table class="table table-striped">
+  <% @data_completeness.each do |o| %>
+  <tr>
+    <td><%= o[0] %></td><td><span style="color: <%= cc o[1] %>;"><%= o[1] %>%</span></td>
+  </tr>
+  <% end %>
+</table>

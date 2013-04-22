@@ -23,7 +23,7 @@
 * Simpleform: start_year: Date.today.year - 90, / https://github.com/plataformatec/simple_form
 
 ### feature/hiring-status 
-* Add "posted - not approved" as option
+* Add "unbudgeted / posted" as option
 
 ### feature/basic-people-roles
 * Basic select field to choose primary job function (developer, infra, pm, etc)
@@ -38,6 +38,10 @@
   * Group by budget
   * Group by group
   * Show as chart & table
+
+### feature/facilities-support-basic
+* Drop down lists for floor field
+* Phone # fields
 
 ## 4.19.2013
 
