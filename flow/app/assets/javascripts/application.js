@@ -21,4 +21,9 @@
 //= require dataDays
 //= require dataDaysEnh
 //= require prettify
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/flow
 //= require_tree .
