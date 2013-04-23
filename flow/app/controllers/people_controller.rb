@@ -6,7 +6,13 @@ class PeopleController < InheritedResources::Base
 
   def index
     if params[:jqst] # being called from jquery token input plugin (expecting json)
-      @people = Person.where("name like ?", "%#{params[:jqst]}%")
+      ppl = Person.where("name like ?", "%#{params[:jqst]}%")
+      ppl.each {|p|
+        if p.hr_status == 'resigned'
+          p.name = p.name + " (Resigned)"
+        end
+      }
+      @people = ppl
     else
       @search_params = params[:q]
       logger.info "people#index: search params: -- #{params[:q]} --"

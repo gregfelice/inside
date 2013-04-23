@@ -23,9 +23,6 @@
   <dt><%= model_class.human_attribute_name(:person_type) %></dt><dd><%= b @person.person_type %></dd>
   <dt><%= model_class.human_attribute_name(:person_role) %></dt><dd><%= b @person.person_role %></dd>
   <dt><%= model_class.human_attribute_name(:person_focus) %></dt><dd><%= b @person.person_focus %></dd>
-  <dt><%= model_class.human_attribute_name(:part_time) %></dt><dd><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
-  <dt><%= model_class.human_attribute_name(:temporary) %></dt><dd><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
-
 <tr><td>
 <dl class="dl-horizontal">
 
@@ -53,6 +50,13 @@
   <dt><%= model_class.human_attribute_name(:office_phone) %></dt><dd><%= b @person.office_phone %></dd>
   <dt><%= model_class.human_attribute_name(:cell_phone) %></dt><dd><%= b @person.cell_phone %></dd>
 </dl>
+</td></tr>
+
+<tr><td colspan="2">
+<dl class="dl-horizontal">
+  <dt><%= model_class.human_attribute_name(:peoplesoft_title) %></dt><dd><%= b @person.peoplesoft_title %></dd>
+  <dt><%= model_class.human_attribute_name(:part_time) %></dt><dd><% if @person.part_time %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
+  <dt><%= model_class.human_attribute_name(:temporary) %></dt><dd><% if @person.temporary %> <i class="icon-ok"></i> <% else %> <i class="icon-minus"></i> <% end %></dd>
 </td></tr>
 
 </table>
@@ -112,4 +116,3 @@
   <%= link_to 'Edit', edit_person_path(@person), :class => 'btn' %>
   <%= link_to 'Destroy', person_path(@person), :method => 'delete', :data => { :confirm => 'Confirm', :default => 'Are you sure?' }, :class => 'btn btn-danger' %>
 </div>
-

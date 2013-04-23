@@ -4,7 +4,7 @@ module ReportsHelper
     if value >= 90
       "green"
     elsif value < 90 && value >= 50
-      "yellow"
+      "orange"
     elsif value < 50
       "red"
     end

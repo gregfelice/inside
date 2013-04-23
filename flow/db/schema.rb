@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422152142) do
+ActiveRecord::Schema.define(:version => 20130422203107) do
 
   create_table "activities", :force => true do |t|
     t.string   "summary"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20130422152142) do
     t.string   "cell_phone"
     t.string   "person_role"
     t.string   "person_focus"
+    t.string   "peoplesoft_title"
   end
 
   create_table "person_associations", :force => true do |t|

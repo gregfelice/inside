@@ -10,14 +10,46 @@
         <Cell><Data ss:Type="String">ID</Data></Cell>
         <Cell><Data ss:Type="String">Name</Data></Cell>
         <Cell><Data ss:Type="String">Job Title</Data></Cell>
+        <Cell><Data ss:Type="String">Group</Data></Cell>
         <Cell><Data ss:Type="String">Person Type</Data></Cell>
+        <Cell><Data ss:Type="String">Person Role</Data></Cell>
+        <Cell><Data ss:Type="String">Person Focus</Data></Cell>
+        <Cell><Data ss:Type="String">Budget</Data></Cell>
+        <Cell><Data ss:Type="String">HR Status</Data></Cell>
+        <Cell><Data ss:Type="String">Hiring Status</Data></Cell>
+        <Cell><Data ss:Type="String">Cost Center</Data></Cell>
+        <Cell><Data ss:Type="String">Business Unit</Data></Cell>
+        <Cell><Data ss:Type="String">Seating</Data></Cell>
+        <Cell><Data ss:Type="String">Location Floor</Data></Cell>
+        <Cell><Data ss:Type="String">Location Code</Data></Cell>
+        <Cell><Data ss:Type="String">Office Phone</Data></Cell>
+        <Cell><Data ss:Type="String">Cell Phone</Data></Cell>
+        <Cell><Data ss:Type="String">Peoplesoft Title</Data></Cell>
+        <Cell><Data ss:Type="String">Part Time</Data></Cell>
+        <Cell><Data ss:Type="String">Temporary</Data></Cell>
       </Row>
     <% @people.each do |person| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= person.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= person.name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= person.title %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.group %></Data></Cell>
         <Cell><Data ss:Type="String"><%= person.person_type %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.person_role %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.person_focus %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.budget %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.hr_status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.hiring_status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.cost_center %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.business_unit %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.seating %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.location_floor %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.location_code %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.office_phone %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.cell_phone %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.peoplesoft_title %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.part_time %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= person.temporary %></Data></Cell>
       </Row>
     <% end %>
     </Table>

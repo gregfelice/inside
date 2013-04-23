@@ -49,10 +49,11 @@
       <th><%= sort_link @search, :id, "Id" %></th>
       <th><%= sort_link @search, :name, "Name" %></th>
       <th><%= sort_link @search, :title, "Title" %></th>
-      <th><%= sort_link @search, :group, "Group" %></th>
-      <th><%= sort_link @search, :hiring_status, "Hiring Status" %></th>
-      <th><%= sort_link @search, :hr_status, "HR Status" %></th>
-      <th><%= sort_link @search, :hr_status, "Budget" %></th>
+
+      <th><%= sort_link @search, :cost_center, "Cost Center" %></th>
+      <th><%= sort_link @search, :location_floor, "Location" %></th>
+      <th><%= sort_link @search, :office_phone, "Ext" %></th>
+
       <th>Actions</th>
     </tr>
   </thead>
@@ -63,11 +64,9 @@
         <td><%= person.name %></td>
         <td><%= person.title %></td>
 
-        <td><%= person.group %></td>
-        <td><%= person.hiring_status %></td>
-        <td><%= person.hr_status %></td>
-        <td><%= person.budget %></td>
-
+        <td><%= person.cost_center %></td>
+        <td><%= person.location_floor %></td>
+        <td><%= person.office_phone %></td>
 
         <td>
           <%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini' %>

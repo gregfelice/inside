@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
   @person_types = ['employee', 'contractor']
   @hr_statuses = ['active', 'resigned']
   @hiring_statuses = ['requested', 'approved / not posted', 'approved / posted', 'unbudgeted / posted', 'hired']
-  @budgets = ['Digital', 'Digital IITT', 'Digital PP2', 'S&T CES']
+  @budgets = ['Digital', 'Digital IITT', 'Digital PP2', 'S&T', 'CES', 'Games']
   @location_floors = [
     '7 North', '7 South', '7 East', '7 West', '8 North', '8 South', '8 East', '8 West', '9 North', '9 South', '9 East', '9 West', '10 North', '10 South', '10 East', '10 West',
     '11 North', '11 South', '11 East', '11 West', '12 North', '12 South', '12 East', '12 West', '13 North', '13 South', '13 East', '13 West'
@@ -39,7 +39,10 @@ class Person < ActiveRecord::Base
     attr_accessor :person_types, :hr_statuses, :hiring_statuses, :budgets, :groups, :seatings, :location_floors, :person_roles, :person_foci
   end
 
-  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :cost_center, :business_unit, :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens, :location_floor, :location_code, :hiring_status, :seating, :employment_start_date, :employment_end_date, :budget, :group, :office_phone, :cell_phone, :person_role, :person_focus
+  attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :cost_center, :business_unit,
+  :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens,
+  :location_floor, :location_code, :hiring_status, :seating, :employment_start_date, :employment_end_date, :budget,
+  :group, :office_phone, :cell_phone, :person_role, :person_focus, :peoplesoft_title
 
   validates_presence_of :name, :title, :person_type
 

@@ -59,6 +59,13 @@ EOF
 
     @people_without_a_location_floor = nil
 
+    @people_updated_this_week = nil
+
+    sql = <<EOF
+TBD
+EOF
+    #@people_updated_this_week =  ActiveRecord::Base.connection.execute(sql)
+
   end
 
 end
