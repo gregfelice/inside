@@ -11,16 +11,17 @@ class Ability
       can :manage, :all
 
     elsif user.role? :admin
+      can :read, Person
       can :update, Person
 
     elsif user.role? :finance
-      can :manage_financials, Person
+      can :read, Person
+      can :update, Person
 
     elsif user.role? :staff
       can :read, Person
       can :update, Person do |person|
         user.person_id == person.id
-        # todo -- add that i can modify my direct and dotted reports
       end
     else
       # can :read, [Person, User]
