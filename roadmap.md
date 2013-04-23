@@ -17,6 +17,18 @@
 
 # Shipped
 
+## 4.24.2013
+
+### feature/role-based-access-control
+* User administration screens
+* Fine-grained, role-based access control to fields, functions
+* Supports superadmin, admin, finance, staff roles, easily extensible to other roles
+* Users can login using NYT ldap username or email
+
+### feature/miscellaneous
+* Updated csv, xls exports to include all person fields
+* Data entry & completeness reports
+
 ## 4.22.2013
 
 ### bug/employment date selects don't go back far enough
@@ -112,11 +124,6 @@
 
 ### feature/miscellaneous
 * Hide resigned people
-
-### feature/role-based-access-control
-* Security roles
-* Role based access control to fields, functions
-* Supports data entry ownership for finance, PMO, location/facilities
 
 ### feature/facilities-support-basic
 * Load spreadsheet based seating data 
