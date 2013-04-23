@@ -54,7 +54,9 @@
       <th><%= sort_link @search, :location_floor, "Location" %></th>
       <th><%= sort_link @search, :office_phone, "Ext" %></th>
 
+      <% if can?(:update, Person) %>
       <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -69,11 +71,18 @@
         <td><%= person.office_phone %></td>
 
         <td>
+
+	  <% if can?(:update, person) %>
           <%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini' %>
+	  <% end %>
+
+	  <% if can?(:destroy, person) %>
           <%= link_to t('.destroy', 
-            :default => t("helpers.links.destroy")),
-            person_path(person), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-            :class => 'btn btn-mini btn-danger' %>
+              :default => t("helpers.links.destroy")),
+              person_path(person), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-mini btn-danger' %>
+	  <% end %>
+
         </td>
       </tr>
     <% end %>

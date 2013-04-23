@@ -1,16 +1,39 @@
-<!-- table header stuff here -->
+<%- model_class = User -%>
+
+<h1>
+  <%=t '.title', :default => model_class.model_name.human.pluralize %>
+  <%= link_to raw("<i class='icon-plus icon-white'></i> New User"), new_user_path, :class => 'btn-large btn-primary pull-right' %>
+</h1>
 
 <table class="table">
   
+
+  <tr>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Roles</th>
+    <th>Actions</th>
+  </tr>
   <% @users.each do |u| %>
   <tr>
     <td><%= link_to_if(can?(:read, User), "#{u.email}", user_path(u.id)) {} %></td>
-    <td><%= "#{u.email}" %></td>
+    <td><%= link_to_if(can?(:read, User), "#{u.username}", user_path(u.id)) {} %></td>
     <td><%= "#{u.roles.collect{|r| r.name}}" %></td>
     
-    <td><%= link_to_if(can?(:edit, User), image_tag("/images/edit_icon.gif"), edit_user_path(u.id)) {} %></td>
-    <td><%= link_to_if(can?(:delete, u), image_tag("/images/delete_icon.gif"), u, :confirm => "Are you sure?", :method => :delete) {} %></td>
+    <td>
+      <%= link_to_if can?(:edit, User), 'Edit', edit_user_path(u.id), :class => 'btn btn-mini' %>
+      <%= link_to_if can?(:delete, u), 
+	  t('.destroy', :default => t("helpers.links.destroy")), 
+          user_path(u.id), 
+          :method => :delete, 
+          :data => { :confirm => t('.confirm', 
+          :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+          :class => 'btn btn-mini btn-danger' 
+      %>
+    </td>
   </tr>
   <% end %>
-  
+
+
 </table>
+

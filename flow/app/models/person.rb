@@ -22,12 +22,17 @@ class Person < ActiveRecord::Base
     'Ecommerce UI Engineering',
     'Emerging Technologies',
     'Finance',
+    'Information Security',
     'Infrastructure Engineering',
+    'Interactive News Technology',
+    'NYTimes Index',
     'New Products',
     'Planning',
     'Platform Technologies',
+    'Product Management',
     'Project Management',
     'Quality Assurance',
+    'Systems & Infrastructure',
     'Technology Management',
     'Web & Mobile Engineering',
     'Web Technologies'
@@ -66,6 +71,8 @@ class Person < ActiveRecord::Base
 
   has_many :sources, :through => :source_associations, :after_add => :make_dirty, :after_remove => :make_dirty
   has_many :sinks,   :through => :sink_associations,   :after_add => :make_dirty, :after_remove => :make_dirty
+
+  has_one :user
 
   #def initialize(attributes={})
   #  super

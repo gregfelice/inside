@@ -10,10 +10,15 @@
       <td><%= @user.email %></td>
     </tr>
     <tr>
-      <td class="oce-first">Role:</td>
-      <td><%= @user.roles.first.name %></td>
+      <td class="oce-first">Username:</td>
+      <td><%= @user.username %></td>
     </tr>
-    <% if can?(:see_timestamps,User) %>
+    <tr>
+      <td class="oce-first">Role:</td>
+      <td><%= @user.roles.first.name if @user.roles.size > 0 %></td>
+    </tr>
+
+    <% if can?(:see_timestamps, User) %>
     <tr>
       <td class="oce-first">Created at:</td>
       <td><%= @user.created_at %></td>
@@ -27,6 +32,12 @@
       <td><%= @user.sign_in_count %></td>
     </tr>
     <% end %>
+
   </tbody>
 </table>
+
+<%= link_to "Back", users_path %>
+
+
+
 

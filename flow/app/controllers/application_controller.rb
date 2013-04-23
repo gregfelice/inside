@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!, :application_vars
 
+  # redirect me to home on cancan access denied
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
     redirect_to root_url

@@ -3,16 +3,27 @@ class Ability
 
   def initialize(user)
 
+    alias_action :search, :to => :read
+
     user ||= User.new # guest user
 
     if user.role? :super_admin
       can :manage, :all
+
     elsif user.role? :admin
-      can :see_timestamps, User
-    elsif user.role? :normal
-      can :see_timestamps, User, :id => user.id
+      can :update, Person
+
+    elsif user.role? :finance
+      can :manage_financials, Person
+
+    elsif user.role? :staff
+      can :read, Person
+      can :update, Person do |person|
+        user.person_id == person.id
+        # todo -- add that i can modify my direct and dotted reports
+      end
     else
-      can :manage, [Person, User]
+      # can :read, [Person, User]
     end
 
     # Define abilities for the passed in user here. For example:

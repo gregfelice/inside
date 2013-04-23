@@ -1,5 +1,7 @@
 class PeopleController < InheritedResources::Base
 
+  load_and_authorize_resource
+
   def search
     index
   end
@@ -10,6 +12,8 @@ class PeopleController < InheritedResources::Base
       ppl.each {|p|
         if p.hr_status == 'resigned'
           p.name = p.name + " (Resigned)"
+        elsif p.hiring_status != 'hired'
+          p.name = p.name + " (Open)"
         end
       }
       @people = ppl
