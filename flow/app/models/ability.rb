@@ -13,6 +13,7 @@ class Ability
     elsif user.role? :admin
       can :read, Person
       can :update, Person
+      can :create, Person
 
     elsif user.role? :finance
       can :read, Person
