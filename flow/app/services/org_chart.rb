@@ -91,7 +91,7 @@ class OrgChart
         )) if !nodes.has_key?(id)
     subject.source_associations.each {|sa|
       sa_id = sa.source.id.to_s
-      next if edges.has_key?([ nodes[sa_id], nodes[id] ])
+      next if edges.has_key?([ nodes[sa_id], nodes[id] ]) || sa.association_type == 'customer_reporting'
       nodes[sa_id] = g.add_nodes(
         sa_id,
         :label => get_node_label(sa.source),
@@ -104,7 +104,7 @@ class OrgChart
     }
     subject.source_associations.each {|sa|
       sa_id = sa.source.id.to_s
-      next if edges.has_key?([ nodes[sa_id], nodes[id] ])
+      next if edges.has_key?([ nodes[sa_id], nodes[id] ]) || sa.association_type == 'customer_reporting'
       edges[ [ nodes[sa_id], nodes[id] ] ] = g.add_edges(
         nodes[sa_id], nodes[id],
         :style => get_edge_style(sa.association_type),
@@ -131,7 +131,7 @@ EOF
       ) if !nodes.has_key?(id)
     subject.sink_associations.each {|sa|
       sa_id = sa.sink.id.to_s
-      next if edges.has_key?([ nodes[id], nodes[sa_id] ])
+      next if edges.has_key?([ nodes[id], nodes[sa_id] ]) || sa.association_type == 'customer_reporting'
       nodes[sa_id] = g.add_nodes(
         sa_id,
         :label => get_node_label(sa.sink),
@@ -144,7 +144,7 @@ EOF
     }
     subject.sink_associations.each {|sa|
       sa_id = sa.sink.id.to_s
-      next if edges.has_key?([ nodes[id], nodes[sa_id] ])
+      next if edges.has_key?([ nodes[id], nodes[sa_id] ]) || sa.association_type == 'customer_reporting'
       edges[ [ nodes[id], nodes[sa_id] ] ] = g.add_edges(
         nodes[id], nodes[sa_id],
         :style => get_edge_style(sa.association_type),
