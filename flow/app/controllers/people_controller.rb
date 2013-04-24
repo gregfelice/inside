@@ -124,6 +124,7 @@ class PeopleController < InheritedResources::Base
   def update_multiple
     @people = Person.find(params[:person_ids])
     @people.reject! do |person|
+      post_activity person, "updated person #{person.name}"
       person.update_attributes(params[:person].reject { |k,v| v.blank? })
     end
     if @people.empty?
