@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
 
     alias_action :search, :to => :read
+    alias_action :update_multiple, :edit_multiple, :to => :update
 
     user ||= User.new # guest user
 

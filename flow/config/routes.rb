@@ -15,8 +15,12 @@ Flow::Application.routes.draw do
   resources :people do
     collection do
       match 'search' => 'people#search', :via => [:get, :post], :as => :search
+
+      get :edit_multiple
+      put :update_multiple
     end
   end
+
 
   resources :person_associations
 

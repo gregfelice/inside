@@ -42,10 +42,23 @@
   <button id="show_people_search" class="btn pull-right"><i class="icon-search"></i> Search</button>
 </div>
 
+<script language="JavaScript">
+    function toggle(source) {
+	checkboxes = document.getElementsByName('person_ids[]');
+	for(var i=0, n=checkboxes.length;i<n;i++) {
+	    checkboxes[i].checked = source.checked;
+	}
+    }
+</script>
+
+<%= form_tag edit_multiple_people_path, method: :get do %>
+
 <table id="search_results" class="table table-striped">
 
   <thead>
     <tr>      
+      <th><input type="checkbox" onClick="toggle(this)" /></th>
+
       <th><%= sort_link @search, :id, "Id" %></th>
       <th><%= sort_link @search, :name, "Name" %></th>
       <th><%= sort_link @search, :title, "Title" %></th>
@@ -62,6 +75,12 @@
   <tbody>
     <% @people.each do |person| %>
       <tr>
+
+	<% if can?(:update, person) %>
+	<td><%= check_box_tag "person_ids[]", person.id %></td>
+	<% else %>
+	<td></td>
+	<% end %>
         <td><%= link_to person.id, person_path(person) %></td>
         <td><%= person.name %></td>
         <td><%= person.title %></td>
@@ -88,6 +107,11 @@
     <% end %>
   </tbody>
 </table>
+
+<%= submit_tag "Edit Checked", :class => "btn" %>
+
+<% end %>
+
 
 <%= will_paginate @people %>
 
