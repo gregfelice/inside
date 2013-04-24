@@ -40,6 +40,7 @@ class OrgChart
     g[:labeljust]     = "l"
     g[:labelloc]      = "t"
     g[:bgcolor]       ="transparent"
+
     g.node[:color]    = "#ddaa66"
     g.node[:style]    = "filled"
     g.node[:style]    = "rounded, filled"
@@ -50,6 +51,7 @@ class OrgChart
     g.node[:fillcolor]= "#ffeecc"
     g.node[:fontcolor]= "#775500"
     g.node[:margin]   = "0.1"
+
     g.edge[:color]    = "#999999"
     g.edge[:weight]   = "1"
     g.edge[:fontsize] = "6"
@@ -93,7 +95,9 @@ class OrgChart
       nodes[sa_id] = g.add_nodes(
         sa_id,
         :label => get_node_label(sa.source),
-        :fillcolor => get_node_color(sa.source),
+        :color => get_node_color(sa.source, :color),
+        :fillcolor => get_node_color(sa.source, :fillcolor),
+        :fontcolor => get_node_color(sa.source, :fontcolor),
         :URL => Rails.application.routes.url_helpers.chart_org_context_path(:id => sa_id),
         :target => "_parent"
         ) unless nodes.has_key?(sa_id)
@@ -131,7 +135,9 @@ EOF
       nodes[sa_id] = g.add_nodes(
         sa_id,
         :label => get_node_label(sa.sink),
-        :fillcolor => get_node_color(sa.sink),
+        :color => get_node_color(sa.sink, :color),
+        :fillcolor => get_node_color(sa.sink, :fillcolor),
+        :fontcolor => get_node_color(sa.sink, :fontcolor),
         :URL => Rails.application.routes.url_helpers.chart_org_context_path(:id => sa_id),
         :target => "_parent"
         ) unless nodes.has_key?(sa_id)
@@ -147,9 +153,23 @@ EOF
     }
   end
 
-  def get_node_color(person)
-    return :wheat if person.person_type == 'contractor'
-    return :snow
+  def get_node_color(person, attribute)
+    if attribute == :fillcolor
+      return :gainsboro if person.hr_status == 'resigned'
+      return :coral if person.hiring_status != 'hired'
+      return :wheat if person.person_type == 'contractor'
+      return :ivory
+    elsif attribute == :fontcolor
+      return :silver if person.hr_status == 'resigned'
+      return :white if person.hiring_status != 'hired'
+      return :tan if person.person_type == 'contractor'
+      return :burlywood
+    elsif attribute == :color
+      return :silver if person.hr_status == 'resigned'
+      return :darkorange if person.hiring_status != 'hired'
+      return :burlywood if person.person_type == 'contractor'
+      return :burlywood
+    end
   end
 
   def get_edge_style(association_type)
