@@ -47,7 +47,7 @@ class Person < ActiveRecord::Base
   attr_accessible :id, :name, :title, :person_type, :temporary, :hr_status, :part_time, :cost_center, :business_unit,
   :direct_subordinate_tokens, :dotted_subordinate_tokens, :direct_supervisor_tokens, :dotted_supervisor_tokens,
   :location_floor, :location_code, :hiring_status, :seating, :employment_start_date, :employment_end_date, :budget,
-  :group, :office_phone, :cell_phone, :person_role, :person_focus, :peoplesoft_title
+  :group, :office_phone, :cell_phone, :person_role, :person_focus, :peoplesoft_title, :customer_tokens
 
   validates_presence_of :name, :title, :person_type
 
@@ -116,6 +116,12 @@ class Person < ActiveRecord::Base
     end
   end
 
+  # direct customer accessors
+  def add_customer(person); self.source_associations.build( { :association_type => 'reporting', :source_id => person.id, :sink_id => self.id } ); end
+  scope :customers, lambda { |person| person.source_associations.where(:association_type => :reporting).map { |ds| ds.source } }
+  def customers; self.class.customers(self); end
+
+
   # direct supervisor accessors
   def add_direct_supervisor(person); self.source_associations.build( { :association_type => 'direct_reporting', :source_id => person.id, :sink_id => self.id } ); end
   scope :direct_supervisors, lambda { |person| person.source_associations.where(:association_type => :direct_reporting).map { |ds| ds.source } }
@@ -137,6 +143,20 @@ class Person < ActiveRecord::Base
   def dotted_subordinates; self.class.dotted_subordinates(self); end
 
   # jquery-token-input related
+
+  def customer_tokens
+    Person.customers(self).map { |ds| ds.id }
+  end
+
+  def customer_tokens=(ids)
+    returned_ids = ids.split(",").flatten.uniq.collect{ |s| s.to_i }
+    current_ids  = self.customers.collect { |s| s.id }
+    to_be_added = returned_ids - current_ids
+    to_be_removed = current_ids - returned_ids
+    to_be_added.each { |s| self.source_associations.build(:association_type => 'customer_reporting', :source_id => s, :sink_id => self.id) }
+    to_be_removed.each {|s| self.sources.delete( self.class.where(:id => s)) }
+  end
+  ##############################################################################################################################
 
   def direct_supervisor_tokens
     Person.direct_supervisors(self).map { |ds| ds.id }

@@ -72,6 +72,29 @@
 <br>
 
 <% if @person.source_associations.size > 0 %>
+<strong><%= @person.name %> has the following customers:</strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 50%"></th>
+      <th style="width: 50%"></th>
+    </tr>
+  </thead> 
+  <% @person.source_associations.each do |sr| %>
+  <% if sr.association_type == "customer_reporting" %>
+  <tr><td><%= link_to sr.source.name, sr.source %></td><td class="muted"><em><%= sr.source.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <% end %>
+  <% end %>
+</table>
+
+<% else %>
+<strong><%= @person.name %> does not have any customers.</strong>
+<br><br><br>
+<% end %>
+
+
+
+<% if @person.source_associations.size > 0 %>
 <strong><%= @person.name %> reports to:</strong>
 <table class="table">
   <thead>
@@ -81,14 +104,17 @@
     </tr>
   </thead> 
   <% @person.source_associations.each do |sr| %>
+  <% if sr.association_type == "direct_reporting" || sr.association_type == "dotted_reporting" %>
   <tr><td><%= link_to sr.source.name, sr.source %></td><td class="muted"><em><%= sr.source.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <% end %>
   <% end %>
 </table>
 
 <% else %>
-<strong><%= @person.name %> does not have any supervisors.</strong>
+<strong><%= @person.name %> does not have any customers.</strong>
 <br><br><br>
 <% end %>
+
 
 
 <% if @person.sink_associations.size > 0 %>
