@@ -127,7 +127,9 @@
     </tr>
   </thead> 
   <% @person.sink_associations.each do |sr| %>
+  <% if sr.association_type == "direct_reporting" || sr.association_type == "dotted_reporting" %>
   <tr><td><%= link_to sr.sink.name, sr.sink %></td><td class="muted"><em><%= sr.sink.title %> (<%= sr.association_type.humanize %>)</td></tr>
+  <% end %>
   <% end %>
 </table>
 
