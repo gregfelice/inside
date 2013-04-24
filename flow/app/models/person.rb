@@ -116,9 +116,9 @@ class Person < ActiveRecord::Base
     end
   end
 
-  # direct customer accessors
+  # customer accessors
   def add_customer(person); self.source_associations.build( { :association_type => 'reporting', :source_id => person.id, :sink_id => self.id } ); end
-  scope :customers, lambda { |person| person.source_associations.where(:association_type => :reporting).map { |ds| ds.source } }
+  scope :customers, lambda { |person| person.source_associations.where(:association_type => :customer_reporting).map { |ds| ds.source } }
   def customers; self.class.customers(self); end
 
 
