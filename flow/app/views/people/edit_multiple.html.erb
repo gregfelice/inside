@@ -24,10 +24,10 @@
   <%= f.input :group, collection: Person.groups, :include_blank => true %>
 
   <!-- person role -->
-  <%= f.input :group, collection: Person.person_roles, :include_blank => true %>
+  <%= f.input :person_role, collection: Person.person_roles, :include_blank => true %>
 
   <!-- person focus -->
-  <%= f.input :group, collection: Person.person_foci, :include_blank => true %>
+  <%= f.input :person_focus, collection: Person.person_foci, :include_blank => true %>
 
   <!-- location floor -->
   <%= f.input :location_floor, collection: Person.location_floors, :include_blank => true %>
