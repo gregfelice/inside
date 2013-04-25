@@ -5,7 +5,7 @@ class ResourceAllocation < ActiveRecord::Base
   belongs_to :plan
   belongs_to :person, :inverse_of => :resource_allocations
 
-  validates_uniqueness_of :person_id, :scope => [:milestone_id]
+  validates_uniqueness_of :person_id, :scope => [:plan_id]
 
   public
 

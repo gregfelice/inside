@@ -23,17 +23,22 @@ Capybara.default_wait_time = 5
 
 Spork.prefork do # spork
   RSpec.configure do |config|
+    #
+    # config.filter_run :focus => true
+    #
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
     config.treat_symbols_as_metadata_keys_with_true_values = true
-    #config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
     config.include FactoryGirl::Syntax::Methods
   end
 end
 
 Spork.each_run do
+  print "loading seeds.rb..."
+  require "#{Rails.root}/db/seeds.rb"
+  puts "done."
 
   # as per railscasts recommendations
   FactoryGirl.reload # spork related
@@ -44,10 +49,13 @@ Spork.each_run do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 end
 
-
 def login
-  user = create(:user, :email => "test_user@test.com", :password => "p4ssw0rd___")
-  login_as(user, :scope => :user)
+  begin
+    user = User.find_by_email('super_admin@nytimes.com')
+    login_as(user, :scope => :user)
+  rescue Exception => e
+    puts e.inspect
+  end
 end
 
 def logout

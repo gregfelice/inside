@@ -14,11 +14,13 @@ describe "Plan Model" do
   end
 
   it "can have resources allocated to it", :focus => false do
-    milestone = create(:milestone)
+    plan = create(:plan)
     person = create(:person)
-    milestone.add_resource_allocation(person, 0.5, "infrastructure support")
-    milestone.resource_allocations.size.should == 1
-    puts milestone.resource_allocations.first.person.should_not be_nil
+
+    plan.add_resource_allocation(person, 0.5, "infrastructure support")
+
+    plan.resource_allocations.size.should == 1
+    puts plan.resource_allocations.first.person.should_not be_nil
   end
 
 end

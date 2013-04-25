@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Person Administration" do
 
-  scenario "as an administrator, I can delete an person", :js => true, :focus => true do
+  scenario "as an administrator, I can delete an person", :js => true, :focus => false do
     person = create(:person)
     login
     visit person_path(person.id)
@@ -12,7 +12,7 @@ feature "Person Administration" do
     page.should have_content "Person was successfully destroyed."
   end
 
-  scenario "throws a validation error if a omit name on new person", :js => true, :focus => true do
+  scenario "throws a validation error if a omit name on new person", :js => true, :focus => false do
     e = build(:person)
     login
     visit people_path
@@ -28,7 +28,7 @@ feature "Person Administration" do
     page.should have_content "can't be blank"
   end
 
-  scenario "I can add a direct supervisor for an person", :js => true, :focus => true do
+  scenario "I can add a direct supervisor for an person", :js => true, :focus => false do
 
     person = create(:person)
     supervisor = create(:person, name: 'Jacob Brown')
@@ -43,7 +43,7 @@ feature "Person Administration" do
     page.should have_content supervisor.name
   end
 
-  scenario "I can add a dotted supervisor for an person", :js => true, :focus => true do
+  scenario "I can add a dotted supervisor for an person", :js => true, :focus => false do
     person = create(:person)
     supervisor = create(:person, name: 'Jacob Brown')
     login
@@ -61,7 +61,7 @@ feature "Person Administration" do
 =begin
 
 # commented out for now - a branch will be dedicated to cycle detection improvements
-  scenario "as an administrator, when I update an person, and add a reporting relationship for an person, I cannot create a circular relationship", :js => true, :focus => true do
+  scenario "as an administrator, when I update an person, and add a reporting relationship for an person, I cannot create a circular relationship", :js => true, :focus => false do
     person = create(:person)
     login
     visit person_path(person.id)
@@ -74,7 +74,7 @@ feature "Person Administration" do
   end
 =end
 
-  scenario "as an administrator, I can create a new person", :js => true, :focus => true do
+  scenario "as an administrator, I can create a new person", :js => true, :focus => false do
     e = build(:person)
     login
     visit people_path
@@ -94,7 +94,7 @@ feature "Person Administration" do
     page.should have_content "Person was successfully created."
   end
 
-  scenario "as a user, I can view an person profile", :js => true, :focus => true do
+  scenario "as a user, I can view an person profile", :js => true, :focus => false do
     e = create(:person, name: 'Jacob Brown')
 
     login
