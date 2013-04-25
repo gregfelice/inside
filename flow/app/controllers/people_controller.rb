@@ -111,5 +111,28 @@ class PeopleController < InheritedResources::Base
     end
   end
 
+  def edit_multiple
+    if !params[:person_ids]
+      respond_to do |format|
+        format.html { redirect_to people_path, notice: "Nobody was checked!!" }
+      end
+    else
+      @people = Person.find(params[:person_ids])
+    end
+  end
+
+  def update_multiple
+    @people = Person.find(params[:person_ids])
+    @people.reject! do |person|
+      post_activity person, "updated person #{person.name}"
+      person.update_attributes(params[:person].reject { |k,v| v.blank? })
+    end
+    if @people.empty?
+      redirect_to people_url, notice: "People successfully updated."
+    else
+      @person = Person.new(params[:person])
+      render "edit_multiple"
+    end
+  end
 
 end

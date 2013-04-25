@@ -1,6 +1,6 @@
 class PersonAssociation < ActiveRecord::Base
 
-  @association_types = ['direct_reporting', 'dotted_reporting']
+  @association_types = ['direct_reporting', 'dotted_reporting', 'customer_reporting']
 
   class << self
     attr_accessor :association_types

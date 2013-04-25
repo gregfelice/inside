@@ -1,0 +1,52 @@
+<h1>Edit Checked People</h1>
+
+<%= form_tag update_multiple_people_path, method: :put do %>
+  <ul>
+  <% @people.each do |person| %>
+    <li>
+      <%= hidden_field_tag "person_ids[]", person.id %>
+      <%= person.name %>
+      <ul class="errors">
+        <% person.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  </ul>
+
+  <%= simple_fields_for :person do |f| %>
+
+  <!-- person type -->
+  <%= f.input :person_type, collection: Person.person_types, :include_blank => true %>
+
+  <!-- group -->
+  <%= f.input :group, collection: Person.groups, :include_blank => true %>
+
+  <!-- person role -->
+  <%= f.input :person_role, collection: Person.person_roles, :include_blank => true %>
+
+  <!-- person focus -->
+  <%= f.input :person_focus, collection: Person.person_foci, :include_blank => true %>
+
+  <!-- location floor -->
+  <%= f.input :location_floor, collection: Person.location_floors, :include_blank => true %>
+
+  <!-- seating -->
+  <%= f.input :seating, collection: Person.seatings, :include_blank => true %>
+
+  <!-- 
+  <div class="field">
+    <%= f.label :cell_phone %><br />
+    <%= f.text_field :cell_phone %>
+  </div>
+  -->
+
+  <% end %>
+
+  <div class="form-actions">
+    <%= submit_tag "Update", :class => "btn" %>
+    <%= link_to 'Back', people_path, :class => "btn"  %>
+  </div>
+
+<% end %>

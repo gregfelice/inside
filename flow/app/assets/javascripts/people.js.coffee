@@ -1,5 +1,17 @@
 jQuery ->
   # jquery token input
+
+  $("#person_customer_tokens").tokenInput "/people.json",
+    crossDomain: false
+    queryParam: "jqst"
+    theme: "facebook"
+    propertyToSearch: "name"
+    prePopulate: $("#person_customer_tokens").data("pre")
+
+
+
+
+
   $("#person_direct_supervisor_tokens").tokenInput "/people.json",
     crossDomain: false
     queryParam: "jqst"
