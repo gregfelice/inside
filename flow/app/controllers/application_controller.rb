@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def application_vars
-    @employees_count = Employee.count
+    @employees_count = Person.count
   end
 
 end
