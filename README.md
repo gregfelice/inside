@@ -2,6 +2,7 @@
 
 
 * [Project Roadmap](./roadmap.md)
+* [Milestones](./milestones.md)
 
 # Developers Guide
 

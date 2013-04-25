@@ -19,6 +19,14 @@
 
 ## 4.24.2013
 
+### feature/customer-relationships
+* Complimentary to direct and dotted reporting relationships
+* People can manage multiple internal customer relationships
+* Will support future social visualizations of org
+
+### feature/bulk-updates
+* Can change a specific field for a multiple people
+
 ### feature/role-based-access-control
 * User administration screens
 * Fine-grained, role-based access control to fields, functions
@@ -122,8 +130,14 @@
 
 # Sorted Backlog
 
-### feature/miscellaneous
-* Hide resigned people
+### feature/hiring-improvements-and-project-basics
+* For proper roles: 
+  * Toggle resigned people
+  * Toggle open positions
+
+### feature/fine-grained-activity
+* Specify event types
+* Track detailed event types for future reporting (post-initial system inputs)
 
 ### feature/facilities-support-basic
 * Load spreadsheet based seating data 
@@ -173,9 +187,6 @@
 * As a person, I can upload photos for my profile
 * As a person, I can login with my LDAP credentials, so I can update my info
 * As a person, I can use search and show tools without logging in
-
-### feature/bulk-updates
-* I want to change a specific field, or person association for a bunch of people
 
 ### feature/financial-views
 * Integration to budget and financials data

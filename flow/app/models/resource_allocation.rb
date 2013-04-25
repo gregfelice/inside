@@ -1,7 +1,8 @@
 class ResourceAllocation < ActiveRecord::Base
-  attr_accessible :comment, :quantity, :milestone_id, :person_id, :resource_name
 
-  belongs_to :milestone
+  attr_accessible :comment, :quantity, :plan_id, :person_id, :resource_name
+
+  belongs_to :plan
   belongs_to :person, :inverse_of => :resource_allocations
 
   validates_uniqueness_of :person_id, :scope => [:milestone_id]
