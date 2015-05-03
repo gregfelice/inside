@@ -31,7 +31,7 @@
 * User administration screens
 * Fine-grained, role-based access control to fields, functions
 * Supports superadmin, admin, finance, staff roles, easily extensible to other roles
-* Users can login using NYT ldap username or email
+* Users can login using ldap username or email
 
 ### feature/miscellaneous
 * Updated csv, xls exports to include all person fields
@@ -209,7 +209,7 @@
 * I want to see system stats (load, IO)
 
 ### capability/value-chain-visualization
-* Express the core NYT value chains visually
+* Express the core value chains visually
 * Show collaborators
 * Show clusters of communication
 * Show time through the loop

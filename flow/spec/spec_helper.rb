@@ -51,7 +51,7 @@ end
 
 def login
   begin
-    user = User.find_by_email('super_admin@nytimes.com')
+    user = User.find_by_email('super_admin@xyz.com')
     login_as(user, :scope => :user)
   rescue Exception => e
     puts e.inspect
