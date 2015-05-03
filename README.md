@@ -1,4 +1,4 @@
-# Times People / Inside Edition
+# Inside / Human Resources System
 
 
 * [Project Roadmap](./roadmap.md)

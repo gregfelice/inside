@@ -1,3 +1,14 @@
+/.bundle
+/db/*.sqlite3
+/log/*.log
+/tmp
+/app/assets/stylesheets/.sass-cache
+.emacs.desktop
+xx
+public/tests.html
+vendor/bundle
+public/experimental
+schema.rb
 .bundle
 db/*.sqlite3*
 log
@@ -11,6 +22,5 @@ doc/app
 *~
 .DS_Store
 *#
-
 notes.txt
 work

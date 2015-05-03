@@ -13,17 +13,17 @@
   }
 </style>
 
-<span style="font-size: xx-large; color: orange">Times People / Inside Edition</span>
+<span style="font-size: xx-large; color: orange">Inside / Human Resources System</span>
 
 # Personas
 
 ### Data Administration
 * I want to easily maintain core information in the system
-  * Location               / Karen Schmidt
-  * Financials             / Sue Kim
-  * HR status              / TBD
-  * Hiring status          / TBD
-  * Group, department      / Stephanie
+  * Location         
+  * Financials       
+  * HR status        
+  * Hiring status    
+  * Group, department
 
 ### Staff
 * I want to see a rolodex of people

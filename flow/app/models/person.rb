@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
   @person_types = ['employee', 'contractor']
   @hr_statuses = ['active', 'resigned']
   @hiring_statuses = ['requested', 'approved / not posted', 'approved / posted', 'unbudgeted / posted', 'hired']
-  @budgets = ['Digital', 'Digital IITT', 'Digital PP2', 'S&T', 'CES', 'Games']
+  @budgets = ['Budget A', 'Budget B', 'Budget C', 'Budget D', 'Budget F', 'Budget G']
   @location_floors = [
     '7 North', '7 South', '7 East', '7 West', '8 North', '8 South', '8 East', '8 West', '9 North', '9 South', '9 East', '9 West', '10 North', '10 South', '10 East', '10 West',
     '11 North', '11 South', '11 East', '11 West', '12 North', '12 South', '12 East', '12 West', '13 North', '13 South', '13 East', '13 West'
@@ -24,8 +24,8 @@ class Person < ActiveRecord::Base
     'Finance',
     'Information Security',
     'Infrastructure Engineering',
-    'Interactive News Technology',
-    'NYTimes Index',
+    'Interactive Technology',
+    'Index',
     'New Products',
     'Planning',
     'Platform Technologies',

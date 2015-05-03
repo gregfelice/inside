@@ -1,0 +1,9 @@
+sudo yum install -y libxml2
+sudo yum install -y libxml2-devel
+sudo yum install -y libxslt-devel
+sudo yum install -y mariadb-devel
+sudo yum install -y mariadb-libs
+sudo yum install -y graphviz
+sudo yum install -y graphviz-devel
+sudo yum install -y memcached
+

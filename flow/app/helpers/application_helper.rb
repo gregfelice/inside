@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def app_title
-    "TimesPeople / Inside Edition"
+    "Inside / Human Resources System"
   end
 
   # employee search condition field helper

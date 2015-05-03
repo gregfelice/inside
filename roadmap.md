@@ -13,7 +13,7 @@
   }
 </style>
 
-<span style="font-size: xx-large; color: orange">Times People / Inside Edition</span>
+<span style="font-size: xx-large; color: orange">Inside / Human Resources System</span>
 
 # Shipped
 
@@ -217,8 +217,3 @@
 ### Unsorted
 * See https://www.ruby-toolbox.com/categories/reporting
 * Update xls, csv export to include new fields
-<<<<<<< HEAD
-* Gravatar integration
-* Linkedin integration
-=======
->>>>>>> backbone-fun

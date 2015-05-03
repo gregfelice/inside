@@ -26,7 +26,7 @@ class Ability
         user.person_id == person.id
       end
     else
-      # can :read, [Person, User]
+      can :read, [Person, User]
     end
 
     # Define abilities for the passed in user here. For example:

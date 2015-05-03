@@ -29,19 +29,19 @@ staff_role.save!
 
 User.delete_all
 
-super_admin = User.create(:email => 'super_admin@nytimes.com', :username => 'super_admin', :password => 'password')
+super_admin = User.create(:email => 'super_admin@xyz.com', :username => 'super_admin', :password => 'password')
 super_admin.roles << super_admin_role
 super_admin.save!
 
-admin = User.create(:email => 'admin@nytimes.com', :username => 'admin', :password => 'password')
+admin = User.create(:email => 'admin@xyz.com', :username => 'admin', :password => 'password')
 admin.roles << admin_role
 admin.save!
 
-finance = User.create(:email => 'finance@nytimes.com', :username => 'finance', :password => 'password')
+finance = User.create(:email => 'finance@xyz.com', :username => 'finance', :password => 'password')
 finance.roles << finance_role
 finance.save!
 
-staff = User.create(:email => 'staff@nytimes.com', :username => 'staff', :password => 'password')
+staff = User.create(:email => 'staff@xyz.com', :username => 'staff', :password => 'password')
 staff.roles << staff_role
 staff.save!
 
